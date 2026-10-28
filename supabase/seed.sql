@@ -1,12 +1,6 @@
 -- PLM SEAMS sample seed data aligned with ERD ver17 / Supabase schema
 -- Source: supplied 'Sample Data - PLM SEAMS - Google Sheets.pdf'
--- IMPORTANT: Run only AFTER plm_seams_schema_aligned_supabase.sql.
--- Demo-only: original sample passwords are preserved AS PLAINTEXT at user request.
--- These are NOT secure credentials; do not use for real authentication or expose this table.
--- Replace with Supabase Auth or hashed credentials before any real deployment.
--- Text in cramped PDF cells was reconstructed from readable PDF text.
--- Run once against an empty set of tables; duplicate primary keys will fail on rerun.
--- Row Level Security should remain enabled; no public access policies are added.
+
 BEGIN;
 
 -- users: 52 rows
