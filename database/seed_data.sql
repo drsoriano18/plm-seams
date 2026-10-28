@@ -1,1 +1,0 @@
-# SQL Commands to INSERT dummy data into the database tables
