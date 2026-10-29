@@ -4,7 +4,7 @@ SET session_replication_role = replica;
 -- PostgreSQL database dump
 --
 
--- \restrict TdpO6cmx9nPdLLu4NwLmwqpHNPFq36AoUOC6bXhcMWWvHpY524FHDG1OJcvSIZZ
+-- \restrict G3upzVkHRSF4ceh7pkkxsPdWr77nEbeJb1JgHBtgA3YQeXMu1B2YD6h5cWC7qhF
 
 -- Dumped from database version 17.11
 -- Dumped by pg_dump version 17.11
@@ -78,16 +78,6 @@ INSERT INTO "public"."users" ("user_id", "plm_email", "password", "role", "creat
 	('202514630', 'mcreyes2025@plm.edu.ph', 'mcvr2025', 'Student', '2026-02-16 01:35:00+00'),
 	('202315641', 'jkcastillo2023@plm.edu.ph', 'jkc2023', 'Student', '2026-02-18 06:30:00+00'),
 	('202515662', 'faglim2025@plm.edu.ph', 'fagl2025', 'Student', '2026-02-20 03:05:00+00'),
-	('202615701', 'ermendoza2026@plm.edu.ph', '!DISABLED_SAMPLE_ACCOUNT!', 'Student', '2026-03-10 01:00:00+00'),
-	('202515702', 'imsantos2025@plm.edu.ph', '!DISABLED_SAMPLE_ACCOUNT!', 'Student', '2026-03-11 01:00:00+00'),
-	('202415703', 'npreyes2024@plm.edu.ph', '!DISABLED_SAMPLE_ACCOUNT!', 'Student', '2026-03-12 01:00:00+00'),
-	('202315704', 'ogcruz2023@plm.edu.ph', '!DISABLED_SAMPLE_ACCOUNT!', 'Student', '2026-03-13 01:00:00+00'),
-	('202615705', 'lbaquino2026@plm.edu.ph', '!DISABLED_SAMPLE_ACCOUNT!', 'Student', '2026-03-14 01:00:00+00'),
-	('202515706', 'sltorres2025@plm.edu.ph', '!DISABLED_SAMPLE_ACCOUNT!', 'Student', '2026-03-15 01:00:00+00'),
-	('202415707', 'edramos2024@plm.edu.ph', '!DISABLED_SAMPLE_ACCOUNT!', 'Student', '2026-03-16 01:00:00+00'),
-	('202315708', 'mcflores2023@plm.edu.ph', '!DISABLED_SAMPLE_ACCOUNT!', 'Student', '2026-03-17 01:00:00+00'),
-	('202615709', 'lvgarcia2026@plm.edu.ph', '!DISABLED_SAMPLE_ACCOUNT!', 'Student', '2026-03-18 01:00:00+00'),
-	('202515710', 'anbautista2025@plm.edu.ph', '!DISABLED_SAMPLE_ACCOUNT!', 'Student', '2026-03-19 01:00:00+00'),
 	('202590001', 'kdalvarado87@gmail.com', '54rnu7kl5we', 'Student', '2026-10-29 00:00:00+00'),
 	('202590002', 'caarticona99@gmail.com', 'QtiRgaFuk3W', 'Student', '2026-10-29 00:00:00+00'),
 	('202590003', 'saatienza24@gmail.com', 'rB5zB9D3AM0', 'Student', '2026-10-29 00:00:00+00'),
@@ -287,7 +277,17 @@ INSERT INTO "public"."users" ("user_id", "plm_email", "password", "role", "creat
 	('202690197', 'vfrancisco95@gmail.com', 'Z2Gr5pRVYN1', 'Student', '2026-10-29 00:00:00+00'),
 	('202390198', 'wfuentes50@gmail.com', 'CInlaAaSIcJ', 'Student', '2026-10-29 00:00:00+00'),
 	('202490199', 'xgabriel50@gmail.com', 'To8H6tJya3T', 'Student', '2026-10-29 00:00:00+00'),
-	('202590200', 'ygamboa56@gmail.com', 'YLd9eH3rHMf', 'Student', '2026-10-29 00:00:00+00');
+	('202590200', 'ygamboa56@gmail.com', 'YLd9eH3rHMf', 'Student', '2026-10-29 00:00:00+00'),
+	('202615701', 'ermendoza2026@plm.edu.ph', 'wyZatoCNSbl', 'Student', '2026-03-10 01:00:00+00'),
+	('202515702', 'imsantos2025@plm.edu.ph', '4NUVoHhdrYT', 'Student', '2026-03-11 01:00:00+00'),
+	('202415703', 'npreyes2024@plm.edu.ph', '5kK0x50vTNC', 'Student', '2026-03-12 01:00:00+00'),
+	('202315704', 'ogcruz2023@plm.edu.ph', 'grG2O5fsahs', 'Student', '2026-03-13 01:00:00+00'),
+	('202615705', 'lbaquino2026@plm.edu.ph', 'rEtjI2m5UHt', 'Student', '2026-03-14 01:00:00+00'),
+	('202515706', 'sltorres2025@plm.edu.ph', 'BPWQbkFvlxl', 'Student', '2026-03-15 01:00:00+00'),
+	('202415707', 'edramos2024@plm.edu.ph', '8tUdc9zwoRW', 'Student', '2026-03-16 01:00:00+00'),
+	('202315708', 'mcflores2023@plm.edu.ph', 'Ap4OcZJ64qI', 'Student', '2026-03-17 01:00:00+00'),
+	('202615709', 'lvgarcia2026@plm.edu.ph', 'Qy15RGzsd06', 'Student', '2026-03-18 01:00:00+00'),
+	('202515710', 'anbautista2025@plm.edu.ph', '0rgMKzU9HGk', 'Student', '2026-03-19 01:00:00+00');
 
 
 --
@@ -882,6 +882,6 @@ SELECT pg_catalog.setval('"public"."notifications_notification_id_seq"', 25, tru
 -- PostgreSQL database dump complete
 --
 
--- \unrestrict TdpO6cmx9nPdLLu4NwLmwqpHNPFq36AoUOC6bXhcMWWvHpY524FHDG1OJcvSIZZ
+-- \unrestrict G3upzVkHRSF4ceh7pkkxsPdWr77nEbeJb1JgHBtgA3YQeXMu1B2YD6h5cWC7qhF
 
 RESET ALL;
