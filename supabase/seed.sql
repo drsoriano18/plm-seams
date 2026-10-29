@@ -4,7 +4,7 @@ SET session_replication_role = replica;
 -- PostgreSQL database dump
 --
 
--- \restrict 2fl9ptRd3eLvvFjfhDczpSpmBWV2q3ytKvxe9EepKN7tzELa1f1VbtteuquxYa8
+-- \restrict WbvOqtWpwWQ6CThZydDt2Dfe9XCRL8qwCjCcljFAxnxBGTVEa8DehL7pabsh52o
 
 -- Dumped from database version 17.11
 -- Dumped by pg_dump version 17.11
@@ -326,10 +326,10 @@ INSERT INTO "public"."users" ("user_id", "plm_email", "password", "role", "creat
 
 
 --
--- Data for Name: administrations; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: administrators; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "public"."administrations" ("admin_id", "name", "position", "office_assigned") VALUES
+INSERT INTO "public"."administrators" ("admin_id", "name", "position", "office_assigned") VALUES
 	('PLM-OSDS-2016-02782', 'Juan D. Mercado', 'Head', 'PLM Office of Student Development and Services'),
 	('PLM-OSDS-2019-06772', 'Raquel P. Chu', 'Co-Head', 'PLM Office of Student Development and Services'),
 	('PLM-OSDS-2023-07723', 'Elena Rose D. Tan', 'Administrative Staff I', 'PLM Office of Student Development and Services'),
@@ -952,6 +952,6 @@ SELECT pg_catalog.setval('"public"."notifications_notification_id_seq"', 25, tru
 -- PostgreSQL database dump complete
 --
 
--- \unrestrict 2fl9ptRd3eLvvFjfhDczpSpmBWV2q3ytKvxe9EepKN7tzELa1f1VbtteuquxYa8
+-- \unrestrict WbvOqtWpwWQ6CThZydDt2Dfe9XCRL8qwCjCcljFAxnxBGTVEa8DehL7pabsh52o
 
 RESET ALL;
