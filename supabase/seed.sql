@@ -4,7 +4,7 @@ SET session_replication_role = replica;
 -- PostgreSQL database dump
 --
 
--- \restrict V5QyfDjvYezfN27JFUHj6Gfr0oXTsjf44jczMl3i6dYpPWgae1OtcqWiX8cg4Cz
+-- \restrict C2dEHJ45X6y2AwBl0lYTT4HIXpyNsqzyYkT4Naci9vfAeJ7cGT59gNC9T5DAMFV
 
 -- Dumped from database version 17.11
 -- Dumped by pg_dump version 17.11
@@ -287,7 +287,42 @@ INSERT INTO "public"."users" ("user_id", "plm_email", "password", "role", "creat
 	('202415707', 'edramos2024@plm.edu.ph', '8tUdc9zwoRW', 'Student', '2026-03-16 01:00:00+00'),
 	('202315708', 'mcflores2023@plm.edu.ph', 'Ap4OcZJ64qI', 'Student', '2026-03-17 01:00:00+00'),
 	('202615709', 'lvgarcia2026@plm.edu.ph', 'Qy15RGzsd06', 'Student', '2026-03-18 01:00:00+00'),
-	('202515710', 'anbautista2025@plm.edu.ph', '0rgMKzU9HGk', 'Student', '2026-03-19 01:00:00+00');
+	('202515710', 'anbautista2025@plm.edu.ph', '0rgMKzU9HGk', 'Student', '2026-03-19 01:00:00+00'),
+	('PLMCASBESC-ORG-05', 'casbescofficial@gmail.com', 'casbesc05', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMCEDSC-ORG-06', 'plmcollegeofeducationsc@gmail.com', 'cedsc06', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMCMSC-ORG-10', 'plm.cmsc@gmail.com', 'cmsc10', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMCNSC-ORG-11', 'plmcnsc@gmail.com', 'cnsc11', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMASHRAE-ORG-14', 'ashraeplm@gmail.com', 'ashrae14', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMBMS-ORG-15', 'bms.plm1987@gmail.com', 'bms15', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMCOMDRS-ORG-16', 'plmcm.comdrs@gmail.com', 'comdrs16', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMJPMAP-ORG-19', 'jpmap.plmchapter@gmail.com', 'jpmap19', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMJPIA-ORG-20', 'jpiaplm.ncrwest@gmail.com', 'jpia20', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMMCSL-ORG-21', 'plmmcsl@gmail.com', 'mcsl21', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMMES-ORG-22', 'mes.plm.pt@gmail.com', 'mes22', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMPNSA-ORG-23', 'pnsaplmchapter@gmail.com', 'pnsa23', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMPSME-ORG-24', 'plmpsmesu@gmail.com', 'psme24', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMPMS-ORG-25', 'philomedicascientia1989@gmail.com', 'pms25', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMACES-ORG-26', 'plmaces.official@gmail.com', 'aces26', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMCTO-ORG-27', 'plmcto2627@gmail.com', 'cto27', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMCHESS-ORG-28', 'plmchess.official@gmail.com', 'chess28', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMECOSOC-ORG-30', 'plmeconomicsociety@gmail.com', 'ecosoc30', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMJES-ORG-31', 'plmjuniorentrepsociety@gmail.com', 'jes31', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMJMA-ORG-32', 'officialplmjma@gmail.com', 'jma32', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMMATHSOC-ORG-33', 'plmmathsoc.sprc@gmail.com', 'mathsoc33', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMPAGG-ORG-34', 'pagg.plm@gmail.com', 'pagg34', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMPSBS-ORG-35', 'psbs.plm@gmail.com', 'psbs35', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMSITE-ORG-36', 'plmsiteofficial@gmail.com', 'site36', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMTES-ORG-37', 'plmtes2025@gmail.com', 'tes37', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMTCS-ORG-38', 'plmchemicalsociety@gmail.com', 'tcs38', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMTC-ORG-39', 'chasscommunique@gmail.com', 'tc39', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMHEO-ORG-42', 'haribonsesports@gmail.com', 'heo42', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMLS-ORG-43', 'lightbearersocietyplm1993@gmail.com', 'ls43', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMMCSG-ORG-44', 'magwayenofficial@gmail.com', 'mcsg44', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMCYC-ORG-47', 'officialplm.cyc@gmail.com', 'cyc47', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMDOSTSA-ORG-48', 'official.plmdostsa@gmail.com', 'dostsa48', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMMUPESA-ORG-49', 'mupesaofficial.plm@gmail.com', 'mupesa49', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMPLSOC-ORG-50', 'plm.prelaw@gmail.com', 'plsoc50', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMRC-ORG-53', 'plmrotaract@gmail.com', 'rc53', 'Student Organization', '2026-10-29 13:52:03.776055+00');
 
 
 --
@@ -355,7 +390,42 @@ INSERT INTO "public"."student_organization" ("org_id", "org_name", "org_type", "
 	('PLMTUGONRESCUE-ORG-54', 'TUGON - Rescuing Students for Community Undertaking and Edification', 'University-Wide', 'TUGONReSCUE', NULL, true),
 	('PLMCMC-ORG-55', 'Christ’s Medical Circle', 'Religious', 'CMC', NULL, true),
 	('PLMMASA-ORG-56', 'PLM Muslim Association for Student Affairs', 'Religious', 'PLM MASA', NULL, false),
-	('PLMTJI-ORG-57', 'PLM The Jesus Impact', 'Religious', 'TJI', NULL, false);
+	('PLMTJI-ORG-57', 'PLM The Jesus Impact', 'Religious', 'TJI', NULL, false),
+	('PLMCASBESC-ORG-05', 'College of Architecture and Sustainable Built Environments', 'Academic', 'CASBE-SC', NULL, NULL),
+	('PLMCEDSC-ORG-06', 'College of Education Student Council', 'Academic', 'CED-SC', NULL, NULL),
+	('PLMCMSC-ORG-10', 'College of Medicine Student Council', 'Academic', 'CM-SC', NULL, NULL),
+	('PLMCNSC-ORG-11', 'College of Nursing Student Council', 'Academic', 'CN-SC', NULL, NULL),
+	('PLMASHRAE-ORG-14', 'ASHRAE PLM Student Branch', 'Academic', 'ASHRAE', NULL, NULL),
+	('PLMBMS-ORG-15', 'Brotherhood of Medical Scholars', 'Academic', 'BMS', NULL, NULL),
+	('PLMCOMDRS-ORG-16', 'Community Development and Research Society', 'Academic', 'ComDRS', NULL, NULL),
+	('PLMJPMAP-ORG-19', 'Junior People Management Association of the Philippines PLM', 'Academic', 'JPMAP-PLM', NULL, NULL),
+	('PLMJPIA-ORG-20', 'Junior Philippine Institute of Accountants', 'Academic', 'JPIA-PLM', NULL, NULL),
+	('PLMMCSL-ORG-21', 'Mass Communication Students’ League', 'Academic', 'MCSL', NULL, NULL),
+	('PLMMES-ORG-22', 'Movements Experts’ Society', 'Academic', 'MES', NULL, NULL),
+	('PLMPNSA-ORG-23', 'Philippine Nursing Student’s Association', 'Academic', 'PNSA-PLM', NULL, NULL),
+	('PLMPSME-ORG-24', 'Philippine Society of Mechanical Engineers PLM Students Unit', 'Academic', 'PSME-PLM', NULL, NULL),
+	('PLMPMS-ORG-25', 'PhiloMedicaScienta', 'Academic', 'PMS', NULL, NULL),
+	('PLMACES-ORG-26', 'PLM Association of Civil Engineering Students', 'Academic', 'PLM-ACES', NULL, NULL),
+	('PLMCTO-ORG-27', 'PLM Cadet Teachers’ Organization', 'Academic', 'PLM-CTO', NULL, NULL),
+	('PLMCHESS-ORG-28', 'PLM Chemical Engineering Students’ Society', 'Academic', 'PLM-ChESS', NULL, NULL),
+	('PLMECOSOC-ORG-30', 'PLM Economics Society', 'Academic', 'PLM-EcoSoc', NULL, NULL),
+	('PLMJES-ORG-31', 'PLM Junior Entrepreneurs Society', 'Academic', 'PLM-JES', NULL, NULL),
+	('PLMJMA-ORG-32', 'PLM Junior Marketing Association', 'Academic', 'PLM-JMA', NULL, NULL),
+	('PLMMATHSOC-ORG-33', 'PLM Mathematical Society', 'Academic', 'PLM-MathSoc', NULL, NULL),
+	('PLMPAGG-ORG-34', 'PLM Public Administration Guild of Governance', 'Academic', 'PAGG', NULL, NULL),
+	('PLMPSBS-ORG-35', 'PLM Society for Biological Sciences', 'Academic', 'PSBS', NULL, NULL),
+	('PLMSITE-ORG-36', 'PLM Society of Information Technology Enthusiasts', 'Academic', 'PLM-SITE', NULL, NULL),
+	('PLMTES-ORG-37', 'PLM Teacher Education Society', 'Academic', 'PLM-TES', NULL, NULL),
+	('PLMTCS-ORG-38', 'The Chemical Society', 'Academic', 'TCS', NULL, NULL),
+	('PLMTC-ORG-39', 'The Communique', 'Academic', 'TC', NULL, NULL),
+	('PLMHEO-ORG-42', 'Haribons Esports Organization', 'University-Wide', 'HEO', NULL, NULL),
+	('PLMLS-ORG-43', 'Lightbearer Society', 'University-Wide', 'LS', NULL, NULL),
+	('PLMMCSG-ORG-44', 'Magwayen Creative Scholars’ Guild', 'University-Wide', 'MCSG', NULL, NULL),
+	('PLMCYC-ORG-47', 'PLM College Y Club', 'University-Wide', 'CYC', NULL, NULL),
+	('PLMDOSTSA-ORG-48', 'PLM DOST Scholars Association', 'University-Wide', 'DOST-SA', NULL, NULL),
+	('PLMMUPESA-ORG-49', 'PLM Music Performance Student Association', 'University-Wide', 'MUPESA', NULL, NULL),
+	('PLMPLSOC-ORG-50', 'PLM Pre-Law Society', 'University-Wide', 'PLSOC', NULL, NULL),
+	('PLMRC-ORG-53', 'Rotaract Club PLM', 'University-Wide', 'RC', NULL, NULL);
 
 
 --
@@ -882,6 +952,6 @@ SELECT pg_catalog.setval('"public"."notifications_notification_id_seq"', 25, tru
 -- PostgreSQL database dump complete
 --
 
--- \unrestrict V5QyfDjvYezfN27JFUHj6Gfr0oXTsjf44jczMl3i6dYpPWgae1OtcqWiX8cg4Cz
+-- \unrestrict C2dEHJ45X6y2AwBl0lYTT4HIXpyNsqzyYkT4Naci9vfAeJ7cGT59gNC9T5DAMFV
 
 RESET ALL;
