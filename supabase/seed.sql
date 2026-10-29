@@ -1,13 +1,5 @@
 SET session_replication_role = replica;
 
---
--- PostgreSQL database dump
---
-
--- \restrict WbvOqtWpwWQ6CThZydDt2Dfe9XCRL8qwCjCcljFAxnxBGTVEa8DehL7pabsh52o
-
--- Dumped from database version 17.11
--- Dumped by pg_dump version 17.11
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -21,10 +13,7 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
---
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
+-- users --
 INSERT INTO "public"."users" ("user_id", "plm_email", "password", "role", "created_at") VALUES
 	('202590028', 'cabando2025@plm.edu.ph', 'G3ctxeMX48w', 'Student', '2026-10-29 00:00:00+00'),
 	('202690029', 'dabarquez2026@plm.edu.ph', 'uF6ArHQVMn4', 'Student', '2026-10-29 00:00:00+00'),
@@ -325,10 +314,7 @@ INSERT INTO "public"."users" ("user_id", "plm_email", "password", "role", "creat
 	('202490179', 'ddelosreyes2024@plm.edu.ph', 'GWbohdFguTf', 'Student', '2026-10-29 00:00:00+00');
 
 
---
--- Data for Name: administrators; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
+-- administrators --
 INSERT INTO "public"."administrators" ("admin_id", "name", "position", "office_assigned") VALUES
 	('PLM-OSDS-2016-02782', 'Juan D. Mercado', 'Head', 'PLM Office of Student Development and Services'),
 	('PLM-OSDS-2019-06772', 'Raquel P. Chu', 'Co-Head', 'PLM Office of Student Development and Services'),
@@ -337,10 +323,7 @@ INSERT INTO "public"."administrators" ("admin_id", "name", "position", "office_a
 	('PLM-OSDS-2025-08912', 'Charles Reece C. Bonifacio', 'Administrative Staff I', 'PLM Office of Student Development and Services');
 
 
---
--- Data for Name: event_type; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
+-- event type -- 
 INSERT INTO "public"."event_type" ("event_type_id", "description", "modality", "requires_venue") VALUES
 	('ET01', 'Seminar', 'On-Site', true),
 	('ET02', 'Competition', 'On-Site', true),
@@ -364,10 +347,7 @@ INSERT INTO "public"."event_type" ("event_type_id", "description", "modality", "
 	('ET20', 'Online Mass', 'Online', false);
 
 
---
--- Data for Name: student_organization; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
+-- student organization --
 INSERT INTO "public"."student_organization" ("org_id", "org_name", "org_type", "acronym", "college", "accreditation_status") VALUES
 	('PLMSSC-ORG-01', 'The PLM Supreme Student Council', 'Academic', 'PLM-SSC', NULL, true),
 	('PLMAP-ORG-02', 'Ang Pamantasan', 'Academic', 'AP', NULL, true),
@@ -428,10 +408,7 @@ INSERT INTO "public"."student_organization" ("org_id", "org_name", "org_type", "
 	('PLMRC-ORG-53', 'Rotaract Club PLM', 'University-Wide', 'RC', NULL, NULL);
 
 
---
--- Data for Name: event_proposal; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
+-- event proposal --
 INSERT INTO "public"."event_proposal" ("proposal_id", "org_id", "objectives", "description", "submission_date", "approval_status", "expected_count_attendees", "event_name", "event_type_id", "allowed_college", "eligibility_mode", "resource_requirements", "budget_information", "includes_sponsorship", "collaborating_organization_text") VALUES
 	('PROP-2026-001', 'PLMCSS-ORG-29', 'CSS Tech Summit is an event hosted to introduce and encourage CISTM students to use the new Gemini AI Model (Argon 4) and learn responsible technology practices.', 'A free on-site seminar featuring computing talks, demonstrations, and student discussions.', '2026-01-05 01:00:00+00', 'Approved', 120, 'CSS Tech Summit', 'ET01', 'CISTM', 'College-Specific', 'Projector, microphones, sound system, tables, and stable internet access.', 'PHP 12000 proposed for materials and logistics; no admission fee or portal payment processing.', false, NULL),
 	('PROP-2026-002', 'PLMSSC-ORG-01', 'Haribon Clash is an event led by PLM SSC to promote sportsmanship, student participation, and cooperation across PLM colleges.', 'A free university-wide sports competition led and managed by PLMSSC with collaborating organizations acknowledged.', '2026-01-19 02:00:00+00', 'Approved', 400, 'Haribon Clash', 'ET16', NULL, 'University-Wide', 'Sports equipment, mats, sound system, tables, and first-aid support.', 'PHP 35000 proposed for sports materials, first-aid supplies, and logistics; participation is free.', false, 'CISTM Student Council; CHASS Student Council; PLM Student Commission on Audit (COAA/SCOA); PLM COMELEC; ECESS-PLM; College of Public Administration (CPA); CTHM Student Council. PLMSSC remains the sole lead organizer.'),
@@ -458,10 +435,8 @@ INSERT INTO "public"."event_proposal" ("proposal_id", "org_id", "objectives", "d
 	('PROP-2026-023', 'PLMCHASSSC-ORG-08', 'Promote student participation in student entrepreneurship fair.', 'Free on-site student entrepreneurship fair.', '2026-04-02 01:00:00+00', 'Approved', 200, 'Student Entrepreneurship Fair', 'ET01', NULL, 'University-Wide', 'Sound system, chairs, projector', 'PHP 10000 for logistics', false, NULL);
 
 
---
--- Data for Name: event; Type: TABLE DATA; Schema: public; Owner: postgres
---
 
+-- event --
 INSERT INTO "public"."event" ("event_id", "event_type_id", "publication_status", "registration_status", "registration_capacity", "post_caption", "created_at", "published_at", "cancelled_at", "cancelled_by", "cancellation_reason", "rescheduled_at", "rescheduled_by", "rescheduled_reason", "completed_at", "archived_at", "starts_at", "ends_at", "org_id", "event_status", "proposal_id") VALUES
 	('EV-2026-001', 'ET01', 'Published', 'Open', 120, 'Join CSS Tech Summit for computing talks, demonstrations, and student discussions. Free for eligible CISTM students. Updated schedule: February 27, 2026, 9 AM to 12 PM, GEE AVR.', '2026-01-12 03:00:00+00', '2026-01-20 04:00:00+00', NULL, NULL, NULL, '2026-02-04 23:55:00+00', 'PLM-OSDS-2016-02782', 'Administrator-authorized move to the backup schedule and venue due to speaker availability.', NULL, NULL, '2026-02-27 01:00:00+00', '2026-02-27 04:00:00+00', 'PLMCSS-ORG-29', 'Upcoming', 'PROP-2026-001'),
 	('EV-2026-002', 'ET16', 'Published', 'Open', 400, 'Join Haribon Clash, the free PLMSSC-led sports competition. March 20, 2026, 8 AM to 5 PM at Rajah Sulayman Gym. Open to eligible PLM students university-wide.', '2026-01-20 01:15:00+00', '2026-01-21 02:00:00+00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2026-03-20 00:00:00+00', '2026-03-20 09:00:00+00', 'PLMSSC-ORG-01', 'Upcoming', 'PROP-2026-002'),
@@ -485,10 +460,7 @@ INSERT INTO "public"."event" ("event_id", "event_type_id", "publication_status",
 	('EV-2026-022', 'ET01', 'Published', 'Open', 200, 'Join Student Entrepreneurship Fair.', '2026-04-06 01:00:00+00', '2026-04-06 03:00:00+00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2026-09-14 01:00:00+00', '2026-09-14 04:00:00+00', 'PLMCHASSSC-ORG-08', 'Upcoming', 'PROP-2026-023');
 
 
---
--- Data for Name: notifications; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
+-- notifications -- 
 INSERT INTO "public"."notifications" ("notification_id", "recipient_user_id", "event_id", "proposal_id", "notification_type", "message", "created_at", "read_at") VALUES
 	(1, 'PLMCSS-ORG-29', 'EV-2026-001', 'PROP-2026-001', 'Proposal Approved', 'Your event proposal for "CSS Tech Summit" has been reviewed and approved by OSDS. Ready for publish and registration.', '2026-01-12 03:00:00+00', '2026-01-12 03:15:00+00'),
 	(2, '202515006', 'EV-2026-001', 'PROP-2026-001', 'Registration Successful', 'You have successfully submitted your registration request for the CSS Tech Summit! Kindly wait for confirmation of registration.', '2026-02-01 02:00:00+00', '2026-02-01 02:05:00+00'),
@@ -517,10 +489,7 @@ INSERT INTO "public"."notifications" ("notification_id", "recipient_user_id", "e
 	(25, 'PLMCHASSSC-ORG-08', 'EV-2026-022', 'PROP-2026-023', 'Proposal Approved', 'Student Entrepreneurship Fair has been approved.', '2026-04-06 01:00:00+00', NULL);
 
 
---
--- Data for Name: proposal_review; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
+-- proposal review --
 INSERT INTO "public"."proposal_review" ("review_id", "proposal_id", "admin_id", "review_decision", "admin_remarks", "reviewed_at") VALUES
 	('REV-2026-001', 'PROP-2026-001', 'PLM-OSDS-2016-02782', 'Approved', 'Primary schedule approved. Lead organization may prepare publication and open registration.', '2026-01-12 03:00:00+00'),
 	('REV-2026-002', 'PROP-2026-002', 'PLM-OSDS-2019-06772', 'Approved', 'Primary schedule approved. PLMSSC retains sole management; listed collaborators receive no additional permissions.', '2026-01-20 01:15:00+00'),
@@ -547,10 +516,7 @@ INSERT INTO "public"."proposal_review" ("review_id", "proposal_id", "admin_id", 
 	('REV-2026-023', 'PROP-2026-023', 'PLM-OSDS-2019-06772', 'Approved', 'Approved for publication.', '2026-04-06 01:00:00+00');
 
 
---
--- Data for Name: venue; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
+-- venue --
 INSERT INTO "public"."venue" ("venue_id", "venue_name", "floor_number", "room_number", "building", "max_capacity", "available_equipment") VALUES
 	('PLM-VENUE-1', 'Bukod Tanging Bulwagan (BTB)', 'Third_Floor', NULL, 'Gusaling Katipunan', 150, 'Chairs, Sound System, Projector, Airconditioning'),
 	('PLM-VENUE-2', 'Computer Laboratory 1-2', 'Second_Floor', NULL, 'Gusaling Villegas', 40, 'Chairs, Computers, Monitors, Projector, Airconditioning'),
@@ -569,10 +535,7 @@ INSERT INTO "public"."venue" ("venue_id", "venue_name", "floor_number", "room_nu
 	('PLM-VENUE-15', 'University Activity Center (UAC)', NULL, NULL, 'PLM', 400, 'Chairs, Sound System, Tables, Projector, Fans');
 
 
---
--- Data for Name: proposal_schedule; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
+-- proposal schedule -- 
 INSERT INTO "public"."proposal_schedule" ("schedule_id", "proposal_id", "venue_id", "starts_at", "ends_at", "schedule_type") VALUES
 	('SCH-2026-001', 'PROP-2026-001', 'PLM-VENUE-9', '2026-02-20 01:00:00+00', '2026-02-20 04:00:00+00', 'Primary'),
 	('SCH-2026-002', 'PROP-2026-001', 'PLM-VENUE-10', '2026-02-27 01:00:00+00', '2026-02-27 04:00:00+00', 'Backup'),
@@ -622,10 +585,7 @@ INSERT INTO "public"."proposal_schedule" ("schedule_id", "proposal_id", "venue_i
 	('SCH-2026-046', 'PROP-2026-023', 'PLM-VENUE-5', '2026-09-15 01:00:00+00', '2026-09-15 04:00:00+00', 'Backup');
 
 
---
--- Data for Name: students; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
+-- students --
 INSERT INTO "public"."students" ("student_number", "name", "year_level", "college", "program") VALUES
 	('202515006', 'Kathreena C. Cayabyab', '2', 'CISTM', 'BSCS'),
 	('202515652', 'Dan Rodrick S. Soriano', '2', 'CISTM', 'BSCS'),
@@ -864,10 +824,7 @@ INSERT INTO "public"."students" ("student_number", "name", "year_level", "colleg
 	('202690197', 'Vera B. Francisco', '1', 'CS', 'BSMATH');
 
 
---
--- Data for Name: registration; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
+-- registration --
 INSERT INTO "public"."registration" ("reg_id", "event_id", "student_number", "reg_date", "reg_status", "attendance_status", "cancelled_at", "cancellation_reason", "attendance_marked_at", "attendance_marked_by") VALUES
 	('REG-2026-001', 'EV-2026-001', '202515006', '2026-02-01 02:00:00+00', 'Confirmed', NULL, NULL, NULL, NULL, NULL),
 	('REG-2026-002', 'EV-2026-001', '202515001', '2026-02-02 06:30:00+00', 'Confirmed', NULL, NULL, NULL, NULL, NULL),
@@ -914,10 +871,7 @@ INSERT INTO "public"."registration" ("reg_id", "event_id", "student_number", "re
 	('REG-2026-043', 'EV-2026-004', '202515710', '2026-04-19 01:00:00+00', 'Confirmed', NULL, NULL, NULL, NULL, NULL);
 
 
---
--- Data for Name: venue_booking; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
+-- venue booking --
 INSERT INTO "public"."venue_booking" ("booking_id", "event_id", "venue_id", "starts_at", "ends_at", "buffer_minutes", "booking_status", "authorized_by", "created_at", "change_reason", "status_changed_at") VALUES
 	('BOOK-2026-001', 'EV-2026-001', 'PLM-VENUE-9', '2026-02-20 01:00:00+00', '2026-02-20 04:00:00+00', 60, 'Replaced', 'PLM-OSDS-2016-02782', '2026-01-12 03:00:00+00', 'Administrator-authorized move to the backup schedule and venue due to speaker availability.', '2026-02-04 23:55:00+00'),
 	('BOOK-2026-002', 'EV-2026-002', 'PLM-VENUE-13', '2026-03-20 00:00:00+00', '2026-03-20 09:00:00+00', 60, 'Confirmed', 'PLM-OSDS-2019-06772', '2026-01-20 01:15:00+00', NULL, '2026-01-20 01:15:00+00'),
@@ -940,18 +894,6 @@ INSERT INTO "public"."venue_booking" ("booking_id", "event_id", "venue_id", "sta
 	('BOOK-2026-019', 'EV-2026-021', 'PLM-VENUE-15', '2026-09-07 01:00:00+00', '2026-09-07 04:00:00+00', 60, 'Confirmed', 'PLM-OSDS-2016-02782', '2026-04-05 01:00:00+00', NULL, '2026-04-05 01:00:00+00'),
 	('BOOK-2026-020', 'EV-2026-022', 'PLM-VENUE-15', '2026-09-14 01:00:00+00', '2026-09-14 04:00:00+00', 60, 'Confirmed', 'PLM-OSDS-2019-06772', '2026-04-06 01:00:00+00', NULL, '2026-04-06 01:00:00+00');
 
-
---
--- Name: notifications_notification_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
 SELECT pg_catalog.setval('"public"."notifications_notification_id_seq"', 25, true);
-
-
---
--- PostgreSQL database dump complete
---
-
--- \unrestrict WbvOqtWpwWQ6CThZydDt2Dfe9XCRL8qwCjCcljFAxnxBGTVEa8DehL7pabsh52o
 
 RESET ALL;
