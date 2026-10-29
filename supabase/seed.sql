@@ -1,13 +1,5 @@
 SET session_replication_role = replica;
 
---
--- PostgreSQL database dump
---
-
--- \restrict dJf8naNr9NDR3FAzJSdh96ivP1sgAG0Tq8eOHr8T2fg2y8NnafDe6bQrfuAN7HK
-
--- Dumped from database version 17.11
--- Dumped by pg_dump version 17.11
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -21,11 +13,28 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
---
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
+-- users --
 INSERT INTO "public"."users" ("user_id", "plm_email", "password", "role", "created_at") VALUES
+	('202590028', 'cabando2025@plm.edu.ph', 'G3ctxeMX48w', 'Student', '2026-10-29 00:00:00+00'),
+	('202690029', 'dabarquez2026@plm.edu.ph', 'uF6ArHQVMn4', 'Student', '2026-10-29 00:00:00+00'),
+	('202390030', 'eabaya2023@plm.edu.ph', 'wnst516250m', 'Student', '2026-10-29 00:00:00+00'),
+	('202490031', 'fabella2024@plm.edu.ph', 'pJBSiIVteol', 'Student', '2026-10-29 00:00:00+00'),
+	('202590032', 'gabello2025@plm.edu.ph', 'VHLbfu0ruZ0', 'Student', '2026-10-29 00:00:00+00'),
+	('202690033', 'habesamis2026@plm.edu.ph', 'OqwC7cMRj2E', 'Student', '2026-10-29 00:00:00+00'),
+	('202390034', 'iacacio2023@plm.edu.ph', 'E7OSnk8b6nk', 'Student', '2026-10-29 00:00:00+00'),
+	('202490035', 'jacebedo2024@plm.edu.ph', 'RIfSeszSkta', 'Student', '2026-10-29 00:00:00+00'),
+	('202590036', 'kacosta2025@plm.edu.ph', 'zJw1DB1Hh45', 'Student', '2026-10-29 00:00:00+00'),
+	('202690037', 'ladame2026@plm.edu.ph', '6e8epQdwzb0', 'Student', '2026-10-29 00:00:00+00'),
+	('202390038', 'magbayani2023@plm.edu.ph', 'Nr4vcXsppmc', 'Student', '2026-10-29 00:00:00+00'),
+	('202490039', 'nagcaoili2024@plm.edu.ph', 'ZSXnxwuqu0y', 'Student', '2026-10-29 00:00:00+00'),
+	('202590040', 'oagdeppa2025@plm.edu.ph', 'ZGztpsOFdUs', 'Student', '2026-10-29 00:00:00+00'),
+	('202690041', 'pagpalo2026@plm.edu.ph', 'VeIkCbk3fT6', 'Student', '2026-10-29 00:00:00+00'),
+	('202390042', 'qaguilar2023@plm.edu.ph', 'bFmau9Ev3Mk', 'Student', '2026-10-29 00:00:00+00'),
+	('202490043', 'ragustin2024@plm.edu.ph', '1P6cbiwMeOy', 'Student', '2026-10-29 00:00:00+00'),
+	('202590044', 'salarcon2025@plm.edu.ph', '6hdmhsJ1Vfb', 'Student', '2026-10-29 00:00:00+00'),
+	('202690045', 'talcala2026@plm.edu.ph', 'KSumumWERaX', 'Student', '2026-10-29 00:00:00+00'),
+	('202390046', 'ualcantara2023@plm.edu.ph', 'Pp0tRodFG4K', 'Student', '2026-10-29 00:00:00+00'),
+	('202490047', 'valcaraz2024@plm.edu.ph', 'nI12ExvGEHS', 'Student', '2026-10-29 00:00:00+00'),
 	('PLM-OSDS-2016-02782', 'jdmercado@plm.edu.ph', 'jdmercado2016', 'Admin', '2026-01-01 00:00:00+00'),
 	('PLM-OSDS-2019-06772', 'rpchu@plm.edu.ph', 'rpchu2019', 'Admin', '2026-01-02 00:00:00+00'),
 	('PLM-OSDS-2023-07723', 'erdtan@plm.edu.ph', 'erdtan2023', 'Admin', '2026-01-06 00:00:00+00'),
@@ -58,6 +67,38 @@ INSERT INTO "public"."users" ("user_id", "plm_email", "password", "role", "creat
 	('202515652', 'drssoriano2025@plm.edu.ph', 'drss2025', 'Student', '2026-01-05 00:45:00+00'),
 	('202515026', 'crbtingcungco2025@plm.edu.ph', 'crbt2025', 'Student', '2026-01-08 03:00:00+00'),
 	('202515101', 'lcdelacruz2025@plm.edu.ph', 'lcdc2025', 'Student', '2026-01-10 01:20:00+00'),
+	('202590048', 'waldana2025@plm.edu.ph', 'YAdpbSjw7Dg', 'Student', '2026-10-29 00:00:00+00'),
+	('202690049', 'xalegre2026@plm.edu.ph', 'xhu3VRCyucj', 'Student', '2026-10-29 00:00:00+00'),
+	('202390050', 'yalejo2023@plm.edu.ph', 'iRMdKUZpYkj', 'Student', '2026-10-29 00:00:00+00'),
+	('202490051', 'aalipio2024@plm.edu.ph', 'TQHVWmbkm4s', 'Student', '2026-10-29 00:00:00+00'),
+	('202590052', 'balmario2025@plm.edu.ph', 'a1XmzevvVjo', 'Student', '2026-10-29 00:00:00+00'),
+	('202690053', 'calmazan2026@plm.edu.ph', '0tvt1PL9nbm', 'Student', '2026-10-29 00:00:00+00'),
+	('202390054', 'dalmonte2023@plm.edu.ph', 'aoEukHMAX38', 'Student', '2026-10-29 00:00:00+00'),
+	('202490055', 'ealonzo2024@plm.edu.ph', 'f2b1ZG3k7k3', 'Student', '2026-10-29 00:00:00+00'),
+	('202590056', 'faltamirano2025@plm.edu.ph', 'ROW1QCwNQCh', 'Student', '2026-10-29 00:00:00+00'),
+	('202690057', 'gamador2026@plm.edu.ph', 'm3KIgNEHccS', 'Student', '2026-10-29 00:00:00+00'),
+	('202390058', 'hamante2023@plm.edu.ph', 'mQyUXN1B7Rq', 'Student', '2026-10-29 00:00:00+00'),
+	('202490059', 'iambrosio2024@plm.edu.ph', 'eeoV1pXYIyV', 'Student', '2026-10-29 00:00:00+00'),
+	('202590060', 'jamparo2025@plm.edu.ph', 'e5r6ude9r07', 'Student', '2026-10-29 00:00:00+00'),
+	('202690061', 'kancheta2026@plm.edu.ph', 'NM0sWixKDHi', 'Student', '2026-10-29 00:00:00+00'),
+	('202390062', 'landal2023@plm.edu.ph', 'OIAT8rj2LY9', 'Student', '2026-10-29 00:00:00+00'),
+	('202490063', 'mandaya2024@plm.edu.ph', 'K0v9EjFjWBF', 'Student', '2026-10-29 00:00:00+00'),
+	('202590064', 'nangeles2025@plm.edu.ph', 'Di9XobvXboe', 'Student', '2026-10-29 00:00:00+00'),
+	('202690065', 'oangulo2026@plm.edu.ph', 'Gh7esnD9gh5', 'Student', '2026-10-29 00:00:00+00'),
+	('202390066', 'panonuevo2023@plm.edu.ph', 'gIIrMyUW8H2', 'Student', '2026-10-29 00:00:00+00'),
+	('202490067', 'qantiporda2024@plm.edu.ph', 'Jz8XiyFZ3la', 'Student', '2026-10-29 00:00:00+00'),
+	('202590068', 'rantonio2025@plm.edu.ph', 'nfkishwqAiB', 'Student', '2026-10-29 00:00:00+00'),
+	('202690069', 'sapacible2026@plm.edu.ph', 'X4NESyuSz2l', 'Student', '2026-10-29 00:00:00+00'),
+	('202390070', 'tapostol2023@plm.edu.ph', 'Li3iiNV6bQo', 'Student', '2026-10-29 00:00:00+00'),
+	('202490071', 'uaragon2024@plm.edu.ph', 'XtvXlZZYKvr', 'Student', '2026-10-29 00:00:00+00'),
+	('202590072', 'varaneta2025@plm.edu.ph', 'kiP8jdQTPnP', 'Student', '2026-10-29 00:00:00+00'),
+	('202690073', 'warcilla2026@plm.edu.ph', 'C7ogcdWVtr5', 'Student', '2026-10-29 00:00:00+00'),
+	('202390074', 'xarellano2023@plm.edu.ph', 'COSFOkGUKNM', 'Student', '2026-10-29 00:00:00+00'),
+	('202490075', 'yarguelles2024@plm.edu.ph', '9wuUZfy7gux', 'Student', '2026-10-29 00:00:00+00'),
+	('202590076', 'aarriola2025@plm.edu.ph', 'PPzaBbi4N1e', 'Student', '2026-10-29 00:00:00+00'),
+	('202690077', 'basis2026@plm.edu.ph', '3kss2iqvW5m', 'Student', '2026-10-29 00:00:00+00'),
+	('202390078', 'casuncion2023@plm.edu.ph', 'uyfjppsOm51', 'Student', '2026-10-29 00:00:00+00'),
+	('202490079', 'daustria2024@plm.edu.ph', 'HRuQv3kyJuT', 'Student', '2026-10-29 00:00:00+00'),
 	('202515114', 'cjmpena2025@plm.edu.ph', 'cjmp2025', 'Student', '2026-01-12 06:10:00+00'),
 	('202514203', 'akndelarosa2024@plm.edu.ph', 'akndr2024', 'Student', '2026-01-14 00:35:00+00'),
 	('202514217', 'ckblopez2024@plm.edu.ph', 'ckbl2024', 'Student', '2026-01-16 05:25:00+00'),
@@ -78,23 +119,203 @@ INSERT INTO "public"."users" ("user_id", "plm_email", "password", "role", "creat
 	('202514630', 'mcreyes2025@plm.edu.ph', 'mcvr2025', 'Student', '2026-02-16 01:35:00+00'),
 	('202315641', 'jkcastillo2023@plm.edu.ph', 'jkc2023', 'Student', '2026-02-18 06:30:00+00'),
 	('202515662', 'faglim2025@plm.edu.ph', 'fagl2025', 'Student', '2026-02-20 03:05:00+00'),
-	('202615701', 'ermendoza2026@plm.edu.ph', '!DISABLED_SAMPLE_ACCOUNT!', 'Student', '2026-03-10 01:00:00+00'),
-	('202515702', 'imsantos2025@plm.edu.ph', '!DISABLED_SAMPLE_ACCOUNT!', 'Student', '2026-03-11 01:00:00+00'),
-	('202415703', 'npreyes2024@plm.edu.ph', '!DISABLED_SAMPLE_ACCOUNT!', 'Student', '2026-03-12 01:00:00+00'),
-	('202315704', 'ogcruz2023@plm.edu.ph', '!DISABLED_SAMPLE_ACCOUNT!', 'Student', '2026-03-13 01:00:00+00'),
-	('202615705', 'lbaquino2026@plm.edu.ph', '!DISABLED_SAMPLE_ACCOUNT!', 'Student', '2026-03-14 01:00:00+00'),
-	('202515706', 'sltorres2025@plm.edu.ph', '!DISABLED_SAMPLE_ACCOUNT!', 'Student', '2026-03-15 01:00:00+00'),
-	('202415707', 'edramos2024@plm.edu.ph', '!DISABLED_SAMPLE_ACCOUNT!', 'Student', '2026-03-16 01:00:00+00'),
-	('202315708', 'mcflores2023@plm.edu.ph', '!DISABLED_SAMPLE_ACCOUNT!', 'Student', '2026-03-17 01:00:00+00'),
-	('202615709', 'lvgarcia2026@plm.edu.ph', '!DISABLED_SAMPLE_ACCOUNT!', 'Student', '2026-03-18 01:00:00+00'),
-	('202515710', 'anbautista2025@plm.edu.ph', '!DISABLED_SAMPLE_ACCOUNT!', 'Student', '2026-03-19 01:00:00+00');
+	('202590001', 'kdalvarado2025@plm.edu.ph', '54rnu7kl5we', 'Student', '2026-10-29 00:00:00+00'),
+	('202590002', 'caarticona2025@plm.edu.ph', 'QtiRgaFuk3W', 'Student', '2026-10-29 00:00:00+00'),
+	('202590003', 'saatienza2025@plm.edu.ph', 'rB5zB9D3AM0', 'Student', '2026-10-29 00:00:00+00'),
+	('202590004', 'cbalpongo2025@plm.edu.ph', 'cAB4SHbww3s', 'Student', '2026-10-29 00:00:00+00'),
+	('202590005', 'dcbasadre2025@plm.edu.ph', 'XRcqcxXjiwd', 'Student', '2026-10-29 00:00:00+00'),
+	('202590006', 'pjbella2025@plm.edu.ph', 'vXhKj3sKet0', 'Student', '2026-10-29 00:00:00+00'),
+	('202590007', 'secortez2025@plm.edu.ph', 'XlGcKgtBUH3', 'Student', '2026-10-29 00:00:00+00'),
+	('202590008', 'ecuesta2025@plm.edu.ph', 'wPvtKfdmqq1', 'Student', '2026-10-29 00:00:00+00'),
+	('202590009', 'sgcuvin2025@plm.edu.ph', 'SCAZGCGetKW', 'Student', '2026-10-29 00:00:00+00'),
+	('202590010', 'jadevera2025@plm.edu.ph', 'Xy9l5iwJyPl', 'Student', '2026-10-29 00:00:00+00'),
+	('202590011', 'jkdrueco2025@plm.edu.ph', 'DbGPnkXaGw9', 'Student', '2026-10-29 00:00:00+00'),
+	('202590080', 'eavendano2025@plm.edu.ph', '0e5RNs1pj1j', 'Student', '2026-10-29 00:00:00+00'),
+	('202690081', 'favila2026@plm.edu.ph', '02LI0Z8xMcg', 'Student', '2026-10-29 00:00:00+00'),
+	('202390082', 'gbacani2023@plm.edu.ph', 'zLxtKkJz8Kt', 'Student', '2026-10-29 00:00:00+00'),
+	('202490083', 'hbacalso2024@plm.edu.ph', 'FWxiDWJWcPi', 'Student', '2026-10-29 00:00:00+00'),
+	('202590084', 'ibaguio2025@plm.edu.ph', 'eIFJbnSSsH2', 'Student', '2026-10-29 00:00:00+00'),
+	('202690085', 'jbalagtas2026@plm.edu.ph', 'dgCO4GRc5oN', 'Student', '2026-10-29 00:00:00+00'),
+	('202390086', 'kbalajadia2023@plm.edu.ph', 'QUiFLPws9DE', 'Student', '2026-10-29 00:00:00+00'),
+	('202490087', 'lbalboa2024@plm.edu.ph', 'TwKZ9pVUwXq', 'Student', '2026-10-29 00:00:00+00'),
+	('202590088', 'mbalderama2025@plm.edu.ph', 'FLRf8capzzr', 'Student', '2026-10-29 00:00:00+00'),
+	('202690089', 'nbaluyot2026@plm.edu.ph', 'PDRcLDC9ciM', 'Student', '2026-10-29 00:00:00+00'),
+	('202390090', 'obanaag2023@plm.edu.ph', 'LElz6O82NeW', 'Student', '2026-10-29 00:00:00+00'),
+	('202490091', 'pbanal2024@plm.edu.ph', '47nijszpMJW', 'Student', '2026-10-29 00:00:00+00'),
+	('202590092', 'qbanayo2025@plm.edu.ph', 'B9RJTuHAcGk', 'Student', '2026-10-29 00:00:00+00'),
+	('202690093', 'rbangayan2026@plm.edu.ph', 'vmVU1Nspctl', 'Student', '2026-10-29 00:00:00+00'),
+	('202390094', 'sbanzon2023@plm.edu.ph', 'bD2obeEhWZ0', 'Student', '2026-10-29 00:00:00+00'),
+	('202490095', 'tbarba2024@plm.edu.ph', 'Ldphl55sieZ', 'Student', '2026-10-29 00:00:00+00'),
+	('202590096', 'ubarcelona2025@plm.edu.ph', 'IBBz5pUd0c2', 'Student', '2026-10-29 00:00:00+00'),
+	('202690097', 'vbarrera2026@plm.edu.ph', 'sYZw4xcDiy9', 'Student', '2026-10-29 00:00:00+00'),
+	('202390098', 'wbarrios2023@plm.edu.ph', 'nUVJcw87FNn', 'Student', '2026-10-29 00:00:00+00'),
+	('202490099', 'xbartolome2024@plm.edu.ph', 'xDXIjOojpPf', 'Student', '2026-10-29 00:00:00+00'),
+	('202590100', 'ybasa2025@plm.edu.ph', 'WMDRY2Vht7O', 'Student', '2026-10-29 00:00:00+00'),
+	('202690101', 'abasilio2026@plm.edu.ph', 'SeiHjeIhOYx', 'Student', '2026-10-29 00:00:00+00'),
+	('202390102', 'bbatac2023@plm.edu.ph', 'arxvsGaHpEs', 'Student', '2026-10-29 00:00:00+00'),
+	('202490103', 'cbataller2024@plm.edu.ph', 'vtM7Vi9IMia', 'Student', '2026-10-29 00:00:00+00'),
+	('202590104', 'dbatino2025@plm.edu.ph', 'nUKbT2KgWIG', 'Student', '2026-10-29 00:00:00+00'),
+	('202690105', 'ebayani2026@plm.edu.ph', 'oYpdPspNgCL', 'Student', '2026-10-29 00:00:00+00'),
+	('202390106', 'fbaylon2023@plm.edu.ph', 'F1m7NSu3fVZ', 'Student', '2026-10-29 00:00:00+00'),
+	('202490107', 'gbelmonte2024@plm.edu.ph', 'ke1tSZaSbkO', 'Student', '2026-10-29 00:00:00+00'),
+	('202590108', 'hbenavides2025@plm.edu.ph', 'ZOaT6opCeec', 'Student', '2026-10-29 00:00:00+00'),
+	('202690109', 'ibenitez2026@plm.edu.ph', 'YNeU8R3uAQR', 'Student', '2026-10-29 00:00:00+00'),
+	('202390110', 'jbernardino2023@plm.edu.ph', '1ot09qfxp4l', 'Student', '2026-10-29 00:00:00+00'),
+	('202490111', 'kbernardo2024@plm.edu.ph', 'OhChJLE12r3', 'Student', '2026-10-29 00:00:00+00'),
+	('202590112', 'lbinuya2025@plm.edu.ph', 'YswmHd8wOMJ', 'Student', '2026-10-29 00:00:00+00'),
+	('202690113', 'mblanco2026@plm.edu.ph', 'k15Pk3J36l5', 'Student', '2026-10-29 00:00:00+00'),
+	('202390114', 'nbocobo2023@plm.edu.ph', 'I9aax4EEPyY', 'Student', '2026-10-29 00:00:00+00'),
+	('202490115', 'obolante2024@plm.edu.ph', 'KLRHP4kQRsb', 'Student', '2026-10-29 00:00:00+00'),
+	('202590116', 'pbondoc2025@plm.edu.ph', 'drLj3RKU8c2', 'Student', '2026-10-29 00:00:00+00'),
+	('202690117', 'qborja2026@plm.edu.ph', 'U1owVpRFCRT', 'Student', '2026-10-29 00:00:00+00'),
+	('202390118', 'rbravo2023@plm.edu.ph', 'rQQZzVRvMNX', 'Student', '2026-10-29 00:00:00+00'),
+	('202490119', 'sbriones2024@plm.edu.ph', 'v0jA8uNZwu8', 'Student', '2026-10-29 00:00:00+00'),
+	('202590120', 'tbuan2025@plm.edu.ph', 'y83tYZfdc7x', 'Student', '2026-10-29 00:00:00+00'),
+	('202690121', 'ubucad2026@plm.edu.ph', 'FkBSYbdU7CE', 'Student', '2026-10-29 00:00:00+00'),
+	('202390122', 'vbulacan2023@plm.edu.ph', 'OpyObs2f1BS', 'Student', '2026-10-29 00:00:00+00'),
+	('202490123', 'wcabal2024@plm.edu.ph', 'AVZulD7j5tO', 'Student', '2026-10-29 00:00:00+00'),
+	('202590124', 'xcabangon2025@plm.edu.ph', 'Fjww6KWxMDB', 'Student', '2026-10-29 00:00:00+00'),
+	('202690125', 'ycabigting2026@plm.edu.ph', 'X3m2N3od6dv', 'Student', '2026-10-29 00:00:00+00'),
+	('202390126', 'acabiling2023@plm.edu.ph', 'ye3GrY4z5zf', 'Student', '2026-10-29 00:00:00+00'),
+	('202490127', 'bcabral2024@plm.edu.ph', 'q1xUKLYm86V', 'Student', '2026-10-29 00:00:00+00'),
+	('202590128', 'ccaceres2025@plm.edu.ph', 'A1ejb9phtZG', 'Student', '2026-10-29 00:00:00+00'),
+	('202690129', 'dcagampan2026@plm.edu.ph', 'd46glRmdxzX', 'Student', '2026-10-29 00:00:00+00'),
+	('202390130', 'ecaguiat2023@plm.edu.ph', 'MgYOKvxdRdm', 'Student', '2026-10-29 00:00:00+00'),
+	('202490131', 'fcalalang2024@plm.edu.ph', 'Fi8ogHd31Kx', 'Student', '2026-10-29 00:00:00+00'),
+	('202590132', 'gcalamba2025@plm.edu.ph', 'HnD3JyADO09', 'Student', '2026-10-29 00:00:00+00'),
+	('202690133', 'hcalanog2026@plm.edu.ph', 'WbqhjVedpRe', 'Student', '2026-10-29 00:00:00+00'),
+	('202390134', 'icalayag2023@plm.edu.ph', 'jLAKx5odAqQ', 'Student', '2026-10-29 00:00:00+00'),
+	('202490135', 'jcalica2024@plm.edu.ph', 'gjr9YOZ7B4g', 'Student', '2026-10-29 00:00:00+00'),
+	('202590136', 'kcalimag2025@plm.edu.ph', '0UGOzxkw9ph', 'Student', '2026-10-29 00:00:00+00'),
+	('202690137', 'lcalinawan2026@plm.edu.ph', 'jiyldjsDTdx', 'Student', '2026-10-29 00:00:00+00'),
+	('202390138', 'mcalixto2023@plm.edu.ph', 'WeTSq1JQ7s5', 'Student', '2026-10-29 00:00:00+00'),
+	('202490139', 'ncamacho2024@plm.edu.ph', 'Aqokb98YTOW', 'Student', '2026-10-29 00:00:00+00'),
+	('202590140', 'ocamarillo2025@plm.edu.ph', 'smv4Z1jrkNL', 'Student', '2026-10-29 00:00:00+00'),
+	('202690141', 'pcanales2026@plm.edu.ph', 'NEklhqvoiU1', 'Student', '2026-10-29 00:00:00+00'),
+	('202390142', 'qcanlas2023@plm.edu.ph', 'AT7MizXuD54', 'Student', '2026-10-29 00:00:00+00'),
+	('202490143', 'rcano2024@plm.edu.ph', 'AX4pTZdGL8B', 'Student', '2026-10-29 00:00:00+00'),
+	('202590144', 'scaparas2025@plm.edu.ph', '8fG5yEAl2yC', 'Student', '2026-10-29 00:00:00+00'),
+	('202690145', 'tcapili2026@plm.edu.ph', 'yQtBYspGquN', 'Student', '2026-10-29 00:00:00+00'),
+	('202390146', 'ucapistrano2023@plm.edu.ph', '7XQTCOCCA7D', 'Student', '2026-10-29 00:00:00+00'),
+	('202490147', 'vcarandang2024@plm.edu.ph', '4DFE0ibovgm', 'Student', '2026-10-29 00:00:00+00'),
+	('202590148', 'wcarino2025@plm.edu.ph', '0syOVkNhOFh', 'Student', '2026-10-29 00:00:00+00'),
+	('202690149', 'xcarpio2026@plm.edu.ph', 'JmuIvFglpkw', 'Student', '2026-10-29 00:00:00+00'),
+	('202390150', 'ycasanova2023@plm.edu.ph', 'bGTPmaxSg48', 'Student', '2026-10-29 00:00:00+00'),
+	('202490151', 'acasimiro2024@plm.edu.ph', 'x3DgczvC5rW', 'Student', '2026-10-29 00:00:00+00'),
+	('202590152', 'bcastaneda2025@plm.edu.ph', 'wph5SAes6cu', 'Student', '2026-10-29 00:00:00+00'),
+	('202690153', 'ccatacutan2026@plm.edu.ph', 'lrHqRCHEmsW', 'Student', '2026-10-29 00:00:00+00'),
+	('202390154', 'dcayetano2023@plm.edu.ph', 'qmqhikIWBDk', 'Student', '2026-10-29 00:00:00+00'),
+	('202490155', 'ecelis2024@plm.edu.ph', 'L3q32TR9M3H', 'Student', '2026-10-29 00:00:00+00'),
+	('202590156', 'fcenteno2025@plm.edu.ph', 'v6AfFWwTe13', 'Student', '2026-10-29 00:00:00+00'),
+	('202690157', 'gcervantes2026@plm.edu.ph', 'n21RrCCcrrE', 'Student', '2026-10-29 00:00:00+00'),
+	('202390158', 'hchua2023@plm.edu.ph', 'nLxeLAD8sgV', 'Student', '2026-10-29 00:00:00+00'),
+	('202490159', 'icinco2024@plm.edu.ph', '42YzOFMNepy', 'Student', '2026-10-29 00:00:00+00'),
+	('202590160', 'jcollantes2025@plm.edu.ph', 'hS4WqPPQFJL', 'Student', '2026-10-29 00:00:00+00'),
+	('202690161', 'kconcepcion2026@plm.edu.ph', 'WoyEnE9wFnO', 'Student', '2026-10-29 00:00:00+00'),
+	('202390162', 'lconde2023@plm.edu.ph', 'JzH66At8dO3', 'Student', '2026-10-29 00:00:00+00'),
+	('202490163', 'mconstantino2024@plm.edu.ph', 'SI6GMA4KAuY', 'Student', '2026-10-29 00:00:00+00'),
+	('202590164', 'ncontreras2025@plm.edu.ph', 'fN8LoSO7S36', 'Student', '2026-10-29 00:00:00+00'),
+	('202690165', 'ocorpuz2026@plm.edu.ph', 'kmGFNYcatTt', 'Student', '2026-10-29 00:00:00+00'),
+	('202390166', 'pcuenca2023@plm.edu.ph', 'w2jxdzgb3FG', 'Student', '2026-10-29 00:00:00+00'),
+	('202590180', 'edimaano2025@plm.edu.ph', 'YYTw2LkZvTr', 'Student', '2026-10-29 00:00:00+00'),
+	('202690181', 'fdimabuyu2026@plm.edu.ph', '7OETikqTkHr', 'Student', '2026-10-29 00:00:00+00'),
+	('202390182', 'gdizon2023@plm.edu.ph', 'gu1CN6UtWBk', 'Student', '2026-10-29 00:00:00+00'),
+	('202490183', 'hdomingo2024@plm.edu.ph', '6jLbm8qxSCn', 'Student', '2026-10-29 00:00:00+00'),
+	('202590184', 'idorado2025@plm.edu.ph', 'SuCI00SKfwp', 'Student', '2026-10-29 00:00:00+00'),
+	('202690185', 'jdumlao2026@plm.edu.ph', '3gYyXtTkOBK', 'Student', '2026-10-29 00:00:00+00'),
+	('202390186', 'kduran2023@plm.edu.ph', 'HnLJNiEEYZJ', 'Student', '2026-10-29 00:00:00+00'),
+	('202490187', 'lencarnacion2024@plm.edu.ph', 'zxzAiHfFGS3', 'Student', '2026-10-29 00:00:00+00'),
+	('202590188', 'menriquez2025@plm.edu.ph', 'zazmzmnYkWL', 'Student', '2026-10-29 00:00:00+00'),
+	('202690189', 'nescalante2026@plm.edu.ph', 'zWZSnCYVTUt', 'Student', '2026-10-29 00:00:00+00'),
+	('202390190', 'oescobar2023@plm.edu.ph', 'chtrevUzKEw', 'Student', '2026-10-29 00:00:00+00'),
+	('202490191', 'pespino2024@plm.edu.ph', 'chJRgObAxNA', 'Student', '2026-10-29 00:00:00+00'),
+	('202590192', 'qespinosa2025@plm.edu.ph', 'z95Xt2uRRO2', 'Student', '2026-10-29 00:00:00+00'),
+	('202690193', 'rfabian2026@plm.edu.ph', 'pXq1TKOETMl', 'Student', '2026-10-29 00:00:00+00'),
+	('202390194', 'sfacundo2023@plm.edu.ph', 'Qd6zEMTFZw9', 'Student', '2026-10-29 00:00:00+00'),
+	('202490195', 'tfernando2024@plm.edu.ph', 'iudYUUf0kwi', 'Student', '2026-10-29 00:00:00+00'),
+	('202590196', 'uferrer2025@plm.edu.ph', 'dKFqHfwygg2', 'Student', '2026-10-29 00:00:00+00'),
+	('202690197', 'vfrancisco2026@plm.edu.ph', 'Z2Gr5pRVYN1', 'Student', '2026-10-29 00:00:00+00'),
+	('202390198', 'wfuentes2023@plm.edu.ph', 'CInlaAaSIcJ', 'Student', '2026-10-29 00:00:00+00'),
+	('202490199', 'xgabriel2024@plm.edu.ph', 'To8H6tJya3T', 'Student', '2026-10-29 00:00:00+00'),
+	('202590200', 'ygamboa2025@plm.edu.ph', 'YLd9eH3rHMf', 'Student', '2026-10-29 00:00:00+00'),
+	('202615701', 'ermendoza2026@plm.edu.ph', 'wyZatoCNSbl', 'Student', '2026-03-10 01:00:00+00'),
+	('202515702', 'imsantos2025@plm.edu.ph', '4NUVoHhdrYT', 'Student', '2026-03-11 01:00:00+00'),
+	('202415703', 'npreyes2024@plm.edu.ph', '5kK0x50vTNC', 'Student', '2026-03-12 01:00:00+00'),
+	('202315704', 'ogcruz2023@plm.edu.ph', 'grG2O5fsahs', 'Student', '2026-03-13 01:00:00+00'),
+	('202615705', 'lbaquino2026@plm.edu.ph', 'rEtjI2m5UHt', 'Student', '2026-03-14 01:00:00+00'),
+	('202515706', 'sltorres2025@plm.edu.ph', 'BPWQbkFvlxl', 'Student', '2026-03-15 01:00:00+00'),
+	('202415707', 'edramos2024@plm.edu.ph', '8tUdc9zwoRW', 'Student', '2026-03-16 01:00:00+00'),
+	('202315708', 'mcflores2023@plm.edu.ph', 'Ap4OcZJ64qI', 'Student', '2026-03-17 01:00:00+00'),
+	('202615709', 'lvgarcia2026@plm.edu.ph', 'Qy15RGzsd06', 'Student', '2026-03-18 01:00:00+00'),
+	('202515710', 'anbautista2025@plm.edu.ph', '0rgMKzU9HGk', 'Student', '2026-03-19 01:00:00+00'),
+	('202590012', 'jjesguerra2025@plm.edu.ph', '8k8fcINg2p4', 'Student', '2026-10-29 00:00:00+00'),
+	('202590013', 'jadevangelista2025@plm.edu.ph', 'gtCXAcJ9UBX', 'Student', '2026-10-29 00:00:00+00'),
+	('202590014', 'slgener2025@plm.edu.ph', 's0U0PfXRf0A', 'Student', '2026-10-29 00:00:00+00'),
+	('202590015', 'ailagan2025@plm.edu.ph', 'q4uvKDGffHg', 'Student', '2026-10-29 00:00:00+00'),
+	('202590016', 'rlmagnifico2025@plm.edu.ph', 'xMG1KOiBkGQ', 'Student', '2026-10-29 00:00:00+00'),
+	('202590017', 'elmallari2025@plm.edu.ph', 'pdUx5UiSVhR', 'Student', '2026-10-29 00:00:00+00'),
+	('202590018', 'jemedel2025@plm.edu.ph', 'ptMyhgprONR', 'Student', '2026-10-29 00:00:00+00'),
+	('202590019', 'memonzon2025@plm.edu.ph', 'DoqxPK49leL', 'Student', '2026-10-29 00:00:00+00'),
+	('202590020', 'joestor2025@plm.edu.ph', 'TIzJMQRrWjX', 'Student', '2026-10-29 00:00:00+00'),
+	('202590021', 'jpablo2025@plm.edu.ph', 'AZHeOKlFKMK', 'Student', '2026-10-29 00:00:00+00'),
+	('202590022', 'aradjail2025@plm.edu.ph', 'HGjD1P5wBPj', 'Student', '2026-10-29 00:00:00+00'),
+	('202590023', 'rsala2025@plm.edu.ph', 'kzqlr4x6soo', 'Student', '2026-10-29 00:00:00+00'),
+	('202590024', 'mrteodoro2025@plm.edu.ph', 'wZN91EEl8Uv', 'Student', '2026-10-29 00:00:00+00'),
+	('202590025', 'rting2025@plm.edu.ph', 'thFKmDQTC1P', 'Student', '2026-10-29 00:00:00+00'),
+	('202390026', 'aabad2023@plm.edu.ph', 'UYf9FNGe3RL', 'Student', '2026-10-29 00:00:00+00'),
+	('PLMPAGG-ORG-34', 'pagg.plm@plm.edu.ph', 'pagg34', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('202490027', 'babalos2024@plm.edu.ph', 'i60cnTMr8XN', 'Student', '2026-10-29 00:00:00+00'),
+	('PLMCASBESC-ORG-05', 'casbescofficial@plm.edu.ph', 'casbesc05', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMCEDSC-ORG-06', 'plmcollegeofeducationsc@plm.edu.ph', 'cedsc06', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMCMSC-ORG-10', 'plm.cmsc@plm.edu.ph', 'cmsc10', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMCNSC-ORG-11', 'plmcnsc@plm.edu.ph', 'cnsc11', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMASHRAE-ORG-14', 'ashraeplm@plm.edu.ph', 'ashrae14', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMBMS-ORG-15', 'bms.plm1987@plm.edu.ph', 'bms15', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMCOMDRS-ORG-16', 'plmcm.comdrs@plm.edu.ph', 'comdrs16', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMJPMAP-ORG-19', 'jpmap.plmchapter@plm.edu.ph', 'jpmap19', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMJPIA-ORG-20', 'jpiaplm.ncrwest@plm.edu.ph', 'jpia20', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMMCSL-ORG-21', 'plmmcsl@plm.edu.ph', 'mcsl21', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMMES-ORG-22', 'mes.plm.pt@plm.edu.ph', 'mes22', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMPNSA-ORG-23', 'pnsaplmchapter@plm.edu.ph', 'pnsa23', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMPSME-ORG-24', 'plmpsmesu@plm.edu.ph', 'psme24', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMPMS-ORG-25', 'philomedicascientia1989@plm.edu.ph', 'pms25', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMACES-ORG-26', 'plmaces.official@plm.edu.ph', 'aces26', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMCTO-ORG-27', 'plmcto2627@plm.edu.ph', 'cto27', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMCHESS-ORG-28', 'plmchess.official@plm.edu.ph', 'chess28', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMECOSOC-ORG-30', 'plmeconomicsociety@plm.edu.ph', 'ecosoc30', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMJES-ORG-31', 'plmjuniorentrepsociety@plm.edu.ph', 'jes31', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMJMA-ORG-32', 'officialplmjma@plm.edu.ph', 'jma32', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMMATHSOC-ORG-33', 'plmmathsoc.sprc@plm.edu.ph', 'mathsoc33', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMPSBS-ORG-35', 'psbs.plm@plm.edu.ph', 'psbs35', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMSITE-ORG-36', 'plmsiteofficial@plm.edu.ph', 'site36', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMTES-ORG-37', 'plmtes2025@plm.edu.ph', 'tes37', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMTCS-ORG-38', 'plmchemicalsociety@plm.edu.ph', 'tcs38', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMTC-ORG-39', 'chasscommunique@plm.edu.ph', 'tc39', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMHEO-ORG-42', 'haribonsesports@plm.edu.ph', 'heo42', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMLS-ORG-43', 'lightbearersocietyplm1993@plm.edu.ph', 'ls43', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMMCSG-ORG-44', 'magwayenofficial@plm.edu.ph', 'mcsg44', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMCYC-ORG-47', 'officialplm.cyc@plm.edu.ph', 'cyc47', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMDOSTSA-ORG-48', 'official.plmdostsa@plm.edu.ph', 'dostsa48', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMMUPESA-ORG-49', 'mupesaofficial.plm@plm.edu.ph', 'mupesa49', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMPLSOC-ORG-50', 'plm.prelaw@plm.edu.ph', 'plsoc50', 'Student Organization', '2026-10-29 13:49:56.902102+00'),
+	('PLMRC-ORG-53', 'plmrotaract@plm.edu.ph', 'rc53', 'Student Organization', '2026-10-29 13:52:03.776055+00'),
+	('202490167', 'qcustodio2024@plm.edu.ph', 'KJQCsTV5XCh', 'Student', '2026-10-29 00:00:00+00'),
+	('202590168', 'rdacanay2025@plm.edu.ph', 'AdkgukVyWt6', 'Student', '2026-10-29 00:00:00+00'),
+	('202690169', 'sdalisay2026@plm.edu.ph', 'iY0CLZEmTpY', 'Student', '2026-10-29 00:00:00+00'),
+	('202390170', 'tdavid2023@plm.edu.ph', 'xiNzM1kPXsu', 'Student', '2026-10-29 00:00:00+00'),
+	('202490171', 'udayao2024@plm.edu.ph', 'UPtYOBrm4Zn', 'Student', '2026-10-29 00:00:00+00'),
+	('202590172', 'vdecastro2025@plm.edu.ph', 'rwIVRytn8nd', 'Student', '2026-10-29 00:00:00+00'),
+	('202690173', 'wdeguzman2026@plm.edu.ph', 'fiUv28S2LLr', 'Student', '2026-10-29 00:00:00+00'),
+	('202390174', 'xdeleon2023@plm.edu.ph', 'v8VTxDNiZUN', 'Student', '2026-10-29 00:00:00+00'),
+	('202490175', 'ydemesa2024@plm.edu.ph', '17CORz3Rvwj', 'Student', '2026-10-29 00:00:00+00'),
+	('202590176', 'adeocampo2025@plm.edu.ph', '0NVvUcFEKXX', 'Student', '2026-10-29 00:00:00+00'),
+	('202690177', 'bdesilva2026@plm.edu.ph', 'k3MrVI8c5ZS', 'Student', '2026-10-29 00:00:00+00'),
+	('202390178', 'cdelmundo2023@plm.edu.ph', '7peLM7LYSBL', 'Student', '2026-10-29 00:00:00+00'),
+	('202490179', 'ddelosreyes2024@plm.edu.ph', 'GWbohdFguTf', 'Student', '2026-10-29 00:00:00+00');
 
 
---
--- Data for Name: administrations; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-INSERT INTO "public"."administrations" ("admin_id", "name", "position", "office_assigned") VALUES
+-- administrators --
+INSERT INTO "public"."administrators" ("admin_id", "name", "position", "office_assigned") VALUES
 	('PLM-OSDS-2016-02782', 'Juan D. Mercado', 'Head', 'PLM Office of Student Development and Services'),
 	('PLM-OSDS-2019-06772', 'Raquel P. Chu', 'Co-Head', 'PLM Office of Student Development and Services'),
 	('PLM-OSDS-2023-07723', 'Elena Rose D. Tan', 'Administrative Staff I', 'PLM Office of Student Development and Services'),
@@ -102,10 +323,7 @@ INSERT INTO "public"."administrations" ("admin_id", "name", "position", "office_
 	('PLM-OSDS-2025-08912', 'Charles Reece C. Bonifacio', 'Administrative Staff I', 'PLM Office of Student Development and Services');
 
 
---
--- Data for Name: event_type; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
+-- event type -- 
 INSERT INTO "public"."event_type" ("event_type_id", "description", "modality", "requires_venue") VALUES
 	('ET01', 'Seminar', 'On-Site', true),
 	('ET02', 'Competition', 'On-Site', true),
@@ -129,10 +347,7 @@ INSERT INTO "public"."event_type" ("event_type_id", "description", "modality", "
 	('ET20', 'Online Mass', 'Online', false);
 
 
---
--- Data for Name: student_organization; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
+-- student organization --
 INSERT INTO "public"."student_organization" ("org_id", "org_name", "org_type", "acronym", "college", "accreditation_status") VALUES
 	('PLMSSC-ORG-01', 'The PLM Supreme Student Council', 'Academic', 'PLM-SSC', NULL, true),
 	('PLMAP-ORG-02', 'Ang Pamantasan', 'Academic', 'AP', NULL, true),
@@ -155,13 +370,45 @@ INSERT INTO "public"."student_organization" ("org_id", "org_name", "org_type", "
 	('PLMTUGONRESCUE-ORG-54', 'TUGON - Rescuing Students for Community Undertaking and Edification', 'University-Wide', 'TUGONReSCUE', NULL, true),
 	('PLMCMC-ORG-55', 'Christ’s Medical Circle', 'Religious', 'CMC', NULL, true),
 	('PLMMASA-ORG-56', 'PLM Muslim Association for Student Affairs', 'Religious', 'PLM MASA', NULL, false),
-	('PLMTJI-ORG-57', 'PLM The Jesus Impact', 'Religious', 'TJI', NULL, false);
+	('PLMTJI-ORG-57', 'PLM The Jesus Impact', 'Religious', 'TJI', NULL, false),
+	('PLMCASBESC-ORG-05', 'College of Architecture and Sustainable Built Environments', 'Academic', 'CASBE-SC', NULL, NULL),
+	('PLMCEDSC-ORG-06', 'College of Education Student Council', 'Academic', 'CED-SC', NULL, NULL),
+	('PLMCMSC-ORG-10', 'College of Medicine Student Council', 'Academic', 'CM-SC', NULL, NULL),
+	('PLMCNSC-ORG-11', 'College of Nursing Student Council', 'Academic', 'CN-SC', NULL, NULL),
+	('PLMASHRAE-ORG-14', 'ASHRAE PLM Student Branch', 'Academic', 'ASHRAE', NULL, NULL),
+	('PLMBMS-ORG-15', 'Brotherhood of Medical Scholars', 'Academic', 'BMS', NULL, NULL),
+	('PLMCOMDRS-ORG-16', 'Community Development and Research Society', 'Academic', 'ComDRS', NULL, NULL),
+	('PLMJPMAP-ORG-19', 'Junior People Management Association of the Philippines PLM', 'Academic', 'JPMAP-PLM', NULL, NULL),
+	('PLMJPIA-ORG-20', 'Junior Philippine Institute of Accountants', 'Academic', 'JPIA-PLM', NULL, NULL),
+	('PLMMCSL-ORG-21', 'Mass Communication Students’ League', 'Academic', 'MCSL', NULL, NULL),
+	('PLMMES-ORG-22', 'Movements Experts’ Society', 'Academic', 'MES', NULL, NULL),
+	('PLMPNSA-ORG-23', 'Philippine Nursing Student’s Association', 'Academic', 'PNSA-PLM', NULL, NULL),
+	('PLMPSME-ORG-24', 'Philippine Society of Mechanical Engineers PLM Students Unit', 'Academic', 'PSME-PLM', NULL, NULL),
+	('PLMPMS-ORG-25', 'PhiloMedicaScienta', 'Academic', 'PMS', NULL, NULL),
+	('PLMACES-ORG-26', 'PLM Association of Civil Engineering Students', 'Academic', 'PLM-ACES', NULL, NULL),
+	('PLMCTO-ORG-27', 'PLM Cadet Teachers’ Organization', 'Academic', 'PLM-CTO', NULL, NULL),
+	('PLMCHESS-ORG-28', 'PLM Chemical Engineering Students’ Society', 'Academic', 'PLM-ChESS', NULL, NULL),
+	('PLMECOSOC-ORG-30', 'PLM Economics Society', 'Academic', 'PLM-EcoSoc', NULL, NULL),
+	('PLMJES-ORG-31', 'PLM Junior Entrepreneurs Society', 'Academic', 'PLM-JES', NULL, NULL),
+	('PLMJMA-ORG-32', 'PLM Junior Marketing Association', 'Academic', 'PLM-JMA', NULL, NULL),
+	('PLMMATHSOC-ORG-33', 'PLM Mathematical Society', 'Academic', 'PLM-MathSoc', NULL, NULL),
+	('PLMPAGG-ORG-34', 'PLM Public Administration Guild of Governance', 'Academic', 'PAGG', NULL, NULL),
+	('PLMPSBS-ORG-35', 'PLM Society for Biological Sciences', 'Academic', 'PSBS', NULL, NULL),
+	('PLMSITE-ORG-36', 'PLM Society of Information Technology Enthusiasts', 'Academic', 'PLM-SITE', NULL, NULL),
+	('PLMTES-ORG-37', 'PLM Teacher Education Society', 'Academic', 'PLM-TES', NULL, NULL),
+	('PLMTCS-ORG-38', 'The Chemical Society', 'Academic', 'TCS', NULL, NULL),
+	('PLMTC-ORG-39', 'The Communique', 'Academic', 'TC', NULL, NULL),
+	('PLMHEO-ORG-42', 'Haribons Esports Organization', 'University-Wide', 'HEO', NULL, NULL),
+	('PLMLS-ORG-43', 'Lightbearer Society', 'University-Wide', 'LS', NULL, NULL),
+	('PLMMCSG-ORG-44', 'Magwayen Creative Scholars’ Guild', 'University-Wide', 'MCSG', NULL, NULL),
+	('PLMCYC-ORG-47', 'PLM College Y Club', 'University-Wide', 'CYC', NULL, NULL),
+	('PLMDOSTSA-ORG-48', 'PLM DOST Scholars Association', 'University-Wide', 'DOST-SA', NULL, NULL),
+	('PLMMUPESA-ORG-49', 'PLM Music Performance Student Association', 'University-Wide', 'MUPESA', NULL, NULL),
+	('PLMPLSOC-ORG-50', 'PLM Pre-Law Society', 'University-Wide', 'PLSOC', NULL, NULL),
+	('PLMRC-ORG-53', 'Rotaract Club PLM', 'University-Wide', 'RC', NULL, NULL);
 
 
---
--- Data for Name: event_proposal; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
+-- event proposal --
 INSERT INTO "public"."event_proposal" ("proposal_id", "org_id", "objectives", "description", "submission_date", "approval_status", "expected_count_attendees", "event_name", "event_type_id", "allowed_college", "eligibility_mode", "resource_requirements", "budget_information", "includes_sponsorship", "collaborating_organization_text") VALUES
 	('PROP-2026-001', 'PLMCSS-ORG-29', 'CSS Tech Summit is an event hosted to introduce and encourage CISTM students to use the new Gemini AI Model (Argon 4) and learn responsible technology practices.', 'A free on-site seminar featuring computing talks, demonstrations, and student discussions.', '2026-01-05 01:00:00+00', 'Approved', 120, 'CSS Tech Summit', 'ET01', 'CISTM', 'College-Specific', 'Projector, microphones, sound system, tables, and stable internet access.', 'PHP 12000 proposed for materials and logistics; no admission fee or portal payment processing.', false, NULL),
 	('PROP-2026-002', 'PLMSSC-ORG-01', 'Haribon Clash is an event led by PLM SSC to promote sportsmanship, student participation, and cooperation across PLM colleges.', 'A free university-wide sports competition led and managed by PLMSSC with collaborating organizations acknowledged.', '2026-01-19 02:00:00+00', 'Approved', 400, 'Haribon Clash', 'ET16', NULL, 'University-Wide', 'Sports equipment, mats, sound system, tables, and first-aid support.', 'PHP 35000 proposed for sports materials, first-aid supplies, and logistics; participation is free.', false, 'CISTM Student Council; CHASS Student Council; PLM Student Commission on Audit (COAA/SCOA); PLM COMELEC; ECESS-PLM; College of Public Administration (CPA); CTHM Student Council. PLMSSC remains the sole lead organizer.'),
@@ -188,10 +435,8 @@ INSERT INTO "public"."event_proposal" ("proposal_id", "org_id", "objectives", "d
 	('PROP-2026-023', 'PLMCHASSSC-ORG-08', 'Promote student participation in student entrepreneurship fair.', 'Free on-site student entrepreneurship fair.', '2026-04-02 01:00:00+00', 'Approved', 200, 'Student Entrepreneurship Fair', 'ET01', NULL, 'University-Wide', 'Sound system, chairs, projector', 'PHP 10000 for logistics', false, NULL);
 
 
---
--- Data for Name: event; Type: TABLE DATA; Schema: public; Owner: postgres
---
 
+-- event --
 INSERT INTO "public"."event" ("event_id", "event_type_id", "publication_status", "registration_status", "registration_capacity", "post_caption", "created_at", "published_at", "cancelled_at", "cancelled_by", "cancellation_reason", "rescheduled_at", "rescheduled_by", "rescheduled_reason", "completed_at", "archived_at", "starts_at", "ends_at", "org_id", "event_status", "proposal_id") VALUES
 	('EV-2026-001', 'ET01', 'Published', 'Open', 120, 'Join CSS Tech Summit for computing talks, demonstrations, and student discussions. Free for eligible CISTM students. Updated schedule: February 27, 2026, 9 AM to 12 PM, GEE AVR.', '2026-01-12 03:00:00+00', '2026-01-20 04:00:00+00', NULL, NULL, NULL, '2026-02-04 23:55:00+00', 'PLM-OSDS-2016-02782', 'Administrator-authorized move to the backup schedule and venue due to speaker availability.', NULL, NULL, '2026-02-27 01:00:00+00', '2026-02-27 04:00:00+00', 'PLMCSS-ORG-29', 'Upcoming', 'PROP-2026-001'),
 	('EV-2026-002', 'ET16', 'Published', 'Open', 400, 'Join Haribon Clash, the free PLMSSC-led sports competition. March 20, 2026, 8 AM to 5 PM at Rajah Sulayman Gym. Open to eligible PLM students university-wide.', '2026-01-20 01:15:00+00', '2026-01-21 02:00:00+00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2026-03-20 00:00:00+00', '2026-03-20 09:00:00+00', 'PLMSSC-ORG-01', 'Upcoming', 'PROP-2026-002'),
@@ -215,10 +460,7 @@ INSERT INTO "public"."event" ("event_id", "event_type_id", "publication_status",
 	('EV-2026-022', 'ET01', 'Published', 'Open', 200, 'Join Student Entrepreneurship Fair.', '2026-04-06 01:00:00+00', '2026-04-06 03:00:00+00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2026-09-14 01:00:00+00', '2026-09-14 04:00:00+00', 'PLMCHASSSC-ORG-08', 'Upcoming', 'PROP-2026-023');
 
 
---
--- Data for Name: notifications; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
+-- notifications -- 
 INSERT INTO "public"."notifications" ("notification_id", "recipient_user_id", "event_id", "proposal_id", "notification_type", "message", "created_at", "read_at") VALUES
 	(1, 'PLMCSS-ORG-29', 'EV-2026-001', 'PROP-2026-001', 'Proposal Approved', 'Your event proposal for "CSS Tech Summit" has been reviewed and approved by OSDS. Ready for publish and registration.', '2026-01-12 03:00:00+00', '2026-01-12 03:15:00+00'),
 	(2, '202515006', 'EV-2026-001', 'PROP-2026-001', 'Registration Successful', 'You have successfully submitted your registration request for the CSS Tech Summit! Kindly wait for confirmation of registration.', '2026-02-01 02:00:00+00', '2026-02-01 02:05:00+00'),
@@ -247,10 +489,7 @@ INSERT INTO "public"."notifications" ("notification_id", "recipient_user_id", "e
 	(25, 'PLMCHASSSC-ORG-08', 'EV-2026-022', 'PROP-2026-023', 'Proposal Approved', 'Student Entrepreneurship Fair has been approved.', '2026-04-06 01:00:00+00', NULL);
 
 
---
--- Data for Name: proposal_review; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
+-- proposal review --
 INSERT INTO "public"."proposal_review" ("review_id", "proposal_id", "admin_id", "review_decision", "admin_remarks", "reviewed_at") VALUES
 	('REV-2026-001', 'PROP-2026-001', 'PLM-OSDS-2016-02782', 'Approved', 'Primary schedule approved. Lead organization may prepare publication and open registration.', '2026-01-12 03:00:00+00'),
 	('REV-2026-002', 'PROP-2026-002', 'PLM-OSDS-2019-06772', 'Approved', 'Primary schedule approved. PLMSSC retains sole management; listed collaborators receive no additional permissions.', '2026-01-20 01:15:00+00'),
@@ -277,10 +516,7 @@ INSERT INTO "public"."proposal_review" ("review_id", "proposal_id", "admin_id", 
 	('REV-2026-023', 'PROP-2026-023', 'PLM-OSDS-2019-06772', 'Approved', 'Approved for publication.', '2026-04-06 01:00:00+00');
 
 
---
--- Data for Name: venue; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
+-- venue --
 INSERT INTO "public"."venue" ("venue_id", "venue_name", "floor_number", "room_number", "building", "max_capacity", "available_equipment") VALUES
 	('PLM-VENUE-1', 'Bukod Tanging Bulwagan (BTB)', 'Third_Floor', NULL, 'Gusaling Katipunan', 150, 'Chairs, Sound System, Projector, Airconditioning'),
 	('PLM-VENUE-2', 'Computer Laboratory 1-2', 'Second_Floor', NULL, 'Gusaling Villegas', 40, 'Chairs, Computers, Monitors, Projector, Airconditioning'),
@@ -299,10 +535,7 @@ INSERT INTO "public"."venue" ("venue_id", "venue_name", "floor_number", "room_nu
 	('PLM-VENUE-15', 'University Activity Center (UAC)', NULL, NULL, 'PLM', 400, 'Chairs, Sound System, Tables, Projector, Fans');
 
 
---
--- Data for Name: proposal_schedule; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
+-- proposal schedule -- 
 INSERT INTO "public"."proposal_schedule" ("schedule_id", "proposal_id", "venue_id", "starts_at", "ends_at", "schedule_type") VALUES
 	('SCH-2026-001', 'PROP-2026-001', 'PLM-VENUE-9', '2026-02-20 01:00:00+00', '2026-02-20 04:00:00+00', 'Primary'),
 	('SCH-2026-002', 'PROP-2026-001', 'PLM-VENUE-10', '2026-02-27 01:00:00+00', '2026-02-27 04:00:00+00', 'Backup'),
@@ -352,13 +585,9 @@ INSERT INTO "public"."proposal_schedule" ("schedule_id", "proposal_id", "venue_i
 	('SCH-2026-046', 'PROP-2026-023', 'PLM-VENUE-5', '2026-09-15 01:00:00+00', '2026-09-15 04:00:00+00', 'Backup');
 
 
---
--- Data for Name: students; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
+-- students --
 INSERT INTO "public"."students" ("student_number", "name", "year_level", "college", "program") VALUES
 	('202515006', 'Kathreena C. Cayabyab', '2', 'CISTM', 'BSCS'),
-	('202515001', 'Aldrics Miguel D. Isagan', '2', 'CISTM', 'BSCS'),
 	('202515652', 'Dan Rodrick S. Soriano', '2', 'CISTM', 'BSCS'),
 	('202515026', 'Czhiaztee Raime B. Tingcungco', '2', 'CISTM', 'BSCS'),
 	('202515101', 'Leandrea C. Dela Cruz', '2', 'CISTM', 'BSCS'),
@@ -391,13 +620,211 @@ INSERT INTO "public"."students" ("student_number", "name", "year_level", "colleg
 	('202415707', 'Ethan D. Ramos', '3', 'CISTM', 'BSCS'),
 	('202315708', 'Mia C. Flores', '4', 'CS', 'BS Math'),
 	('202615709', 'Lucas V. Garcia', '1', 'CN', 'BSN'),
-	('202515710', 'Ava N. Bautista', '2', 'CISTM', 'BSIT');
+	('202515710', 'Ava N. Bautista', '2', 'CISTM', 'BSIT'),
+	('202590001', 'Keizzy Dominique P. Alvarado', '2', 'CISTM', 'BSCS'),
+	('202590002', 'Czar Alexiev R. Articona', '2', 'CISTM', 'BSIT'),
+	('202590003', 'Sofia Agatha D. Atienza', '2', 'CPA', 'BSA'),
+	('202590004', 'Chemuel P. Balpongo', '2', 'CPT', 'BSPT'),
+	('202590005', 'Drew Clarence A. Basadre', '2', 'CN', 'BSN'),
+	('202590009', 'Sebastian Gabriel L. Cuvin', '2', 'CHASS', 'BAC'),
+	('202590010', 'Jake Andrei P. De Vera', '2', 'CISTM', 'BSCS'),
+	('202590011', 'Jan Kenneth L. Drueco', '2', 'CISTM', 'BSIT'),
+	('202590012', 'Jeremiah Joshua L. Esguerra', '2', 'CPA', 'BSA'),
+	('202590013', 'Jose Andre D.G. Evangelista', '2', 'CPT', 'BSPT'),
+	('202590014', 'Sean Lugene R. Gener', '2', 'CN', 'BSN'),
+	('202590018', 'Jody Erich S. Medel', '2', 'CHASS', 'BAC'),
+	('202590019', 'Marcus Enzo H. Monzon', '2', 'CISTM', 'BSCS'),
+	('202590020', 'Jonathan D. Oestor Jr.', '2', 'CISTM', 'BSIT'),
+	('202590021', 'Jaymar C. Pablo', '2', 'CPA', 'BSA'),
+	('202590022', 'Alkhaidir M. Radjail', '2', 'CPT', 'BSPT'),
+	('202590023', 'Rossrasheed T. Sala', '2', 'CN', 'BSN'),
+	('202490027', 'Benedict B. Abalos', '3', 'CHASS', 'BAC'),
+	('202590028', 'Celina C. Abando', '2', 'CISTM', 'BSCS'),
+	('202690029', 'Dario D. Abarquez', '1', 'CISTM', 'BSIT'),
+	('202390030', 'Elena E. Abaya', '4', 'CPA', 'BSA'),
+	('202490031', 'Felix F. Abella', '3', 'CPT', 'BSPT'),
+	('202590032', 'Giselle G. Abello', '2', 'CN', 'BSN'),
+	('202590036', 'Kiara K. Acosta', '2', 'CHASS', 'BAC'),
+	('202690037', 'Leon L. Adame', '1', 'CISTM', 'BSCS'),
+	('202390038', 'Mara M. Agbayani', '4', 'CISTM', 'BSIT'),
+	('202490039', 'Nico N. Agcaoili', '3', 'CPA', 'BSA'),
+	('202590040', 'Opal O. Agdeppa', '2', 'CPT', 'BSPT'),
+	('202690041', 'Paolo P. Agpalo', '1', 'CN', 'BSN'),
+	('202690045', 'Tala T. Alcala', '1', 'CHASS', 'BAC'),
+	('202390046', 'Uriel U. Alcantara', '4', 'CISTM', 'BSCS'),
+	('202490047', 'Vera V. Alcaraz', '3', 'CISTM', 'BSIT'),
+	('202590048', 'Wesley W. Aldana', '2', 'CPA', 'BSA'),
+	('202690049', 'Xenia X. Alegre', '1', 'CPT', 'BSPT'),
+	('202390050', 'Yuri Y. Alejo', '4', 'CN', 'BSN'),
+	('202390054', 'Dario E. Almonte', '4', 'CHASS', 'BAC'),
+	('202490055', 'Elena F. Alonzo', '3', 'CISTM', 'BSCS'),
+	('202590056', 'Felix G. Altamirano', '2', 'CISTM', 'BSIT'),
+	('202690057', 'Giselle H. Amador', '1', 'CPA', 'BSA'),
+	('202390058', 'Hugo I. Amante', '4', 'CPT', 'BSPT'),
+	('202490059', 'Iris J. Ambrosio', '3', 'CN', 'BSN'),
+	('202490063', 'Mara N. Andaya', '3', 'CHASS', 'BAC'),
+	('202590064', 'Nico O. Angeles', '2', 'CISTM', 'BSCS'),
+	('202690065', 'Opal P. Angulo', '1', 'CISTM', 'BSIT'),
+	('202390066', 'Paolo Q. Anonuevo', '4', 'CPA', 'BSA'),
+	('202490067', 'Quinn R. Antiporda', '3', 'CPT', 'BSPT'),
+	('202590068', 'Rina S. Antonio', '2', 'CN', 'BSN'),
+	('202590072', 'Vera W. Araneta', '2', 'CHASS', 'BAC'),
+	('202690073', 'Wesley X. Arcilla', '1', 'CISTM', 'BSCS'),
+	('202390074', 'Xenia Y. Arellano', '4', 'CISTM', 'BSIT'),
+	('202490075', 'Yuri Z. Arguelles', '3', 'CPA', 'BSA'),
+	('202590076', 'Amara C. Arriola', '2', 'CPT', 'BSPT'),
+	('202690077', 'Benedict D. Asis', '1', 'CN', 'BSN'),
+	('202515001', 'Aldrics Miguel C. Isagan', '2', 'CISTM', 'BSCS'),
+	('202690081', 'Felix H. Avila', '1', 'CHASS', 'BAC'),
+	('202390082', 'Giselle I. Bacani', '4', 'CISTM', 'BSCS'),
+	('202490083', 'Hugo J. Bacalso', '3', 'CISTM', 'BSIT'),
+	('202590084', 'Iris K. Baguio', '2', 'CPA', 'BSA'),
+	('202690085', 'Jonas L. Balagtas', '1', 'CPT', 'BSPT'),
+	('202390086', 'Kiara M. Balajadia', '4', 'CN', 'BSN'),
+	('202390090', 'Opal Q. Banaag', '4', 'CHASS', 'BAC'),
+	('202490091', 'Paolo R. Banal', '3', 'CISTM', 'BSCS'),
+	('202590092', 'Quinn S. Banayo', '2', 'CISTM', 'BSIT'),
+	('202690093', 'Rina T. Bangayan', '1', 'CPA', 'BSA'),
+	('202390094', 'Silas U. Banzon', '4', 'CPT', 'BSPT'),
+	('202490095', 'Tala V. Barba', '3', 'CN', 'BSN'),
+	('202490099', 'Xenia Z. Bartolome', '3', 'CHASS', 'BAC'),
+	('202590100', 'Yuri A. Basa', '2', 'CISTM', 'BSCS'),
+	('202690101', 'Amara D. Basilio', '1', 'CISTM', 'BSIT'),
+	('202390102', 'Benedict E. Batac', '4', 'CPA', 'BSA'),
+	('202490103', 'Celina F. Bataller', '3', 'CPT', 'BSPT'),
+	('202590104', 'Dario G. Batino', '2', 'CN', 'BSN'),
+	('202590108', 'Hugo K. Benavides', '2', 'CHASS', 'BAC'),
+	('202690109', 'Iris L. Benitez', '1', 'CISTM', 'BSCS'),
+	('202390110', 'Jonas M. Bernardino', '4', 'CISTM', 'BSIT'),
+	('202490111', 'Kiara N. Bernardo', '3', 'CPA', 'BSA'),
+	('202590112', 'Leon O. Binuya', '2', 'CPT', 'BSPT'),
+	('202690113', 'Mara P. Blanco', '1', 'CN', 'BSN'),
+	('202690117', 'Quinn T. Borja', '1', 'CHASS', 'BAC'),
+	('202390118', 'Rina U. Bravo', '4', 'CISTM', 'BSCS'),
+	('202490119', 'Silas V. Briones', '3', 'CISTM', 'BSIT'),
+	('202590120', 'Tala W. Buan', '2', 'CPA', 'BSA'),
+	('202690121', 'Uriel X. Bucad', '1', 'CPT', 'BSPT'),
+	('202390122', 'Vera Y. Bulacan', '4', 'CN', 'BSN'),
+	('202390126', 'Amara E. Cabiling', '4', 'CHASS', 'BAC'),
+	('202490127', 'Benedict F. Cabral', '3', 'CISTM', 'BSCS'),
+	('202590128', 'Celina G. Caceres', '2', 'CISTM', 'BSIT'),
+	('202690129', 'Dario H. Cagampan', '1', 'CPA', 'BSA'),
+	('202390130', 'Elena I. Caguiat', '4', 'CPT', 'BSPT'),
+	('202490131', 'Felix J. Calalang', '3', 'CN', 'BSN'),
+	('202490135', 'Jonas N. Calica', '3', 'CHASS', 'BAC'),
+	('202590136', 'Kiara O. Calimag', '2', 'CISTM', 'BSCS'),
+	('202690137', 'Leon P. Calinawan', '1', 'CISTM', 'BSIT'),
+	('202390138', 'Mara Q. Calixto', '4', 'CPA', 'BSA'),
+	('202490139', 'Nico R. Camacho', '3', 'CPT', 'BSPT'),
+	('202590140', 'Opal S. Camarillo', '2', 'CN', 'BSN'),
+	('202590144', 'Silas W. Caparas', '2', 'CHASS', 'BAC'),
+	('202690145', 'Tala X. Capili', '1', 'CISTM', 'BSCS'),
+	('202390146', 'Uriel Y. Capistrano', '4', 'CISTM', 'BSIT'),
+	('202490147', 'Vera Z. Carandang', '3', 'CPA', 'BSA'),
+	('202590148', 'Wesley A. Carino', '2', 'CPT', 'BSPT'),
+	('202690149', 'Xenia B. Carpio', '1', 'CN', 'BSN'),
+	('202690153', 'Celina H. Catacutan', '1', 'CHASS', 'BAC'),
+	('202390154', 'Dario I. Cayetano', '4', 'CISTM', 'BSCS'),
+	('202490155', 'Elena J. Celis', '3', 'CISTM', 'BSIT'),
+	('202590156', 'Felix K. Centeno', '2', 'CPA', 'BSA'),
+	('202690157', 'Giselle L. Cervantes', '1', 'CPT', 'BSPT'),
+	('202390158', 'Hugo M. Chua', '4', 'CN', 'BSN'),
+	('202390162', 'Leon Q. Conde', '4', 'CHASS', 'BAC'),
+	('202490163', 'Mara R. Constantino', '3', 'CISTM', 'BSCS'),
+	('202590164', 'Nico S. Contreras', '2', 'CISTM', 'BSIT'),
+	('202690165', 'Opal T. Corpuz', '1', 'CPA', 'BSA'),
+	('202390166', 'Paolo U. Cuenca', '4', 'CPT', 'BSPT'),
+	('202490167', 'Quinn V. Custodio', '3', 'CN', 'BSN'),
+	('202490171', 'Uriel Z. Dayao', '3', 'CHASS', 'BAC'),
+	('202590172', 'Vera A. De Castro', '2', 'CISTM', 'BSCS'),
+	('202690173', 'Wesley B. De Guzman', '1', 'CISTM', 'BSIT'),
+	('202390174', 'Xenia C. De Leon', '4', 'CPA', 'BSA'),
+	('202490175', 'Yuri D. De Mesa', '3', 'CPT', 'BSPT'),
+	('202590176', 'Amara G. De Ocampo', '2', 'CN', 'BSN'),
+	('202590180', 'Elena K. Dimaano', '2', 'CHASS', 'BAC'),
+	('202690181', 'Felix L. Dimabuyu', '1', 'CISTM', 'BSCS'),
+	('202390182', 'Giselle M. Dizon', '4', 'CISTM', 'BSIT'),
+	('202490183', 'Hugo N. Domingo', '3', 'CPA', 'BSA'),
+	('202590184', 'Iris O. Dorado', '2', 'CPT', 'BSPT'),
+	('202690185', 'Jonas P. Dumlao', '1', 'CN', 'BSN'),
+	('202690189', 'Nico T. Escalante', '1', 'CHASS', 'BAC'),
+	('202390190', 'Opal U. Escobar', '4', 'CISTM', 'BSCS'),
+	('202490191', 'Paolo V. Espino', '3', 'CISTM', 'BSIT'),
+	('202590192', 'Quinn W. Espinosa', '2', 'CPA', 'BSA'),
+	('202690193', 'Rina X. Fabian', '1', 'CPT', 'BSPT'),
+	('202390194', 'Silas Y. Facundo', '4', 'CN', 'BSN'),
+	('202390198', 'Wesley C. Fuentes', '4', 'CHASS', 'BAC'),
+	('202490199', 'Xenia D. Gabriel', '3', 'CISTM', 'BSCS'),
+	('202590200', 'Yuri E. Gamboa', '2', 'CISTM', 'BSIT'),
+	('202590006', 'Prince Joseph S. Bella', '2', 'CS', 'BSPY'),
+	('202590007', 'Sebastiam Elise D. Cortez', '2', 'CS', 'BSBIO'),
+	('202590008', 'Euwan M. Cuesta', '2', 'CS', 'BSMATH'),
+	('202590015', 'Angelo T. Ilagan', '2', 'CS', 'BSPY'),
+	('202590016', 'Rayver Lance Magnifico', '2', 'CS', 'BSBIO'),
+	('202590017', 'Earl Larson M. Mallari', '2', 'CS', 'BSMATH'),
+	('202590024', 'Majelli Riz V. Teodoro', '2', 'CS', 'BSPY'),
+	('202590025', 'Rejean S. Ting', '2', 'CS', 'BSBIO'),
+	('202390026', 'Amara A. Abad', '4', 'CS', 'BSMATH'),
+	('202690033', 'Hugo H. Abesamis', '1', 'CS', 'BSPY'),
+	('202390034', 'Iris I. Acacio', '4', 'CS', 'BSBIO'),
+	('202490035', 'Jonas J. Acebedo', '3', 'CS', 'BSMATH'),
+	('202390042', 'Quinn Q. Aguilar', '4', 'CS', 'BSPY'),
+	('202490043', 'Rina R. Agustin', '3', 'CS', 'BSBIO'),
+	('202590044', 'Silas S. Alarcon', '2', 'CS', 'BSMATH'),
+	('202490051', 'Amara B. Alipio', '3', 'CS', 'BSPY'),
+	('202590052', 'Benedict C. Almario', '2', 'CS', 'BSBIO'),
+	('202690053', 'Celina D. Almazan', '1', 'CS', 'BSMATH'),
+	('202590060', 'Jonas K. Amparo', '2', 'CS', 'BSPY'),
+	('202690061', 'Kiara L. Ancheta', '1', 'CS', 'BSBIO'),
+	('202390062', 'Leon M. Andal', '4', 'CS', 'BSMATH'),
+	('202690069', 'Silas T. Apacible', '1', 'CS', 'BSPY'),
+	('202390070', 'Tala U. Apostol', '4', 'CS', 'BSBIO'),
+	('202490071', 'Uriel V. Aragon', '3', 'CS', 'BSMATH'),
+	('202390078', 'Celina E. Asuncion', '4', 'CS', 'BSPY'),
+	('202490079', 'Dario F. Austria', '3', 'CS', 'BSBIO'),
+	('202590080', 'Elena G. Avendano', '2', 'CS', 'BSMATH'),
+	('202490087', 'Leon N. Balboa', '3', 'CS', 'BSPY'),
+	('202590088', 'Mara O. Balderama', '2', 'CS', 'BSBIO'),
+	('202690089', 'Nico P. Baluyot', '1', 'CS', 'BSMATH'),
+	('202590096', 'Uriel W. Barcelona', '2', 'CS', 'BSPY'),
+	('202690097', 'Vera X. Barrera', '1', 'CS', 'BSBIO'),
+	('202390098', 'Wesley Y. Barrios', '4', 'CS', 'BSMATH'),
+	('202690105', 'Elena H. Bayani', '1', 'CS', 'BSPY'),
+	('202390106', 'Felix I. Baylon', '4', 'CS', 'BSBIO'),
+	('202490107', 'Giselle J. Belmonte', '3', 'CS', 'BSMATH'),
+	('202390114', 'Nico Q. Bocobo', '4', 'CS', 'BSPY'),
+	('202490115', 'Opal R. Bolante', '3', 'CS', 'BSBIO'),
+	('202590116', 'Paolo S. Bondoc', '2', 'CS', 'BSMATH'),
+	('202490123', 'Wesley Z. Cabal', '3', 'CS', 'BSPY'),
+	('202590124', 'Xenia A. Cabangon', '2', 'CS', 'BSBIO'),
+	('202690125', 'Yuri B. Cabigting', '1', 'CS', 'BSMATH'),
+	('202590132', 'Giselle K. Calamba', '2', 'CS', 'BSPY'),
+	('202690133', 'Hugo L. Calanog', '1', 'CS', 'BSBIO'),
+	('202390134', 'Iris M. Calayag', '4', 'CS', 'BSMATH'),
+	('202690141', 'Paolo T. Canales', '1', 'CS', 'BSPY'),
+	('202390142', 'Quinn U. Canlas', '4', 'CS', 'BSBIO'),
+	('202490143', 'Rina V. Cano', '3', 'CS', 'BSMATH'),
+	('202390150', 'Yuri C. Casanova', '4', 'CS', 'BSPY'),
+	('202490151', 'Amara F. Casimiro', '3', 'CS', 'BSBIO'),
+	('202590152', 'Benedict G. Castaneda', '2', 'CS', 'BSMATH'),
+	('202490159', 'Iris N. Cinco', '3', 'CS', 'BSPY'),
+	('202590160', 'Jonas O. Collantes', '2', 'CS', 'BSBIO'),
+	('202690161', 'Kiara P. Concepcion', '1', 'CS', 'BSMATH'),
+	('202590168', 'Rina W. Dacanay', '2', 'CS', 'BSPY'),
+	('202690169', 'Silas X. Dalisay', '1', 'CS', 'BSBIO'),
+	('202390170', 'Tala Y. David', '4', 'CS', 'BSMATH'),
+	('202690177', 'Benedict H. De Silva', '1', 'CS', 'BSPY'),
+	('202390178', 'Celina I. Del Mundo', '4', 'CS', 'BSBIO'),
+	('202490179', 'Dario J. Delos Reyes', '3', 'CS', 'BSMATH'),
+	('202390186', 'Kiara Q. Duran', '4', 'CS', 'BSPY'),
+	('202490187', 'Leon R. Encarnacion', '3', 'CS', 'BSBIO'),
+	('202590188', 'Mara S. Enriquez', '2', 'CS', 'BSMATH'),
+	('202490195', 'Tala Z. Fernando', '3', 'CS', 'BSPY'),
+	('202590196', 'Uriel A. Ferrer', '2', 'CS', 'BSBIO'),
+	('202690197', 'Vera B. Francisco', '1', 'CS', 'BSMATH');
 
 
---
--- Data for Name: registration; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
+-- registration --
 INSERT INTO "public"."registration" ("reg_id", "event_id", "student_number", "reg_date", "reg_status", "attendance_status", "cancelled_at", "cancellation_reason", "attendance_marked_at", "attendance_marked_by") VALUES
 	('REG-2026-001', 'EV-2026-001', '202515006', '2026-02-01 02:00:00+00', 'Confirmed', NULL, NULL, NULL, NULL, NULL),
 	('REG-2026-002', 'EV-2026-001', '202515001', '2026-02-02 06:30:00+00', 'Confirmed', NULL, NULL, NULL, NULL, NULL),
@@ -444,10 +871,7 @@ INSERT INTO "public"."registration" ("reg_id", "event_id", "student_number", "re
 	('REG-2026-043', 'EV-2026-004', '202515710', '2026-04-19 01:00:00+00', 'Confirmed', NULL, NULL, NULL, NULL, NULL);
 
 
---
--- Data for Name: venue_booking; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
+-- venue booking --
 INSERT INTO "public"."venue_booking" ("booking_id", "event_id", "venue_id", "starts_at", "ends_at", "buffer_minutes", "booking_status", "authorized_by", "created_at", "change_reason", "status_changed_at") VALUES
 	('BOOK-2026-001', 'EV-2026-001', 'PLM-VENUE-9', '2026-02-20 01:00:00+00', '2026-02-20 04:00:00+00', 60, 'Replaced', 'PLM-OSDS-2016-02782', '2026-01-12 03:00:00+00', 'Administrator-authorized move to the backup schedule and venue due to speaker availability.', '2026-02-04 23:55:00+00'),
 	('BOOK-2026-002', 'EV-2026-002', 'PLM-VENUE-13', '2026-03-20 00:00:00+00', '2026-03-20 09:00:00+00', 60, 'Confirmed', 'PLM-OSDS-2019-06772', '2026-01-20 01:15:00+00', NULL, '2026-01-20 01:15:00+00'),
@@ -470,18 +894,6 @@ INSERT INTO "public"."venue_booking" ("booking_id", "event_id", "venue_id", "sta
 	('BOOK-2026-019', 'EV-2026-021', 'PLM-VENUE-15', '2026-09-07 01:00:00+00', '2026-09-07 04:00:00+00', 60, 'Confirmed', 'PLM-OSDS-2016-02782', '2026-04-05 01:00:00+00', NULL, '2026-04-05 01:00:00+00'),
 	('BOOK-2026-020', 'EV-2026-022', 'PLM-VENUE-15', '2026-09-14 01:00:00+00', '2026-09-14 04:00:00+00', 60, 'Confirmed', 'PLM-OSDS-2019-06772', '2026-04-06 01:00:00+00', NULL, '2026-04-06 01:00:00+00');
 
-
---
--- Name: notifications_notification_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
 SELECT pg_catalog.setval('"public"."notifications_notification_id_seq"', 25, true);
-
-
---
--- PostgreSQL database dump complete
---
-
--- \unrestrict dJf8naNr9NDR3FAzJSdh96ivP1sgAG0Tq8eOHr8T2fg2y8NnafDe6bQrfuAN7HK
 
 RESET ALL;
