@@ -1,0 +1,28 @@
+.landing-page { isolation: isolate; min-height: 100svh; position: relative; overflow: hidden; display: grid; place-items: center; padding: 32px clamp(24px, 5vw, 72px) 84px; color: #fff; background: #1f2d69; }
+.landing-background, .landing-overlay { position: absolute; inset: 0; }
+.landing-background { z-index: -2; background-position: center; background-size: cover; }
+.landing-overlay { z-index: -1; background: rgba(11, 32, 70, 0.35); backdrop-filter: blur(2px); }
+.landing-content { width: min(100%, 1214px); display: flex; flex-direction: column; align-items: center; justify-content: center; transform: translateY(-28px); }
+.seams-logo { width: clamp(154px, 17vw, 274px); height: auto; object-fit: contain; margin-bottom: 22px; }
+.welcome-copy { display: flex; flex-direction: column; align-items: center; gap: 16px; margin-bottom: 40px; text-align: center; }
+.welcome-copy h1 { margin: 0; color: #fff; font-family: 'Playfair Display', Georgia, serif; font-size: clamp(2.35rem, 4vw, 3.5rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.14; text-shadow: 0 2px 2px rgba(0, 0, 0, 0.06), 0 4px 3px rgba(0, 0, 0, 0.07); }
+.welcome-copy p { margin: 0; color: rgba(255, 255, 255, 0.9); font-family: Montserrat, Arial, sans-serif; font-size: 1rem; font-weight: 600; letter-spacing: 0.05em; line-height: 1.5; text-transform: uppercase; }
+.portal-list { width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.portal-card { min-height: 134px; display: flex; align-items: center; gap: 24px; padding: 33px; border: 1px solid transparent; border-radius: 8px; color: #1f2937; background: rgba(255, 255, 255, 0.95); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); text-decoration: none; backdrop-filter: blur(4px); transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease; }
+.portal-card:hover { border-color: rgba(157, 119, 10, 0.55); background: #7d620e; color: #fff; box-shadow: 0 12px 22px rgba(20, 23, 61, 0.2); transform: translateY(-3px); }
+.portal-card:focus-visible { outline: 3px solid #d8af38; outline-offset: 4px; }
+.portal-icon-wrap { width: 64px; height: 64px; flex: 0 0 64px; display: grid; place-items: center; border-radius: 8px; background: #f3f4f6; transition: background-color 180ms ease; }
+.portal-card:hover .portal-icon-wrap { background: rgba(255, 255, 255, 0.16); }
+.portal-icon { width: auto; height: auto; max-width: 32px; max-height: 28px; }
+.portal-copy { min-width: 0; display: flex; flex: 1; flex-direction: column; align-items: flex-start; }
+.portal-title { width: 100%; font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1rem, 1.65vw, 1.375rem); font-weight: 600; line-height: 1.35; white-space: nowrap; }
+.portal-description { padding-top: 4px; color: #4e4635; font-family: Montserrat, Arial, sans-serif; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.05em; line-height: 1.45; text-transform: uppercase; transition: color 180ms ease; }
+.portal-card:hover .portal-description { color: rgba(255, 255, 255, 0.86); }
+.portal-chevron { width: 7.4px; height: 12px; flex: 0 0 auto; opacity: 0.7; transition: filter 180ms ease, transform 180ms ease; }
+.portal-card:hover .portal-chevron { filter: brightness(0) invert(1); transform: translateX(2px); }
+.landing-footer { position: absolute; right: 20px; bottom: 20px; left: 20px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.landing-footer img { width: 10px; height: 10px; flex: 0 0 10px; }
+.landing-footer p { margin: 0; color: rgba(255, 255, 255, 0.9); font-family: Montserrat, Arial, sans-serif; font-size: 0.875rem; font-weight: 700; letter-spacing: 0.078em; line-height: 1.15; text-align: center; text-transform: uppercase; }
+@media (max-width: 900px) { .landing-page { overflow: auto; padding: 48px 24px 104px; } .landing-content { transform: none; } .portal-list { grid-template-columns: 1fr; max-width: 560px; } }
+@media (max-width: 520px) { .landing-page { padding-inline: 16px; } .seams-logo { width: 158px; } .welcome-copy { margin-bottom: 28px; } .welcome-copy h1 { font-size: 2.2rem; } .portal-card { gap: 16px; padding: 20px; } .portal-icon-wrap { width: 52px; height: 52px; flex-basis: 52px; } .portal-title { font-size: 1.15rem; } .landing-footer p { font-size: 0.62rem; letter-spacing: 0.06em; } }
+@media (prefers-reduced-motion: reduce) { .portal-card, .portal-icon-wrap, .portal-description, .portal-chevron { transition: none; } }
