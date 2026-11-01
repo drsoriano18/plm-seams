@@ -1,1 +1,0 @@
-# The SQL commands to CREATE tables

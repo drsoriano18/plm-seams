@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Playfair+Display:wght@600;700&display=swap');
+@import 'tailwindcss';
+
+:root { font-family: Montserrat, Arial, sans-serif; color: #1f2937; background: #1f2d69; font-synthesis: none; text-rendering: optimizeLegibility; }
+* { box-sizing: border-box; }
+html, body, #root { min-width: 320px; min-height: 100%; margin: 0; }
+body { min-height: 100svh; }
+::selection { color: #fff; background: #7d620e; }
