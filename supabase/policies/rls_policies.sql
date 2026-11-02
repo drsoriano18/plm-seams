@@ -1,0 +1,51 @@
+-- Canonical policy reference, verified against PLM-SEAMS on 2026-11-02.
+-- Helpers, grants, RPCs and triggers are in migration 20261102031827_complete_erd_rbac.sql.
+-- Do not execute this file separately or replay historical policies over the migration.
+
+create policy rbac_delete on public.administrators for delete to authenticated using (((select private.app_role()) = 'Admin')) ;
+create policy rbac_insert on public.administrators for insert to authenticated with check (((select private.app_role()) = 'Admin')) ;
+create policy rbac_select on public.administrators for select to authenticated using (((select private.app_role()) = 'Admin')) ;
+create policy rbac_update on public.administrators for update to authenticated using (((select private.app_role()) = 'Admin')) with check (((select private.app_role()) = 'Admin')) ;
+create policy rbac_delete on public.event for delete to authenticated using (((select private.app_role()) = 'Admin')) ;
+create policy rbac_insert on public.event for insert to authenticated with check (((select private.app_role()) = 'Admin')) ;
+create policy rbac_select on public.event for select to authenticated using (((select private.app_role()) = 'Admin') or (private.owns_event(event_id)) or (private.student_event_access(event_id))) ;
+create policy rbac_update on public.event for update to authenticated using (((select private.app_role()) = 'Admin') or private.owns_event(event_id)) with check (((select private.app_role()) = 'Admin') or private.owns_event(event_id)) ;
+create policy rbac_delete on public.event_proposal for delete to authenticated using (((select private.app_role()) = 'Admin') or (private.owns_proposal(proposal_id) and approval_status in ('Pending','Revisions Required'))) ;
+create policy rbac_insert on public.event_proposal for insert to authenticated with check (((select private.app_role()) = 'Admin') or ((select private.app_role())='Student Organization' and org_id=(select private.app_user_id()) and approval_status='Pending')) ;
+create policy rbac_select on public.event_proposal for select to authenticated using (((select private.app_role()) = 'Admin') or (private.owns_proposal(proposal_id))) ;
+create policy rbac_update on public.event_proposal for update to authenticated using (((select private.app_role()) = 'Admin') or (private.owns_proposal(proposal_id) and approval_status in ('Pending','Revisions Required'))) with check (((select private.app_role()) = 'Admin') or (org_id=(select private.app_user_id()) and approval_status='Pending')) ;
+create policy rbac_delete on public.event_type for delete to authenticated using (((select private.app_role()) = 'Admin')) ;
+create policy rbac_insert on public.event_type for insert to authenticated with check (((select private.app_role()) = 'Admin')) ;
+create policy rbac_select on public.event_type for select to authenticated using (((select private.app_role()) = 'Admin') or ((select private.app_role()) is not null)) ;
+create policy rbac_update on public.event_type for update to authenticated using (((select private.app_role()) = 'Admin')) with check (((select private.app_role()) = 'Admin')) ;
+create policy rbac_delete on public.notifications for delete to authenticated using ((recipient_user_id=(select private.app_user_id()))) ;
+create policy rbac_insert on public.notifications for insert to authenticated with check (((select private.app_role()) = 'Admin')) ;
+create policy rbac_select on public.notifications for select to authenticated using ((recipient_user_id = (select private.app_user_id())) or (recipient_user_id=(select private.app_user_id()))) ;
+create policy rbac_update on public.notifications for update to authenticated using ((recipient_user_id=(select private.app_user_id()))) with check ((recipient_user_id=(select private.app_user_id()))) ;
+create policy rbac_delete on public.proposal_review for delete to authenticated using (((select private.app_role()) = 'Admin')) ;
+create policy rbac_insert on public.proposal_review for insert to authenticated with check (((select private.app_role()) = 'Admin')) ;
+create policy rbac_select on public.proposal_review for select to authenticated using (((select private.app_role()) = 'Admin') or (private.owns_proposal(proposal_id))) ;
+create policy rbac_update on public.proposal_review for update to authenticated using (((select private.app_role()) = 'Admin')) with check (((select private.app_role()) = 'Admin')) ;
+create policy rbac_delete on public.proposal_schedule for delete to authenticated using (((select private.app_role()) = 'Admin') or (private.owns_proposal(proposal_id) and exists(select 1 from public.event_proposal p where p.proposal_id=proposal_schedule.proposal_id and p.approval_status in ('Pending','Revisions Required')))) ;
+create policy rbac_insert on public.proposal_schedule for insert to authenticated with check (((select private.app_role()) = 'Admin') or (private.owns_proposal(proposal_id) and exists(select 1 from public.event_proposal p where p.proposal_id=proposal_schedule.proposal_id and p.approval_status in ('Pending','Revisions Required')))) ;
+create policy rbac_select on public.proposal_schedule for select to authenticated using (((select private.app_role()) = 'Admin') or (private.owns_proposal(proposal_id))) ;
+create policy rbac_update on public.proposal_schedule for update to authenticated using (((select private.app_role()) = 'Admin') or (private.owns_proposal(proposal_id) and exists(select 1 from public.event_proposal p where p.proposal_id=proposal_schedule.proposal_id and p.approval_status in ('Pending','Revisions Required')))) with check (((select private.app_role()) = 'Admin') or (private.owns_proposal(proposal_id) and exists(select 1 from public.event_proposal p where p.proposal_id=proposal_schedule.proposal_id and p.approval_status in ('Pending','Revisions Required')))) ;
+create policy rbac_delete on public.registration for delete to authenticated using (((select private.app_role())='Admin')) ;
+create policy rbac_select on public.registration for select to authenticated using (((select private.app_role()) = 'Admin') or ((select private.app_role())='Student' and student_number=(select private.app_user_id())) or (private.owns_event(event_id))) ;
+create policy rbac_delete on public.student_organization for delete to authenticated using (((select private.app_role()) = 'Admin')) ;
+create policy rbac_insert on public.student_organization for insert to authenticated with check (((select private.app_role()) = 'Admin')) ;
+create policy rbac_select on public.student_organization for select to authenticated using (((select private.app_role()) = 'Admin') or (org_id=(select private.app_user_id()) and (select private.app_role())='Student Organization')) ;
+create policy rbac_update on public.student_organization for update to authenticated using (((select private.app_role()) = 'Admin')) with check (((select private.app_role()) = 'Admin')) ;
+create policy rbac_delete on public.students for delete to authenticated using (((select private.app_role()) = 'Admin')) ;
+create policy rbac_insert on public.students for insert to authenticated with check (((select private.app_role()) = 'Admin')) ;
+create policy rbac_select on public.students for select to authenticated using (((select private.app_role()) = 'Admin') or ((select private.app_role())='Student' and student_number=(select private.app_user_id())) or (exists(select 1 from public.registration r where r.student_number=students.student_number and private.owns_event(r.event_id)))) ;
+create policy rbac_update on public.students for update to authenticated using (((select private.app_role()) = 'Admin')) with check (((select private.app_role()) = 'Admin')) ;
+create policy rbac_select on public.users for select to authenticated using (((select private.app_role()) = 'Admin') or (user_id = (select private.app_user_id()))) ;
+create policy rbac_delete on public.venue for delete to authenticated using (((select private.app_role()) = 'Admin')) ;
+create policy rbac_insert on public.venue for insert to authenticated with check (((select private.app_role()) = 'Admin')) ;
+create policy rbac_select on public.venue for select to authenticated using (((select private.app_role()) = 'Admin') or ((select private.app_role()) is not null)) ;
+create policy rbac_update on public.venue for update to authenticated using (((select private.app_role()) = 'Admin')) with check (((select private.app_role()) = 'Admin')) ;
+create policy rbac_delete on public.venue_booking for delete to authenticated using (((select private.app_role()) = 'Admin')) ;
+create policy rbac_insert on public.venue_booking for insert to authenticated with check (((select private.app_role()) = 'Admin')) ;
+create policy rbac_select on public.venue_booking for select to authenticated using (((select private.app_role()) = 'Admin') or (private.owns_event(event_id))) ;
+create policy rbac_update on public.venue_booking for update to authenticated using (((select private.app_role()) = 'Admin')) with check (((select private.app_role()) = 'Admin')) ;

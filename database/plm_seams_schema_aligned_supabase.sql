@@ -1,3 +1,4 @@
+-- Reference schema only. Use supabase/migrations for database changes.
 -- =============================================================================
 -- PLM SEAMS — PostgreSQL schema aligned to ERD ver17 and supplied sample data
 -- Target: Supabase PostgreSQL
@@ -18,9 +19,10 @@
 
 -- 1. USERS
 CREATE TABLE users (
+    auth_user_id UUID UNIQUE REFERENCES auth.users(id) ON DELETE SET NULL,
     user_id     VARCHAR(50) PRIMARY KEY,
     plm_email   VARCHAR(100) NOT NULL UNIQUE,
-    password    TEXT NOT NULL,
+    password    TEXT,
     role        VARCHAR(30) NOT NULL
                 CHECK (role IN ('Student', 'Student Organization', 'Admin')),
     created_at  TIMESTAMPTZ NOT NULL DEFAULT now()
@@ -49,7 +51,7 @@ CREATE TABLE student_organization (
 );
 
 -- 4. ADMINISTRATIONS (subtype of USERS)
-CREATE TABLE administrations (
+CREATE TABLE administrators (
     admin_id        VARCHAR(50) PRIMARY KEY REFERENCES users(user_id),
     name            VARCHAR(200) NOT NULL,
     position        VARCHAR(175) NOT NULL,
@@ -111,7 +113,7 @@ CREATE TABLE proposal_schedule (
 CREATE TABLE proposal_review (
     review_id      VARCHAR(30) PRIMARY KEY,
     proposal_id    VARCHAR(30) NOT NULL REFERENCES event_proposal(proposal_id),
-    admin_id       VARCHAR(50) NOT NULL REFERENCES administrations(admin_id),
+    admin_id       VARCHAR(50) NOT NULL REFERENCES administrators(admin_id),
     review_decision VARCHAR(30) NOT NULL
                     CHECK (review_decision IN ('Pending', 'Approved', 'Rejected', 'Revisions Required')),
     admin_remarks  TEXT,
@@ -131,10 +133,10 @@ CREATE TABLE event (
     created_at           TIMESTAMPTZ NOT NULL DEFAULT now(),
     published_at         TIMESTAMPTZ,
     cancelled_at         TIMESTAMPTZ,
-    cancelled_by         VARCHAR(50) REFERENCES administrations(admin_id),
+    cancelled_by         VARCHAR(50) REFERENCES administrators(admin_id),
     cancellation_reason  TEXT,
     rescheduled_at       TIMESTAMPTZ,
-    rescheduled_by       VARCHAR(50) REFERENCES administrations(admin_id),
+    rescheduled_by       VARCHAR(50) REFERENCES administrators(admin_id),
     rescheduled_reason   TEXT,
     completed_at         TIMESTAMPTZ,
     archived_at          TIMESTAMPTZ,
@@ -160,7 +162,7 @@ CREATE TABLE registration (
     cancelled_at           TIMESTAMPTZ,
     cancellation_reason    TEXT,
     attendance_marked_at   TIMESTAMPTZ,
-    attendance_marked_by   VARCHAR(50) REFERENCES administrations(admin_id),
+    attendance_marked_by   VARCHAR(50) REFERENCES student_organization(org_id),
     CONSTRAINT uq_registration_event_student UNIQUE (event_id, student_number)
 );
 
@@ -174,7 +176,7 @@ CREATE TABLE venue_booking (
     buffer_minutes   INTEGER NOT NULL DEFAULT 0 CHECK (buffer_minutes >= 0),
     booking_status   VARCHAR(30) NOT NULL
                      CHECK (booking_status IN ('Pending', 'Confirmed', 'Cancelled', 'Replaced', 'Rejected')),
-    authorized_by    VARCHAR(50) NOT NULL REFERENCES administrations(admin_id),
+    authorized_by    VARCHAR(50) NOT NULL REFERENCES administrators(admin_id),
     created_at       TIMESTAMPTZ NOT NULL DEFAULT now(),
     change_reason    TEXT,
     status_changed_at TIMESTAMPTZ,

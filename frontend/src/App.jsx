@@ -1,5 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router'
 import './App.css'
+import { AuthProvider, ProtectedRoute } from './features/auth/AuthProvider'
+import { lazy, Suspense } from 'react'
+const Dashboard = lazy(() => import('./features/dashboard/Dashboard'))
 import LoginPage from './features/auth/LoginPage'
 import backgroundImage from './assets/landing/background.png'
 import logoImage from './assets/landing/plm-seams-logo.png'
@@ -47,12 +50,16 @@ function LandingPage() {
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
+      <AuthProvider><Suspense fallback={<p role="status">Loading workspace…</p>}><Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/student/login" element={<LoginPage portal="student" />} />
         <Route path="/student-organization/login" element={<LoginPage portal="organization" />} />
         <Route path="/admin/login" element={<LoginPage portal="administrator" />} />
-      </Routes>
+      <Route path="/student/dashboard" element={<ProtectedRoute role="Student"><Dashboard /></ProtectedRoute>} />
+        <Route path="/student-organization/dashboard" element={<ProtectedRoute role="Student Organization"><Dashboard /></ProtectedRoute>} />
+        <Route path="/admin/dashboard" element={<ProtectedRoute role="Admin"><Dashboard /></ProtectedRoute>} />
+        <Route path="*" element={<LandingPage />} />
+      </Routes></Suspense></AuthProvider>
     </BrowserRouter>
   )
 }

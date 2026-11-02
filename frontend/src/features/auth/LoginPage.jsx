@@ -1,4 +1,8 @@
 import { useState } from 'react'
+import { useNavigate, Link } from 'react-router'
+import { supabase, configurationError } from '../../lib/supabase'
+import { readProfile, matchesPortal, routeForRole } from './access'
+import { useAuth } from './authContext'
 import studentBackground from '../../assets/auth/student-background.png'
 import organizationBackground from '../../assets/auth/organization-background.png'
 import administratorBackground from '../../assets/auth/administrator-background.png'
@@ -27,6 +31,10 @@ const loginConfigs = {
 }
 
 function LoginPage({ portal }) {
+  const navigate = useNavigate()
+  const { refresh } = useAuth()
+  const [busy, setBusy] = useState(false)
+  const [error, setError] = useState('')
   const config = loginConfigs[portal]
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -34,14 +42,30 @@ function LoginPage({ portal }) {
   const [submitted, setSubmitted] = useState(false)
 
   const emailIsValid = email.length > 0 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
-  const passwordIsValid = password.length >= 8
+  const passwordIsValid = password.length > 0
   const formIsValid = emailIsValid && passwordIsValid
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault()
     setSubmitted(true)
-    // Auth intentionally remains disconnected until the Supabase roles are defined.
-    // The validated values can later be passed to a portal-specific auth handler.
+    setError('')
+    if (!formIsValid || busy) return
+    if (!supabase) { setError(configurationError); return }
+    setBusy(true)
+    try {
+      const { data, error: signInError } = await supabase.auth.signInWithPassword({ email: email.trim(), password })
+      if (signInError) throw new Error('Unable to sign in. Check your email and password.')
+      const profile = await readProfile(supabase, data.user.id)
+      if (!matchesPortal(profile.role, portal)) {
+        await supabase.auth.signOut({ scope: 'local' })
+        throw new Error('This account belongs to a different portal. Please choose the correct portal.')
+      }
+      setPassword('')
+      refresh()
+      navigate(routeForRole(profile.role), { replace: true })
+    } catch (error) {
+      setError(error.message)
+    } finally { setBusy(false) }
   }
 
   return (
@@ -87,12 +111,13 @@ function LoginPage({ portal }) {
                 <img src={eyeIcon} alt="" aria-hidden="true" />
               </button>
             </div>
-            {submitted && !passwordIsValid && <p className="auth-error" id={`${portal}-password-error`}>Password must be at least 8 characters.</p>}
+            {submitted && !passwordIsValid && <p className="auth-error" id={`${portal}-password-error`}>Enter your password.</p>}
           </div>
 
           <div className="auth-form-spacer" aria-hidden="true" />
-          <button className="auth-submit" type="submit">Sign In</button>
-          {submitted && formIsValid && <p className="auth-placeholder-note" role="status">Credentials are valid. Portal authentication will be connected later.</p>}
+          <button className="auth-submit" type="submit" disabled={busy}>{busy ? 'Signing in…' : 'Sign In'}</button>
+          {error && <p className="auth-error" role="alert">{error}</p>}
+          <Link to="/">Choose another portal</Link>
         </form>
       </section>
     </main>
