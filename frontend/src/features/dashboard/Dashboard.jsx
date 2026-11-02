@@ -22,13 +22,14 @@ const fields = {
 const label = text => text.replaceAll('_', ' ')
 const newId = prefix => `${prefix}-${crypto.randomUUID().replaceAll('-','').slice(0,prefix === 'T' ? 18 : 24)}`
 
-function EntryForm({ table, onSave, onCancel, initial, lookups }) {
+function EntryForm({ table, onSave, onCancel, initial, lookups, now }) {
   const [error, setError] = useState('')
   const [busy, setBusy] = useState(false)
+  const formFields = table === 'event_proposal' && !initial ? [...fields[table], ...fields.proposal_schedule.filter(([name]) => ['venue_id','starts_at','ends_at'].includes(name))] : fields[table]
   async function submit(event) {
     event.preventDefault(); setError(''); setBusy(true)
     const data = Object.fromEntries(new FormData(event.currentTarget))
-    for (const [name,,type] of fields[table]) {
+    for (const [name,,type] of formFields) {
       if (type === 'number') data[name] = Number(data[name])
       if (type === 'datetime-local') data[name] = new Date(data[name]).toISOString()
       if (type === 'optional' && !data[name]) data[name] = null
@@ -36,9 +37,11 @@ function EntryForm({ table, onSave, onCancel, initial, lookups }) {
     }
     if (data.eligibility_mode === 'College-Specific' && !data.allowed_college) { setError('Enter the allowed college.'); setBusy(false); return }
     if (data.eligibility_mode === 'University-Wide') data.allowed_college = null
+    if (['event_proposal','proposal_schedule'].includes(table) && data.starts_at && Date.parse(data.starts_at) < now + 15*24*60*60*1000) { setError('Choose an event start at least 15 full days from now.'); setBusy(false); return }
+    if (data.ends_at && Date.parse(data.ends_at) <= Date.parse(data.starts_at)) { setError('The end must be after the start.'); setBusy(false); return }
     try { await onSave(data) } catch (error) { setError(error.message) } finally { setBusy(false) }
   }
-  return <form className="entry-form" onSubmit={submit}><h2>{initial ? 'Edit' : 'Create'} {label(table)}</h2>{fields[table].map(([name,title,type]) => {
+  return <form className="entry-form" onSubmit={submit}><h2>{initial ? 'Edit' : 'Create'} {label(table)}</h2>{['event_proposal','proposal_schedule'].includes(table) && <p>Every schedule must start at least 15 full days from submission or schedule change. New proposals include a primary schedule.</p>}{formFields.map(([name,title,type]) => {
     const options = lookups[name]
     return <label key={name}>{title}{Array.isArray(type) ? <select name={name} defaultValue={initial?.[name] ?? type[0]}>{type.map(value => <option key={value}>{value}</option>)}</select> : options ? <select name={name} required={type !== 'optional'} defaultValue={initial?.[name] ?? ''}><option value="">Choose…</option>{options.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}</select> : <input name={name} type={type === 'optional' ? 'text' : type ?? 'text'} min={type === 'number' ? 0 : undefined} required={type !== 'optional'} defaultValue={type === 'datetime-local' && initial?.[name] ? new Date(new Date(initial[name]).getTime() - new Date(initial[name]).getTimezoneOffset()*60000).toISOString().slice(0,16) : initial?.[name] ?? ''} />}</label>
   })}{error && <p role="alert">{error}</p>}<div className="actions"><button disabled={busy}>{busy ? 'Saving…' : 'Save'}</button><button type="button" onClick={onCancel}>Cancel</button></div></form>
@@ -105,6 +108,13 @@ export default function Dashboard() {
   async function save(data) {
     const key = primaryKeys[table]
     let result
+    if (table === 'event_proposal' && !entry?.proposal_id) {
+      const { starts_at, ends_at, venue_id, ...proposal } = data
+      result = await supabase.rpc('submit_proposal', { proposal, schedule: { starts_at, ends_at, venue_id } })
+      if (result.error) throw new Error(result.error.message)
+      setEntry(null); setNotice('Proposal and primary schedule submitted successfully.'); setRevision(v => v + 1)
+      return
+    }
     if (entry?.[key]) {
       if (table === 'event_proposal') data.approval_status = 'Pending'
       result = await supabase.from(table).update(data).eq(key,entry[key]).select()
@@ -125,7 +135,7 @@ export default function Dashboard() {
     <nav className="workspace-tabs" aria-label="Workspace sections">{sections[profile.role].map(([name,value]) => <button className={table===value?'selected':''} key={value} onClick={() => { setTable(value); setNotice('') }}>{name}</button>)}</nav>
     <section className="workspace-panel"><div className="section-header"><h2>{sections[profile.role].find(([,value]) => value===table)?.[0]}</h2><div className="actions"><button disabled={loading || busy} onClick={() => setRevision(v => v+1)}>Refresh</button>{canCreate && <button onClick={() => setEntry({})}>Create</button>}</div></div>
       {error && <p role="alert" className="workspace-error">{error}</p>}{notice && <p role="status">{notice}</p>}
-      {entry && <EntryForm key={`${table}-${entry[primaryKeys[table]] ?? 'new'}`} table={table} initial={entry[primaryKeys[table]] ? entry : null} lookups={lookups} onSave={save} onCancel={() => setEntry(null)} />}
+      {entry && <EntryForm key={`${table}-${entry[primaryKeys[table]] ?? 'new'}`} table={table} initial={entry[primaryKeys[table]] ? entry : null} lookups={lookups} now={now} onSave={save} onCancel={() => setEntry(null)} />}
       {cancelTarget && <form className="entry-form" onSubmit={async e => { e.preventDefault(); const reason = new FormData(e.currentTarget).get('reason'); if (await run(() => supabase.rpc('cancel_registration',{ rid:cancelTarget.reg_id, reason }))) setCancelTarget(null) }}><h3>Cancel registration</h3><label>Reason<input name="reason" maxLength={500} required /></label><button disabled={busy}>Confirm cancellation</button><button type="button" onClick={() => setCancelTarget(null)}>Keep registration</button></form>}
       {reviewTarget && <form className="entry-form" onSubmit={async e => { e.preventDefault(); const values=Object.fromEntries(new FormData(e.currentTarget)); if (await run(() => supabase.rpc('review_proposal',{ pid:reviewTarget.proposal_id,...values }))) setReviewTarget(null) }}><h3>Review {reviewTarget.event_name}</h3><label>Decision<select name="decision"><option>Approved</option><option>Rejected</option><option>Revisions Required</option></select></label><label>Remarks<textarea name="remarks" maxLength={2000} /></label><button disabled={busy}>Save review</button><button type="button" onClick={() => setReviewTarget(null)}>Cancel</button></form>}
       {loading ? <p role="status">Loading…</p> : !rows.length ? <p>No records available for your account.</p> : <><p className="record-count">Showing up to 200 records permitted for your account.</p><div className="workspace-table"><table><thead><tr>{columns.map(c => <th key={c}>{label(c)}</th>)}<th>Actions</th></tr></thead><tbody>{rows.map(row => <tr key={row[primaryKeys[table]]}>{columns.map(c => <td key={c}>{row[c] == null ? '—' : String(row[c])}</td>)}<td><div className="actions">
