@@ -1,3 +1,6 @@
+import useBellNotifications from './useBellNotifications'
+import NotificationDates from './NotificationDates'
+import { eligibilityLabel, isRestrictedEvent } from './discoverEligibility'
 import { ProfileImage } from '../account/AccountControls'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router'
@@ -38,7 +41,7 @@ function NotificationsPopover({ notifications, onRead, onClose }) {
     <div className="student-notification-list">
       {notifications.length ? notifications.map(notification => <div className={`student-notification ${notification.read_at ? 'is-read' : ''}`} key={notification.notification_id}>
         <span className="student-notification-dot" aria-hidden="true" />
-        <div className="student-notification-copy"><strong>{notification.notification_type}</strong><p>{notification.message}</p><time dateTime={notification.created_at}>{formatDateTime(notification.created_at)}</time></div>
+        <div className="student-notification-copy"><strong>{notification.notification_type}</strong><p>{notification.message}</p><NotificationDates notification={notification} /></div>
         <button className="student-dismiss-button" type="button" onClick={() => onRead(notification)} aria-label={`Mark “${notification.notification_type}” as read`}><Icon name="x" size={13} /></button>
       </div>) : <p className="student-empty-notifications">You’re all caught up. New updates will appear here.</p>}
     </div>
@@ -55,12 +58,12 @@ function ProfilePopover({ onSignOut }) {
 }
 
 function DiscoverCard({ event }) {
-  const isLimited = event.registration_capacity > 0 && event.confirmed_registrations >= event.registration_capacity
+  const isLimited = Number(event.confirmed_registrations) >= Number(event.registration_capacity)
   const category = (event.event_type || 'Event').toUpperCase()
   return <Link className="discover-event-card" to={`/student/events/${event.event_id}`}>
     <div className="discover-event-image" aria-label="Event image placeholder"><span>{category.slice(0, 8)}</span></div>
     <div className="discover-event-content">
-      <div className="discover-event-topline"><p>{formatDateTime(event.starts_at)}</p><span className={isLimited ? 'is-limited' : ''}>{isLimited ? 'Limited Seats' : 'Open to All'}</span></div>
+      <div className="discover-event-topline"><p>{formatDateTime(event.starts_at)}</p><span className={isLimited ? 'is-limited' : ''}>{eligibilityLabel(event)}{isLimited ? ' · Waitlist' : ''}</span></div>
       <h3>{event.event_name}</h3>
       <p className="discover-event-organization">{event.organization_name}</p>
       <div className="discover-event-meta"><span><Icon name="pin" size={13} />{event.venue_name || 'Venue to be announced'}</span><span className="discover-event-arrow" aria-label={`View ${event.event_name}`}><Icon name="arrow" size={14} /></span></div>
@@ -72,6 +75,7 @@ export default function DiscoverEvents() {
   const navigate = useNavigate()
   const [events, setEvents] = useState([])
   const [notifications, setNotifications] = useState([])
+  useBellNotifications(setNotifications)
   const [search, setSearch] = useState('')
   const [revision, setRevision] = useState(0)
   const [college, setCollege] = useState('all')
@@ -88,7 +92,7 @@ export default function DiscoverEvents() {
       setLoading(true); setError('')
       const [eventsResult, notificationsResult] = await Promise.all([
         supabase.rpc('get_student_discover_events'),
-        supabase.from('notifications').select('notification_id,notification_type,message,created_at,read_at').order('created_at', { ascending: false }).limit(20),
+        supabase.from('notifications').select('notification_id,notification_type,message,created_at,read_at,event_id').order('created_at', { ascending: false }).limit(20),
       ])
       if (!active) return
       if (eventsResult.error) setError('Discover events could not be loaded. Please retry or try again later.')
@@ -115,7 +119,7 @@ export default function DiscoverEvents() {
     const term = search.trim().toLowerCase()
     return events.filter(event => {
       const searchable = [event.event_name, event.organization_name, event.eligible_college, event.event_type, event.venue_name].filter(Boolean).join(' ').toLowerCase()
-      return (!term || searchable.includes(term)) && (college === 'all' || event.eligible_college !== 'All Colleges')
+      return (!term || searchable.includes(term)) && (college === 'all' || isRestrictedEvent(event))
     })
   }, [college, events, search])
   const unreadCount = notifications.filter(item => !item.read_at).length

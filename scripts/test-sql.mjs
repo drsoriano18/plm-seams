@@ -16,7 +16,7 @@ create function storage.foldername(name text) returns text[] language sql immuta
 for(const f of (await readdir(root+'/supabase/migrations')).filter(f=>f.endsWith('.sql')).sort()) {
  try{await db.exec(await readFile(root+'/supabase/migrations/'+f,'utf8')); console.log('Migration OK',f)}catch(e){console.error('Migration FAILED',f,e.message);process.exit(1)}
 }
-for(const f of (process.argv.length>2 ? process.argv.slice(2) : ['portal_completion.sql','rbac.sql','proposal_notice.sql'])) {
+for(const f of (process.argv.length>2 ? process.argv.slice(2) : ['portal_completion.sql','registration_notifications.sql','rbac.sql','proposal_notice.sql'])) {
  if (f === 'rbac.sql') {
    const fixture = await readFile(root+'/supabase/tests/portal_completion.sql','utf8')
    await db.exec(fixture.slice(0,fixture.indexOf('set constraints all immediate;'))+'set constraints all immediate; commit;')

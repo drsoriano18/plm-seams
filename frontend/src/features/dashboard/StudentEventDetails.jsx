@@ -1,3 +1,5 @@
+import useBellNotifications from './useBellNotifications'
+import NotificationDates from './NotificationDates'
 import { eventDetails, registrationState, canCancel } from './eventApi'
 import { ProfileImage } from '../account/AccountControls'
 import { useEffect, useRef, useState } from 'react'
@@ -15,11 +17,12 @@ const fmtDate = value => value ? dateFormatter.format(new Date(value)) : 'N/A'
 const fmtTime = value => value ? timeFormatter.format(new Date(value)) : 'N/A'
 
 function Icon({ name, size = 18 }) { const paths = { bell: <><path d="M6 9a6 6 0 0 1 12 0c0 7 3 7 3 9H3c0-2 3-2 3-9Z" /><path d="M10 21h4" /></>, user: <><circle cx="12" cy="8" r="3" /><path d="M5 20a7 7 0 0 1 14 0" /></>, chevron: <path d="m7 10 5 5 5-5" />, calendar: <><rect x="3" y="4" width="18" height="17" rx="2" /><path d="M16 2v4M8 2v4M3 9h18" /></>, compass: <><circle cx="12" cy="12" r="9" /><path d="m15.5 8.5-2.2 4.8-4.8 2.2 2.2-4.8 4.8-2.2Z" /></>, pin: <><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="2" /></>, x: <><circle cx="12" cy="12" r="9" /><path d="m9 9 6 6m0-6-6 6" /></>, signout: <><path d="M10 5H5v14h5" /><path d="m13 8 4 4-4 4M7 12h10" /></> }; return <svg className="student-icon" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{paths[name]}</svg> }
-function NotificationsPopover({ notifications, onRead, onClose }) { return <div className="student-popover student-notifications-popover" role="dialog" aria-label="Notifications"><div className="student-popover-heading"><h2>Notifications</h2><span>{notifications.filter(item => !item.read_at).length} unread</span></div><div className="student-notification-list">{notifications.length ? notifications.map(item => <div className={`student-notification ${item.read_at ? 'is-read' : ''}`} key={item.notification_id}><span className="student-notification-dot" /><div className="student-notification-copy"><strong>{item.notification_type}</strong><p>{item.message}</p><time dateTime={item.created_at}>{fmtDate(item.created_at)}</time></div><button className="student-dismiss-button" type="button" onClick={() => onRead(item)} aria-label={`Mark “${item.notification_type}” as read`}><Icon name="x" size={13} /></button></div>) : <p className="student-empty-notifications">You’re all caught up.</p>}</div><button className="student-popover-close" type="button" onClick={onClose}>Close notifications</button></div> }
+function NotificationsPopover({ notifications, onRead, onClose }) { return <div className="student-popover student-notifications-popover" role="dialog" aria-label="Notifications"><div className="student-popover-heading"><h2>Notifications</h2><span>{notifications.filter(item => !item.read_at).length} unread</span></div><div className="student-notification-list">{notifications.length ? notifications.map(item => <div className={`student-notification ${item.read_at ? 'is-read' : ''}`} key={item.notification_id}><span className="student-notification-dot" /><div className="student-notification-copy"><strong>{item.notification_type}</strong><p>{item.message}</p><NotificationDates notification={item} /></div><button className="student-dismiss-button" type="button" onClick={() => onRead(item)} aria-label={`Mark “${item.notification_type}” as read`}><Icon name="x" size={13} /></button></div>) : <p className="student-empty-notifications">You’re all caught up.</p>}</div><button className="student-popover-close" type="button" onClick={onClose}>Close notifications</button></div> }
 
 export default function StudentEventDetails() {
   const { eventId } = useParams(); const { profile } = useAuth(); const navigate = useNavigate(); const notificationRef = useRef(null); const profileRef = useRef(null)
   const [event, setEvent] = useState(null); const [registration, setRegistration] = useState(null); const [notifications, setNotifications] = useState([]); const [loading, setLoading] = useState(true); const [error, setError] = useState(''); const [openPopover, setOpenPopover] = useState(null); const [profilePinned, setProfilePinned] = useState(false); const [busy, setBusy] = useState(false); const [dialog, setDialog] = useState(null); const [reason, setReason] = useState(''); const [now, setNow] = useState(() => Date.now()); const [revision, setRevision] = useState(0)
+  useBellNotifications(setNotifications)
 
   useEffect(() => { let active = true
     async function load() {
@@ -29,7 +32,7 @@ export default function StudentEventDetails() {
         if (!active) return
         setEvent(detail)
         setRegistration(detail.student_reg_id ? { reg_id: detail.student_reg_id, reg_status: detail.student_reg_status } : null)
-        const notice = await supabase.from('notifications').select('notification_id,notification_type,message,created_at,read_at').order('created_at', { ascending: false }).limit(20)
+        const notice = await supabase.from('notifications').select('notification_id,notification_type,message,created_at,read_at,event_id').order('created_at', { ascending: false }).limit(20)
         if (active) { setNotifications(notice.data || []); if (notice.error) setError('Notifications could not be loaded.') }
       } catch (e) { if (active) setError(e.message) } finally { if (active) setLoading(false) }
     }
@@ -45,6 +48,7 @@ export default function StudentEventDetails() {
     try {
       const result = await supabase.rpc('register_event', { eid: eventId })
       if (result.error) throw result.error
+      window.dispatchEvent(new Event('student-notifications-changed'))
       const fresh = await eventDetails(supabase, eventId)
       setEvent(fresh); setRegistration({ reg_id: fresh.student_reg_id, reg_status: fresh.student_reg_status })
       setDialog(fresh.student_reg_status === 'Waitlisted' ? 'waitlisted' : 'confirmed')
@@ -56,6 +60,7 @@ export default function StudentEventDetails() {
     try {
       const result = await supabase.rpc('cancel_registration', { rid: registration.reg_id, reason: reason.trim() || null })
       if (result.error) throw result.error
+      window.dispatchEvent(new Event('student-notifications-changed'))
       const fresh = await eventDetails(supabase, eventId)
       setEvent(fresh); setRegistration({ reg_id: fresh.student_reg_id, reg_status: fresh.student_reg_status }); setDialog('cancelled'); setReason('')
     } catch (e) { setError(e.message) } finally { setBusy(false) }

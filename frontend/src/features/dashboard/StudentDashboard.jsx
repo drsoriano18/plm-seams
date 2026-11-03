@@ -1,3 +1,5 @@
+import useBellNotifications from './useBellNotifications'
+import NotificationDates from './NotificationDates'
 import { ProfileImage } from '../account/AccountControls'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router'
@@ -27,16 +29,6 @@ function Icon({ name, size = 18 }) {
 function formatDateTime(value) {
   const date = new Date(value)
   return `${dateFormatter.format(date)} • ${timeFormatter.format(date)}`
-}
-
-function relativeTime(value) {
-  const minutes = Math.max(0, Math.round((Date.now() - new Date(value).getTime()) / 60000))
-  if (minutes < 1) return 'Just now'
-  if (minutes < 60) return `${minutes} minute${minutes === 1 ? '' : 's'} ago`
-  const hours = Math.round(minutes / 60)
-  if (hours < 24) return `${hours} hour${hours === 1 ? '' : 's'} ago`
-  const days = Math.round(hours / 24)
-  return `${days} day${days === 1 ? '' : 's'} ago`
 }
 
 function eventTitle(event) {
@@ -78,7 +70,7 @@ function NotificationsPopover({ notifications, onRead, onClose }) {
     <div className="student-notification-list">
       {notifications.length ? notifications.map(notification => <div className={`student-notification ${notification.read_at ? 'is-read' : ''}`} key={notification.notification_id}>
         <span className="student-notification-dot" aria-hidden="true" />
-        <div className="student-notification-copy"><strong>{notification.notification_type}</strong><p>{notification.message}</p><time dateTime={notification.created_at}>{relativeTime(notification.created_at)}</time></div>
+        <div className="student-notification-copy"><strong>{notification.notification_type}</strong><p>{notification.message}</p><NotificationDates notification={notification} /></div>
         <button className="student-dismiss-button" type="button" onClick={() => onRead(notification)} aria-label={`Mark “${notification.notification_type}” as read`}><Icon name="x" size={13} /></button>
       </div>) : <p className="student-empty-notifications">You’re all caught up. New updates will appear here.</p>}
     </div>
@@ -100,6 +92,7 @@ export default function StudentDashboard() {
   const [events, setEvents] = useState([])
   const [registrations, setRegistrations] = useState([])
   const [notifications, setNotifications] = useState([])
+  useBellNotifications(setNotifications)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [openPopover, setOpenPopover] = useState(null)
