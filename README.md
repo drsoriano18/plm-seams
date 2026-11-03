@@ -19,7 +19,7 @@ If you already have `frontend/.env.local`, add the variables from `.env.example`
 
 Choose the portal matching the account's database role. Passwords are verified by Supabase Auth, never the legacy `public.users.password` field. Roles come from `public.users`, not portal selection, local storage, or editable Auth user metadata.
 
-There is deliberately no self-service role selector or automatic account linking by email. A trusted project administrator must provision the Auth account and explicitly link its UUID to the correct existing business user. The three existing linked Auth accounts remain unchanged. Their existing credentials are required for real login testing.
+There is deliberately no self-service role selector or automatic account linking by email. A trusted project administrator must provision the Auth account and explicitly link its UUID to the correct existing business user. The shared project has 297 linked accounts after trusted provisioning. Existing credentials are required for real login testing; pulling source files does not provision accounts.
 
 ## Routes
 
@@ -106,3 +106,10 @@ The browser suite mocks all Supabase requests and writes no live data. It checks
 Supabase's database security advisories are clear after this change. One Auth-setting advisory remains: leaked-password protection is disabled. Enable it in the project's Auth password settings if available for your plan: https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection . This setting was not changed. Performance advisories only report unused indexes on this small dataset; existing indexes were retained.
 
 Proposal lead time: new organization proposals must include a primary schedule at least 15 full days (360 hours) ahead. `submit_proposal(proposal, schedule)` saves both atomically under the caller's RLS permissions. Server timestamps prevent backdating, and deferred constraint triggers reject missing schedules or any schedule under the deadline. Schedule changes also require 15 full days of notice. Existing records are not retroactively deleted or modified. The frontend gives immediate feedback; database enforcement is authoritative.
+
+
+## Portal completion changes
+
+See [portal completion and deployment inventory](docs/portal-completion.md) for the verified migration history, RPC contracts, program eligibility, private student photos, all-role password settings, event tasks/subtasks, test results, and deployment limitations. The three new 20261103 migrations were **applied to the shared PLM-SEAMS project with explicit approval**. Their filenames match the live migration timestamps; do not replay them. The recovered 20261102154339 and 20261102154429 discovery migrations are already applied there and must not be replayed.
+
+For local SQL tests, install repository-root dependencies with `npm ci`, then run `npm run test:sql`. This uses an ephemeral PGlite Postgres runtime with Auth/Storage test schemas, no live credentials or network writes. Continue to run frontend test/lint/build separately.

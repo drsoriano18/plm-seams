@@ -1,4 +1,4 @@
--- Reference schema only. Use supabase/migrations for database changes.
+-- Reference schema only, including deployed portal completion changes. Use supabase/migrations for database changes.
 -- =============================================================================
 -- PLM SEAMS — PostgreSQL schema aligned to ERD ver17 and supplied sample data
 -- Target: Supabase PostgreSQL
@@ -37,7 +37,8 @@ CREATE TABLE students (
     name           VARCHAR(200) NOT NULL,
     year_level     VARCHAR(20) NOT NULL,
     college        VARCHAR(175) NOT NULL,
-    program        VARCHAR(175) NOT NULL
+    program        VARCHAR(175) NOT NULL,
+    profile_image_path TEXT
 );
 
 -- 3. STUDENT ORGANIZATIONS (subtype of USERS)
@@ -90,6 +91,7 @@ CREATE TABLE event_proposal (
     expected_count_attendees        INTEGER NOT NULL CHECK (expected_count_attendees >= 0),
     event_name                      VARCHAR(200) NOT NULL,
     event_type_id                   VARCHAR(20) NOT NULL REFERENCES event_type(event_type_id),
+    allowed_programs TEXT[] NOT NULL DEFAULT '{}',
     allowed_college                 TEXT,
     eligibility_mode                VARCHAR(50) NOT NULL,
     resource_requirements           TEXT,
@@ -219,3 +221,22 @@ CREATE INDEX idx_registration_event_id ON registration(event_id);
 CREATE INDEX idx_booking_venue_id ON venue_booking(venue_id);
 CREATE INDEX idx_booking_event_id ON venue_booking(event_id);
 CREATE INDEX idx_notifications_recipient_created ON notifications(recipient_user_id, created_at DESC);
+
+-- 14. EVENT TASKS AND SUBTASKS
+CREATE TABLE event_task (
+    task_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    event_id VARCHAR(30) NOT NULL REFERENCES event(event_id),
+    parent_task_id UUID,
+    title TEXT NOT NULL CHECK (length(btrim(title)) BETWEEN 1 AND 200),
+    description TEXT,
+    starts_at TIMESTAMPTZ,
+    due_at TIMESTAMPTZ NOT NULL,
+    status TEXT NOT NULL DEFAULT 'Pending' CHECK (status IN ('Pending','In Progress','Completed')),
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+    UNIQUE (task_id,event_id),
+    FOREIGN KEY (parent_task_id,event_id) REFERENCES event_task(task_id,event_id),
+    CHECK (parent_task_id IS DISTINCT FROM task_id),
+    CHECK (starts_at IS NULL OR due_at >= starts_at)
+);
+-- Program validation, private photo Storage policies, task RLS/date guards, and RPCs
+-- are defined in the portal completion migrations; this reference is not deployable security configuration.

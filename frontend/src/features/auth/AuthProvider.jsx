@@ -17,7 +17,7 @@ export function AuthProvider({ children }) {
     if (!supabase) return
     let active = true
     async function refresh() {
-      setState(previous => ({ ...previous, loading: true }))
+      setState(previous => ({ ...previous, loading: !previous.profile }))
       try {
         const { data: { user }, error } = await supabase.auth.getUser()
         if (error || !user) { if (active) setState({ loading: false, profile: null, error: null }); return }
