@@ -1,3 +1,5 @@
+.student-skip-link { position: fixed; left: 16px; top: 8px; z-index: 100; padding: 8px 12px; border-radius: 4px; color: #fff; background: #041a40; transform: translateY(-150%); transition: transform 350ms ease; }
+.student-skip-link:focus { transform: translateY(0); }
 .landing-page { isolation: isolate; min-height: 100svh; position: relative; overflow: hidden; display: grid; place-items: center; padding: 32px clamp(24px, 5vw, 72px) 84px; color: #fff; background: #1f2d69; }
 .landing-background, .landing-overlay { position: absolute; inset: 0; }
 .landing-background { z-index: -2; background-position: center; background-size: cover; }

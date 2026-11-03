@@ -39,12 +39,17 @@ try {
     await page.getByLabel('Password',{exact:true}).fill('mock-password')
     await page.getByRole('button',{name:'Sign In',exact:true}).click()
     await page.waitForURL(`**/${route}/dashboard`)
-    await page.getByRole('heading',{name:`${role} workspace`}).waitFor()
-    await page.getByText('No records available for your account.').waitFor()
+    if(role==='Student') {
+      await page.getByRole('heading',{name:'Events'}).waitFor()
+      await page.getByText('No upcoming events yet').waitFor()
+    } else {
+      await page.getByRole('heading',{name:`${role} workspace`}).waitFor()
+      await page.getByText('No records available for your account.').waitFor()
+    }
     const wrong=role==='Admin'?'student':'admin'
     await page.goto(`${base}/${wrong}/dashboard`)
     await page.waitForURL(`**/${route}/dashboard`)
-    await page.getByRole('heading',{name:`${role} workspace`}).waitFor()
+    if(role!=='Student') await page.getByRole('heading',{name:`${role} workspace`}).waitFor()
     if(role==='Student Organization') {
       await page.getByRole('button',{name:'Create',exact:true}).click()
       await page.getByRole('heading',{name:'Create event proposal'}).waitFor()
@@ -52,7 +57,10 @@ try {
     }
     await page.setViewportSize({width:390,height:844})
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth))
-    await page.getByRole('button',{name:'Sign out',exact:true}).click()
+    if(role==='Student') {
+      await page.getByRole('button',{name:'Open profile menu'}).click()
+      await page.getByRole('menuitem',{name:'Sign Out'}).click()
+    } else await page.getByRole('button',{name:'Sign out',exact:true}).click()
     await page.waitForURL(base+'/')
     await context.close()
     console.log(`PASS ${role}: anonymous redirect, login, wrong-role redirect, mobile layout and logout`)

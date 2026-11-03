@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate, Link } from 'react-router'
+import { useNavigate } from 'react-router'
 import { supabase, configurationError } from '../../lib/supabase'
 import { readProfile, matchesPortal, routeForRole } from './access'
 import { useAuth } from './authContext'
@@ -117,7 +117,6 @@ function LoginPage({ portal }) {
           <div className="auth-form-spacer" aria-hidden="true" />
           <button className="auth-submit" type="submit" disabled={busy}>{busy ? 'Signing in…' : 'Sign In'}</button>
           {error && <p className="auth-error" role="alert">{error}</p>}
-          <Link to="/">Choose another portal</Link>
         </form>
       </section>
     </main>
