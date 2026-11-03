@@ -3,6 +3,11 @@ import './App.css'
 import { AuthProvider, ProtectedRoute } from './features/auth/AuthProvider'
 import { lazy, Suspense } from 'react'
 const Dashboard = lazy(() => import('./features/dashboard/Dashboard'))
+const StudentDashboard = lazy(() => import('./features/dashboard/StudentDashboard'))
+const StudentProfile = lazy(() => import('./features/dashboard/StudentProfile'))
+const StudentProfileSettings = lazy(() => import('./features/dashboard/StudentProfileSettings'))
+const StudentEventDetails = lazy(() => import('./features/dashboard/StudentEventDetails'))
+const DiscoverEvents = lazy(() => import('./features/dashboard/DiscoverEvents'))
 import LoginPage from './features/auth/LoginPage'
 import backgroundImage from './assets/landing/background.png'
 import logoImage from './assets/landing/plm-seams-logo.png'
@@ -55,7 +60,11 @@ function App() {
         <Route path="/student/login" element={<LoginPage portal="student" />} />
         <Route path="/student-organization/login" element={<LoginPage portal="organization" />} />
         <Route path="/admin/login" element={<LoginPage portal="administrator" />} />
-      <Route path="/student/dashboard" element={<ProtectedRoute role="Student"><Dashboard /></ProtectedRoute>} />
+        <Route path="/student/dashboard" element={<ProtectedRoute role="Student"><StudentDashboard /></ProtectedRoute>} />
+        <Route path="/student/discover" element={<ProtectedRoute role="Student"><DiscoverEvents /></ProtectedRoute>} />
+        <Route path="/student/profile" element={<ProtectedRoute role="Student"><StudentProfile /></ProtectedRoute>} />
+        <Route path="/student/profile/settings" element={<ProtectedRoute role="Student"><StudentProfileSettings /></ProtectedRoute>} />
+        <Route path="/student/events/:eventId" element={<ProtectedRoute role="Student"><StudentEventDetails /></ProtectedRoute>} />
         <Route path="/student-organization/dashboard" element={<ProtectedRoute role="Student Organization"><Dashboard /></ProtectedRoute>} />
         <Route path="/admin/dashboard" element={<ProtectedRoute role="Admin"><Dashboard /></ProtectedRoute>} />
         <Route path="*" element={<LandingPage />} />
