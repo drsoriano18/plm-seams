@@ -222,21 +222,4 @@ CREATE INDEX idx_booking_venue_id ON venue_booking(venue_id);
 CREATE INDEX idx_booking_event_id ON venue_booking(event_id);
 CREATE INDEX idx_notifications_recipient_created ON notifications(recipient_user_id, created_at DESC);
 
--- 14. EVENT TASKS AND SUBTASKS
-CREATE TABLE event_task (
-    task_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    event_id VARCHAR(30) NOT NULL REFERENCES event(event_id),
-    parent_task_id UUID,
-    title TEXT NOT NULL CHECK (length(btrim(title)) BETWEEN 1 AND 200),
-    description TEXT,
-    starts_at TIMESTAMPTZ,
-    due_at TIMESTAMPTZ NOT NULL,
-    status TEXT NOT NULL DEFAULT 'Pending' CHECK (status IN ('Pending','In Progress','Completed')),
-    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
-    UNIQUE (task_id,event_id),
-    FOREIGN KEY (parent_task_id,event_id) REFERENCES event_task(task_id,event_id),
-    CHECK (parent_task_id IS DISTINCT FROM task_id),
-    CHECK (starts_at IS NULL OR due_at >= starts_at)
-);
--- Program validation, private photo Storage policies, task RLS/date guards, and RPCs
--- are defined in the portal completion migrations; this reference is not deployable security configuration.
+-- Program validation, private photo Storage policies, and RPCs are defined in migrations.

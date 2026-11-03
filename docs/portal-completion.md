@@ -69,3 +69,10 @@ Review with `supabase migration list --linked` in a properly linked environment 
 - Complete browser/visual checks, real Storage replacement, current-password verification, and multi-session concurrency checks in a staging environment using the updated frontend.
 - Existing plaintext legacy password storage was not expanded or used for authentication. Password changes intentionally do not synchronize that legacy column; removing it requires a separately planned cleanup.
 - Historical seed replay is not part of the new SQL test runner: tests use synthetic fixtures rather than copying real credentials or relying on seed state.
+
+
+## Task feature retired
+
+At the project owner’s request, a follow-up migration removes the unused event_task table, its task RPC and trigger function. The Tasks tabs and lookup requests are removed from the organization/admin workspace. Historical task migration files are retained to preserve migration history. Existing proposal and event schedules remain unchanged.
+
+Applied to the shared PLM-SEAMS project as `20261103140043_remove_event_tasks.sql`; do not rerun it there. Apply the matching frontend patch to remove retired task calls.
