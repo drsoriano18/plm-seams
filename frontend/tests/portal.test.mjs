@@ -57,3 +57,11 @@ test('replacement deletes old object after saved profile reference',async()=>{
  const result=await replacePhoto(client,png,'uuid/old.png')
  assert.deepEqual(order,['upload','save reference','delete old']);assert.match(result.path,/\.png$/)
 })
+test('ineligible students can attempt registration but closed and existing states take priority',()=>{
+ const restricted={...event,registration_status:'Open',is_eligible:false,can_register:false}
+ assert.equal(registrationState(restricted,before),'ineligible')
+ assert.equal(registrationState({...restricted,registration_status:'Closed'},before),'closed')
+ assert.equal(registrationState({...restricted,event_status:'Cancelled'},before),'cancelled-event')
+ assert.equal(registrationState(restricted,Date.parse(starts)),'expired')
+ assert.equal(registrationState({...restricted,student_reg_status:'Confirmed'},before),'confirmed')
+})

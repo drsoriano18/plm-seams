@@ -9,6 +9,7 @@ export function registrationState(event, now) {
   if (event.event_status === 'Cancelled') return 'cancelled-event'
   if (event.event_status !== 'Upcoming' || Date.parse(event.starts_at) <= now) return 'expired'
   if (['Confirmed','Waitlisted'].includes(event.student_reg_status)) return event.student_reg_status.toLowerCase()
+  if (event.registration_status === 'Open' && event.is_eligible === false) return 'ineligible'
   if (!event.can_register) return 'closed'
   return Number(event.confirmed_registrations) >= Number(event.registration_capacity) ? 'waitlist-open' : 'open'
 }

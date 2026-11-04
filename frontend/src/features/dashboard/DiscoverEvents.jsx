@@ -1,6 +1,6 @@
 import useBellNotifications from './useBellNotifications'
 import NotificationDates from './NotificationDates'
-import { eligibilityLabel, isRestrictedEvent } from './discoverEligibility'
+import { eligibilityLabel } from './discoverEligibility'
 import { ProfileImage } from '../account/AccountControls'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router'
@@ -119,7 +119,7 @@ export default function DiscoverEvents() {
     const term = search.trim().toLowerCase()
     return events.filter(event => {
       const searchable = [event.event_name, event.organization_name, event.eligible_college, event.event_type, event.venue_name].filter(Boolean).join(' ').toLowerCase()
-      return (!term || searchable.includes(term)) && (college === 'all' || isRestrictedEvent(event))
+      return (!term || searchable.includes(term)) && (college === 'all' || event.is_eligible === true)
     })
   }, [college, events, search])
   const unreadCount = notifications.filter(item => !item.read_at).length
@@ -141,7 +141,7 @@ export default function DiscoverEvents() {
       <a href="/student/dashboard" className="student-brand" aria-label="PLM SEAMS student dashboard"><img src={logoImage} alt="PLM SEAMS" width="112" height="40" /></a>
       <nav className="student-primary-nav" aria-label="Student portal sections"><Link to="/student/dashboard"><Icon name="calendar" size={14} />Upcoming</Link><Link className="is-active" to="/student/discover"><Icon name="compass" size={14} />Discover</Link></nav>
       <div className="student-header-actions">
-        <div className="student-header-popover-wrap" ref={notificationRef} onMouseEnter={() => setOpenPopover('notifications')} onMouseLeave={() => setOpenPopover(null)}><button className="student-icon-button" type="button" onClick={() => setOpenPopover(current => current === 'notifications' ? null : 'notifications')} aria-label={`Notifications${unreadCount ? `, ${unreadCount} unread` : ''}`} aria-expanded={openPopover === 'notifications'}><Icon name="bell" size={18} />{unreadCount > 0 && <span className="student-unread-dot" />}</button>{openPopover === 'notifications' && <NotificationsPopover notifications={notifications} onRead={markAsRead} onClose={() => setOpenPopover(null)} />}</div>
+        <div className="student-header-popover-wrap" ref={notificationRef}><button className="student-icon-button" type="button" onClick={() => setOpenPopover(current => current === 'notifications' ? null : 'notifications')} aria-label={`Notifications${unreadCount ? `, ${unreadCount} unread` : ''}`} aria-expanded={openPopover === 'notifications'}><Icon name="bell" size={18} />{unreadCount > 0 && <span className="student-unread-dot" />}</button>{openPopover === 'notifications' && <NotificationsPopover notifications={notifications} onRead={markAsRead} onClose={() => setOpenPopover(null)} />}</div>
         <div className="student-header-popover-wrap" ref={profileRef} onMouseEnter={() => setOpenPopover('profile')} onMouseLeave={() => { if (!profileMenuPinned) setOpenPopover(null) }}><button className="student-profile-button" type="button" onClick={() => { const nextPinned = !profileMenuPinned; setProfileMenuPinned(nextPinned); setOpenPopover(nextPinned ? 'profile' : null) }} aria-label="Open profile menu" aria-expanded={openPopover === 'profile'}><span><ProfileImage fallback={<Icon name="user" size={16} />} /></span><Icon name="chevron" size={13} /></button>{openPopover === 'profile' && <ProfilePopover onSignOut={signOut} />}</div>
       </div>
     </header>
@@ -150,7 +150,7 @@ export default function DiscoverEvents() {
       <div className="discover-filter-bar"><span className="discover-filter-label"><Icon name="filter" size={14} />Filter:</span><label><span className="sr-only">Filter by college eligibility</span><select value={college} onChange={event => setCollege(event.target.value)}><option value="all">All Colleges</option><option value="eligible">Eligible Colleges Only</option></select></label></div>
       <div className="discover-section-heading"><h2><i />Approved Upcoming Events</h2><span>Sort: <strong>Earliest Date ↓</strong></span></div>
       {error && <p className="discover-error" role="alert">{error} <button type="button" onClick={() => setRevision(v => v+1)}>Retry</button></p>}
-      <div className="discover-event-list" aria-live="polite">{loading ? <p className="discover-status" role="status">Loading events…</p> : filteredEvents.length ? filteredEvents.map(event => <DiscoverCard key={event.event_id} event={event} />) : <div className="discover-empty"><h3>{events.length ? 'No events match your search' : 'No open upcoming events'}</h3><p>{events.length ? 'Try another keyword or college filter.' : 'New events open for registration will appear here.'}</p></div>}</div>
+      <div className="discover-event-list" aria-live="polite">{loading ? <p className="discover-status" role="status">Loading events…</p> : filteredEvents.length ? filteredEvents.map(event => <DiscoverCard key={event.event_id} event={event} />) : <div className="discover-empty"><h3>{events.length ? 'No events match your search' : 'No upcoming events'}</h3><p>{events.length ? 'Try another keyword or college filter.' : 'New published upcoming events will appear here.'}</p></div>}</div>
     </section>
     <footer className="student-portal-footer"><strong>Pamantasan ng Lungsod ng Maynila • SEAMS</strong><span>© 2026 PLM Student Event Administration &amp; Management System.</span></footer>
   </main>

@@ -181,7 +181,7 @@ export default function StudentDashboard() {
       <a href="/student/dashboard" className="student-brand" aria-label="PLM SEAMS student dashboard"><img src={logoImage} alt="PLM SEAMS" width="112" height="40" /></a>
       <nav className="student-primary-nav" aria-label="Student portal sections"><Link className={activeView === 'upcoming' ? 'is-active' : ''} to="/student/dashboard" onClick={() => setActiveView('upcoming')}><Icon name="calendar" size={14} />Upcoming</Link><Link className={activeView === 'discover' ? 'is-active' : ''} to="/student/discover" onClick={() => setActiveView('discover')}><Icon name="compass" size={14} />Discover</Link></nav>
       <div className="student-header-actions">
-        <div className="student-header-popover-wrap" ref={notificationRef} onMouseEnter={() => setOpenPopover('notifications')} onMouseLeave={() => setOpenPopover(null)}>
+        <div className="student-header-popover-wrap" ref={notificationRef}>
           <button className="student-icon-button" type="button" onClick={() => setOpenPopover(current => current === 'notifications' ? null : 'notifications')} aria-label={`Notifications${unreadCount ? `, ${unreadCount} unread` : ''}`} aria-expanded={openPopover === 'notifications'}><Icon name="bell" size={18} />{unreadCount > 0 && <span className="student-unread-dot" />}</button>
           {openPopover === 'notifications' && <NotificationsPopover notifications={notifications} onRead={markAsRead} onClose={() => setOpenPopover(null)} />}
         </div>
