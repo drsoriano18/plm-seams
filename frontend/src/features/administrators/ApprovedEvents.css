@@ -1,0 +1,83 @@
+.approved-events-main { flex: 1; width: 100%; padding: 31px 48px 64px; color: #1b1c1c; background: #fbf9f9; }
+.approved-icon { display: inline-block; flex: 0 0 auto; max-width: none; }
+.approved-breadcrumb { display: flex; align-items: center; gap: 12px; padding-bottom: 13px; margin-bottom: 8px; border-bottom: 1px solid rgb(231 229 228 / 60%); color: #6b7280; font: 600 13px/18px 'Admin Montserrat', Arial, sans-serif; letter-spacing: 1.04px; }
+.approved-breadcrumb a { display: inline-flex; align-items: center; gap: 6px; color: #374151; text-decoration: none; }
+.approved-breadcrumb > span:last-child { text-transform: uppercase; }
+.approved-kpis { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-bottom: 24px; }
+.approved-kpi { display: flex; align-items: center; justify-content: space-between; min-height: 102px; padding: 16px; border-radius: 8px; background: white; box-shadow: 0 1px 1px rgb(0 0 0 / 5%); }
+.admin-dashboard .approved-kpi h2 { color: #807663; font: 700 11px/16px 'Admin Montserrat', Arial, sans-serif; letter-spacing: .55px; text-transform: uppercase; }
+.admin-dashboard .approved-kpi p { padding-top: 4px; color: #807663; font-size: 13px; }
+.approved-kpi strong { padding-right: 4px; color: #1b1c1c; font: 600 24px/32px 'Admin Playfair Display', Georgia, serif; }
+.approved-kpi small { display: flex; align-items: center; gap: 4px; padding-top: 2px; color: #775a00; font-size: 11px; line-height: 16.5px; }
+.approved-kpi small i { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.approved-kpi .approved-override-count { color: #ba1a1a; }
+.approved-kpi-icon { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 4px; background: #efeded; }
+.approved-kpi-icon.is-alert { background: #ffd6d7; }
+.approved-title { padding: 24px; margin-bottom: 24px; border-radius: 8px; background: white; box-shadow: 0 1px 1px rgb(0 0 0 / 5%); }
+.admin-dashboard .approved-title h1 { font: 600 32px/42px 'Admin Playfair Display', Georgia, serif; letter-spacing: -.7px; }
+.approved-toolbar { display: flex; align-items: center; gap: 16px; padding: 16px; margin-bottom: 16px; border-radius: 8px; background: white; box-shadow: 0 1px 1px rgb(0 0 0 / 5%); }
+.approved-filter-label { padding-right: 24px; color: #807663; font: 700 11px/16px 'Admin Montserrat', Arial, sans-serif; letter-spacing: .55px; text-transform: uppercase; }
+.approved-state-filters { display: flex; align-items: center; gap: 10px; }
+.admin-dashboard .approved-state-filters button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 6px 12px; border: 0; border-radius: 4px; background: #f5f3f3; color: #4e4635; font: 500 12px/18px 'Admin Montserrat', Arial, sans-serif; letter-spacing: .3px; text-transform: uppercase; white-space: nowrap; }
+.approved-state-filters i { width: 8px; height: 8px; flex: 0 0 8px; border-radius: 50%; background: #775a00; }
+.approved-state-filters .is-upcoming i { background: #4c5e87; }
+.approved-state-filters .is-completed i { background: #1a753f; }
+.approved-state-filters .is-cancelled i { background: #b12a2d; }
+.approved-state-filters .is-rescheduled i { background: #c59b27; }
+.admin-dashboard .approved-state-filters .is-all-states { min-width: 88px; }
+.admin-dashboard .approved-state-filters .is-active { color: white; background: #0b2046; box-shadow: 0 1px 1px rgb(0 0 0 / 5%); }
+.approved-select-filters { display: flex; align-items: center; gap: 12px; margin-left: auto; min-width: 0; }
+.approved-select-filters label { position: relative; min-width: 0; }
+.approved-select-filters select { appearance: none; width: 196px; max-width: 100%; padding: 8px 30px 8px 12px; border: 0; border-radius: 4px; background: #f5f3f3; color: #1b1c1c; font: 400 13px/20px 'Admin Inter', Arial, sans-serif; text-overflow: ellipsis; }
+.approved-select-filters label > img { position: absolute; top: 15px; right: 10px; pointer-events: none; }
+.approved-select-filters label:first-child select { width: 224px; }
+@media (max-width: 650px) { .approved-select-filters label:first-child select { width: 100%; } }
+.approved-select-filters select:focus-visible { outline: 2px solid #c59b27; outline-offset: 3px; }
+.approved-table-panel { overflow: hidden; border-radius: 8px; background: white; box-shadow: 0 1px 2px rgb(0 0 0 / 5%); }
+.approved-table-scroll { width: 100%; overflow-x: auto; }
+.approved-table { width: 100%; min-width: 940px; table-layout: fixed; border-collapse: collapse; text-align: left; }
+.approved-table .approved-col-title { width: 25%; }
+.approved-table .approved-col-schedule { width: 21%; }
+.approved-table .approved-col-actions { width: 18%; }
+.approved-table th { padding: 16px 20px; color: #807663; background: #f5f3f3; vertical-align: top; font: 700 11px/16px 'Admin Montserrat', Arial, sans-serif; letter-spacing: .55px; text-transform: uppercase; }
+.approved-table td { padding: 16px 20px; border-bottom: 1px solid #f0efed; vertical-align: top; font: 400 13px/20px 'Admin Inter', Arial, sans-serif; overflow-wrap: anywhere; }
+.approved-event-row.is-upcoming { background: #fafbff; }
+.approved-event-row.is-cancelled { background: #fffafa; }
+.approved-event-row.is-completed { color: #807663; }
+.approved-event-title { max-width: 285px; font: 600 13px/18px 'Admin Montserrat', Arial, sans-serif; letter-spacing: 1.04px; }
+.approved-event-row.is-cancelled .approved-event-title { color: #ba1a1a; }
+.approved-with-icon { display: flex; align-items: flex-start; gap: 6px; }
+.approved-with-icon > img { margin-top: 3px; }
+.approved-organizer { padding-top: 2px; color: #807663; }
+.admin-dashboard .approved-event-id { padding-top: 4px; color: #b4a58a; font-size: 11px; line-height: 16.5px; }
+.approved-schedule > div:first-child { font: 500 13px/18px 'Admin Montserrat', Arial, sans-serif; letter-spacing: .7px; }
+.approved-venue { padding-top: 4px; color: #807663; }
+.approved-venue a { color: inherit; text-decoration: none; }
+.approved-venue a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.admin-dashboard .approved-event-note { display: flex; align-items: flex-start; gap: 6px; padding: 8px; margin-top: 8px; background: #fff9e9; color: #594300; font-size: 11px; line-height: 14px; }
+.approved-event-note.is-cancellation { background: #ffd2d3; color: #7c1013; }
+.approved-state { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 20px; white-space: nowrap; font: 600 11px/15px 'Admin Montserrat', Arial, sans-serif; text-transform: uppercase; }
+.approved-state.is-ongoing { background: #efecdf; color: #775a00; }
+.approved-state.is-ongoing i { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.approved-state.is-upcoming { background: #d9e2ff; color: #4c5e87; }
+.approved-state.is-rescheduled { background: #f3ecd4; color: #775a00; }
+.approved-state.is-completed { background: #e0eee7; color: #1a753f; }
+.approved-state.is-cancelled { background: #f6dada; color: #ba1a1a; }
+.approved-visibility { display: inline-flex; align-items: center; gap: 4px; padding: 2px 6px; border-radius: 2px; color: #9a907e; background: #efeded; font-size: 11px; line-height: 16px; }
+.approved-visibility.is-published { color: #4c5e87; }
+.approved-capacity { display: inline-block; max-width: 100%; padding: 2px 8px; background: #efeded; color: #807663; font-size: 11px; line-height: 16px; }
+.approved-capacity.is-open { color: #775a00; }
+.approved-row-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+.admin-dashboard .approved-row-actions button { display: inline-flex; align-items: center; justify-content: center; gap: 4px; padding: 4px 10px; border: 0; border-radius: 2px; background: #efeded; color: #1b1c1c; font: 500 11px/16px 'Admin Inter', Arial, sans-serif; text-transform: uppercase; }
+.admin-dashboard .approved-row-actions .is-cancel { color: #ba1a1a; background: #f8e8eb; }
+.admin-dashboard .approved-row-actions .is-reschedule { color: #211b00; background: #c59b27; }
+.admin-dashboard .approved-row-actions .is-archive { color: white; background: #0b2046; }
+.approved-event-row.is-completed .is-archive { opacity: .8; }
+.approved-pagination { display: flex; align-items: center; justify-content: flex-end; gap: 16px; min-height: 54px; padding: 16px 24px; background: rgb(245 243 243 / 60%); color: #807663; font-size: 13px; }
+.approved-pagination > div { display: flex; align-items: center; gap: 4px; }
+.admin-dashboard .approved-pagination button { display: grid; place-items: center; width: 22px; height: 22px; border: 0; border-radius: 2px; background: transparent; }
+.approved-load-state { padding: 32px; color: #807663; text-align: center; }
+.approved-load-state button { margin-top: 12px; padding: 8px 12px; background: #f5f3f3; border: 0; border-radius: 4px; color: #0b2046; }
+@media (max-width: 1350px) { .approved-toolbar { flex-wrap: wrap; } .approved-select-filters { margin-left: auto; } .approved-filter-label { padding-right: 8px; } .approved-state-filters { gap: 6px; } .admin-dashboard .approved-state-filters button { padding-inline: 8px; } }
+@media (max-width: 1050px) { .approved-events-main { padding-inline: 28px; } .approved-select-filters { margin-left: 0; width: 100%; justify-content: flex-end; } .approved-select-filters select { width: 220px; } }
+@media (max-width: 650px) { .approved-events-main { padding: 20px 16px 40px; } .approved-breadcrumb { font-size: 10px; gap: 8px; letter-spacing: .5px; flex-wrap: wrap; } .approved-kpis { grid-template-columns: 1fr; gap: 12px; margin-bottom: 16px; } .approved-title { padding: 20px; margin-bottom: 16px; } .admin-dashboard .approved-title h1 { font-size: 27px; line-height: 36px; } .approved-toolbar { gap: 12px; padding: 12px; } .approved-filter-label { display: none; } .approved-state-filters { flex-wrap: wrap; } .approved-select-filters { flex-direction: column; align-items: stretch; gap: 8px; } .approved-select-filters select { width: 100%; } .approved-pagination { font-size: 11px; gap: 8px; padding-inline: 12px; } }

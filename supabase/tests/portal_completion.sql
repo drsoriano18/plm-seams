@@ -37,7 +37,8 @@ select pg_temp.denied($q$select public.register_event('TEST-E-NO')$q$);
 select pg_temp.assert_true(not exists(select 1 from public.registration where event_id='TEST-E-NO'),'ineligible attempt creates no registration');
 -- Broader viewing must never reveal unpublished events, even by direct ID.
 reset role;
-update public.event set publication_status='Draft' where event_id='TEST-E-NO';
+-- Unpublishing closes registration in this project's publication workflow.
+update public.event set publication_status='Draft',registration_status='Closed' where event_id='TEST-E-NO';
 set local role authenticated;
 select pg_temp.assert_true(public.get_student_event_details('TEST-E-NO') is null,'unpublished details hidden');
 select pg_temp.assert_true(not exists(select 1 from public.get_student_discover_events() where event_id='TEST-E-NO'),'unpublished discovery hidden');

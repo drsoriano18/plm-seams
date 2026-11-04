@@ -1,0 +1,41 @@
+.admin-calendar-main { flex: 1; width: 100%; background: #fbf9f9; padding-bottom: 32px; }
+.admin-calendar-title { padding: 18px 60px; background: #f5f3f3; color: #041a40; font: 700 40px/48px 'Admin Playfair Display', Georgia, serif; }
+.admin-calendar-workspace { display: grid; gap: 14px; padding: 22px max(32px, 8vw) 0; }
+.admin-calendar-panel { overflow: hidden; border: 1px solid #e9e6e4; border-radius: 8px; background: white; box-shadow: 0 2px 6px rgb(0 0 0 / 5%); }
+.admin-calendar-panel header { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 24px; border-bottom: 1px solid #e9e6e4; }
+.admin-calendar-panel h1, .admin-calendar-panel h2 { display: flex; align-items: center; gap: 8px; color: #1b1c1c; font: 700 24px/34px 'Admin Playfair Display', Georgia, serif; }
+.admin-calendar-venue-select { display: block; padding-top: 6px; }
+.admin-calendar-venue-select select { max-width: 100%; border: 0; background: #f5f3f3; border-radius: 4px; padding: 6px 10px; color: #1b1c1c; font: 500 13px/20px 'Admin Inter', Arial, sans-serif; }
+.admin-calendar-month { display: flex; align-items: center; gap: 8px; }
+.admin-calendar-month strong { margin-right: 12px; font: 700 19px/25px 'Admin Montserrat', Arial, sans-serif; }
+.admin-calendar-month button { width: 36px; height: 36px; border: 1px solid #e9e6e4; background: white; color: #775a00; font-size: 24px; }
+.admin-dashboard .admin-calendar-booking-count { padding: 16px 24px 0; color: #807663; font-size: 12px; }
+.admin-calendar-grid { padding: 24px; }
+.admin-calendar-weekdays, .admin-calendar-days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; }
+.admin-calendar-weekdays { margin-bottom: 12px; color: #807663; font: 600 10px/14px 'Admin Montserrat', Arial, sans-serif; text-align: center; }
+.admin-calendar-days button { min-height: 60px; border: 1px solid transparent; border-radius: 3px; background: white; color: #1b1c1c; }
+.admin-calendar-days button:disabled { background: transparent; }
+.admin-calendar-days button.is-selected { background: #c59b27; color: #251a00; }
+.admin-calendar-days button.is-unavailable { background: #ffd7d7; color: #8c252b; }
+.admin-calendar-days button.is-unavailable.is-selected { box-shadow: inset 0 0 0 3px #c59b27; }
+.admin-calendar-legend { display: flex; gap: 20px; padding: 0 24px 24px; color: #807663; font-size: 11px; }
+.admin-calendar-legend span { display: flex; align-items: center; gap: 5px; }
+.admin-calendar-legend i { width: 10px; height: 10px; border: 1px solid #e9e6e4; }
+.admin-calendar-legend .selected { background: #c59b27; border-color: #c59b27; }
+.admin-calendar-legend .unavailable { background: #ffd7d7; border-color: #ffd7d7; }
+.admin-time-slots header { display: block; padding-bottom: 14px; }
+.admin-time-slots header p { padding-top: 4px; color: #807663; font-size: 12px; }
+.admin-slot-table { padding: 0 24px 12px; }
+.admin-slot-row { display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: center; min-height: 52px; border-bottom: 1px solid #e9e6e4; color: #4e4635; font-size: 12px; }
+.admin-slot-row strong { color: #1b1c1c; }
+.admin-slot-head { min-height: 34px; color: #807663; font: 600 10px/14px 'Admin Montserrat', Arial, sans-serif; text-transform: uppercase; }
+.slot-available, .slot-unavailable, .slot-unknown { justify-self: start; padding: 3px 8px; border-radius: 2px; font-size: 10px; }
+.slot-available { background: #dff5bf; color: #4d7c0f; }
+.slot-unavailable { background: #ffd7d7; color: #b91c1c; }
+.slot-unknown { background: #f5f3f3; color: #807663; }
+.admin-calendar-reservations { padding: 12px 24px; background: #fff2f2; color: #8c252b; }
+.admin-calendar-reservations p { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 12px; }
+.admin-manage-events-button { display: flex; align-items: center; justify-content: center; gap: 8px; border: 0; border-radius: 2px; padding: 12px; background: #c59b27; color: #041a40; font: 700 12px/16px 'Admin Montserrat', Arial, sans-serif; text-transform: uppercase; letter-spacing: .55px; }
+.admin-calendar-error { padding: 16px; background: #fff2f2; color: #b12a2d; }
+.admin-calendar-error button { margin-top: 8px; border: 1px solid #e9e6e4; border-radius: 4px; padding: 8px 12px; background: white; }
+@media (max-width: 700px) { .admin-calendar-title { padding: 16px 20px; font-size: 32px; } .admin-calendar-workspace { padding: 16px; } .admin-calendar-panel header { align-items: stretch; flex-direction: column; padding: 20px 16px; } .admin-calendar-month { width: 100%; justify-content: space-between; } .admin-calendar-venue-select select { width: 100%; } .admin-calendar-grid { padding: 20px 12px; } .admin-calendar-days button { min-height: 44px; } .admin-calendar-weekdays, .admin-calendar-days { gap: 4px; } .admin-slot-table { padding-inline: 16px; } }

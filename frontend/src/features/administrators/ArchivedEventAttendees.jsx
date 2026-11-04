@@ -1,0 +1,17 @@
+import { useEffect, useMemo, useState } from 'react'
+import { Link, useParams } from 'react-router'
+import AdminShell from './AdminShell'
+import { supabase } from '../../lib/supabase'
+import { archiveDateTime, loadArchivedEvent, loadArchivedRegistrations } from './archiveData'
+import './ArchivedEvents.css'
+
+export default function ArchivedEventAttendees() {
+  const { eventId } = useParams()
+  const [event, setEvent] = useState(null); const [rows, setRows] = useState([]); const [error, setError] = useState(''); const [loading, setLoading] = useState(true)
+  useEffect(() => { let active = true; Promise.all([loadArchivedEvent(supabase, eventId), loadArchivedRegistrations(supabase, eventId)]).then(([item, registrations]) => { if (active) { setEvent(item); setRows(registrations) } }).catch(failure => active && setError(failure.message)).finally(() => active && setLoading(false)); return () => { active = false } }, [eventId])
+  const stats = useMemo(() => ({ total: rows.filter(row => row.reg_status !== 'Cancelled').length, confirmed: rows.filter(row => row.reg_status === 'Confirmed').length, waitlisted: rows.filter(row => row.reg_status === 'Waitlisted').length, present: rows.filter(row => row.attendance_status === 'Present').length, absent: rows.filter(row => row.attendance_status === 'Absent').length, cancelled: rows.filter(row => row.reg_status === 'Cancelled').length }), [rows])
+  if (loading) return <AdminShell mainClassName="archive-main"><div className="archive-empty">Loading attendees…</div></AdminShell>
+  if (!event) return <AdminShell mainClassName="archive-main"><div className="archive-empty" role="alert">{error || 'Event unavailable.'}</div></AdminShell>
+  const eventName = event.proposal?.event_name || eventId
+  return <AdminShell mainClassName="archive-main"><div className="attendee-wrap"><nav className="archive-breadcrumb"><Link to="/admin/archives">← Archived Events</Link><span>/</span><Link to={`/admin/archives/${encodeURIComponent(eventId)}`}>{eventName}</Link><span>/</span><strong>Attendees</strong></nav><h1>Attendees</h1><p className="attendee-subtitle">Read-only attendance records for {eventName}</p><div className="attendee-stats">{[['Total Registered', stats.total], ['Confirmed Seats', stats.confirmed], ['Waitlisted', stats.waitlisted], ['Present', stats.present], ['Absent', stats.absent], ['Pre-Event Cancelled', stats.cancelled]].map(([label, value]) => <div key={label}><small>{label}</small><strong>{value}</strong></div>)}</div><section className="attendee-card"><div className="attendee-toolbar"><strong>Registrations &amp; Attendance</strong><span>Event date: {archiveDateTime(event.starts_at)}</span></div><div className="attendee-table"><div className="attendee-row attendee-head"><span>Participant</span><span>Registration log</span><span>Registration status</span><span>Attendance</span></div>{rows.length ? rows.map(row => <div className="attendee-row" key={row.reg_id}><div><strong>{row.student?.name || row.student_number || 'Participant'}</strong><small>{row.student?.student_number || '—'} · {row.student?.college || 'College not provided'} · {row.student?.program || 'Program not provided'}</small></div><span>{archiveDateTime(row.reg_date)}</span><b className={`attendee-badge ${row.reg_status.toLowerCase()}`}>{row.reg_status}</b><span>{row.attendance_status || 'Unmarked'}</span></div>) : <p className="archive-empty">No registration records for this event.</p>}</div></section></div></AdminShell>
+}
