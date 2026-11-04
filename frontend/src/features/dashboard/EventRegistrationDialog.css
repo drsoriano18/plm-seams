@@ -1,0 +1,24 @@
+.student-event-dialog{box-sizing:border-box;width:432px;max-width:calc(100vw - 32px);max-height:calc(100svh - 32px);margin:auto;padding:0;overflow:auto;border:1px solid #e9e6e4;border-radius:8px;background:#fff;color:#1b1c1c;box-shadow:0 4px 16px #0b204612;font-family:Inter,Arial,sans-serif}
+.student-event-dialog::backdrop{background:rgba(11,12,15,.5)}
+.event-dialog-content{box-sizing:border-box;display:flex;flex-direction:column;gap:20px;min-height:166px;padding:24px}
+.is-confirmed .event-dialog-content{min-height:158px}
+.is-ineligible .event-dialog-content{min-height:166px}
+.is-cancel-confirm .event-dialog-content{min-height:312px;padding-bottom:18px}
+.event-dialog-heading{display:flex;align-items:center;gap:12px}
+.event-dialog-symbol{display:grid;place-items:center;flex:0 0 40px;height:40px;border-radius:24px;background:#faeeee}
+.is-confirmed .event-dialog-symbol{background:#edf5ef}
+.is-waitlisted .event-dialog-symbol{background:#faf4e4}
+.event-dialog-symbol img{display:block}
+.event-dialog-heading h2{margin:0;font:700 22px/28px 'Playfair Display',Georgia,serif;letter-spacing:-.4px}
+.event-dialog-content p{margin:0;font:400 15px/22px Inter,Arial,sans-serif}
+.event-dialog-reason{display:flex;flex-direction:column;gap:8px}
+.event-dialog-reason label{font:600 13px/20px Inter,Arial,sans-serif}
+.event-dialog-reason textarea{box-sizing:border-box;width:100%;height:96px;min-height:96px;padding:12px;resize:vertical;border:1px solid #e9e6e4;border-radius:4px;background:#fbf9f9;color:#1b1c1c;font:400 13px/20px Inter,Arial,sans-serif}
+.event-dialog-reason textarea::placeholder{color:#807665}
+.event-dialog-actions{display:flex;justify-content:flex-end;align-items:center;gap:12px;box-sizing:border-box;height:80px;padding:19px 24px;border-top:1px solid #e9e6e4;background:#f5f3f3}
+.event-dialog-actions button{display:flex;align-items:center;justify-content:center;min-width:88px;height:40px;padding:0 24px;border:1px solid transparent;border-radius:4px;background:#041a40;color:#fff;cursor:pointer;font:700 11px/16px Montserrat,Arial,sans-serif}
+.event-dialog-actions button.is-danger{background:#9c2323}
+.event-dialog-actions button.is-secondary{border-color:#e9e6e4;background:#fff;color:#041a40}
+.event-dialog-actions button:disabled{cursor:wait;opacity:.65}
+.event-dialog-actions button:focus-visible,.event-dialog-reason textarea:focus-visible{outline:2px solid #c59b27;outline-offset:3px}
+@media(max-width:420px){.event-dialog-content{padding:20px}.event-dialog-heading h2{font-size:20px}.event-dialog-actions{padding:20px}}

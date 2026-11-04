@@ -1,3 +1,4 @@
+// Includes the deployed portal completion migrations.
 export type Json =
   | string
   | number
@@ -153,6 +154,7 @@ export type Database = {
       }
       event_proposal: {
         Row: {
+          allowed_programs: string[]
           allowed_college: string | null
           approval_status: string
           budget_information: string | null
@@ -170,6 +172,7 @@ export type Database = {
           submission_date: string
         }
         Insert: {
+          allowed_programs?: string[]
           allowed_college?: string | null
           approval_status: string
           budget_information?: string | null
@@ -187,6 +190,7 @@ export type Database = {
           submission_date: string
         }
         Update: {
+          allowed_programs?: string[]
           allowed_college?: string | null
           approval_status?: string
           budget_information?: string | null
@@ -478,6 +482,7 @@ export type Database = {
       }
       students: {
         Row: {
+          profile_image_path: string | null
           college: string
           name: string
           program: string
@@ -485,6 +490,7 @@ export type Database = {
           year_level: string
         }
         Insert: {
+          profile_image_path?: string | null
           college: string
           name: string
           program: string
@@ -492,6 +498,7 @@ export type Database = {
           year_level: string
         }
         Update: {
+          profile_image_path?: string | null
           college?: string
           name?: string
           program?: string
@@ -634,6 +641,12 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_student_dashboard_events: {Args: never;Returns: Json[]}
+      get_student_event_details: {Args:{eid:string};Returns:Json}
+      get_student_registration_history: {Args:never;Returns:Json[]}
+      get_student_discover_events: {Args:never;Returns:{event_id:string;event_name:string;event_type:string;organization_name:string;eligible_college:string;eligibility_mode:string;starts_at:string;ends_at:string;venue_name:string|null;registration_capacity:number;confirmed_registrations:number}[]}
+      submit_proposal: {Args:{proposal:Json;schedule:Json};Returns:string}
+      set_student_profile_image: {Args:{path:string|null};Returns:undefined}
       cancel_registration: {
         Args: { reason?: string; rid: string }
         Returns: undefined

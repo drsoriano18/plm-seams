@@ -1,3 +1,6 @@
+import useBellNotifications from './useBellNotifications'
+import NotificationDates from './NotificationDates'
+import { ProfileImage } from '../account/AccountControls'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { useAuth } from '../auth/authContext'
@@ -28,24 +31,15 @@ function formatDateTime(value) {
   return `${dateFormatter.format(date)} • ${timeFormatter.format(date)}`
 }
 
-function relativeTime(value) {
-  const minutes = Math.max(0, Math.round((Date.now() - new Date(value).getTime()) / 60000))
-  if (minutes < 1) return 'Just now'
-  if (minutes < 60) return `${minutes} minute${minutes === 1 ? '' : 's'} ago`
-  const hours = Math.round(minutes / 60)
-  if (hours < 24) return `${hours} hour${hours === 1 ? '' : 's'} ago`
-  const days = Math.round(hours / 24)
-  return `${days} day${days === 1 ? '' : 's'} ago`
-}
-
 function eventTitle(event) {
+  if (event.event_name) return event.event_name
   const caption = event.post_caption?.trim()
   if (caption) return caption.replace(/[.!?].*$/, '')
   return event.event_id
 }
 
 function eventType(event) {
-  return event.event_type?.description || 'PLM Event'
+  return event.event_type?.description || event.event_type || 'PLM Event'
 }
 
 function EventCard({ event, registration }) {
@@ -61,7 +55,7 @@ function EventCard({ event, registration }) {
         </div>
         <time className="student-event-time" dateTime={event.starts_at}><Icon name="calendar" size={13} />{formatDateTime(event.starts_at)}</time>
       </div>
-      <p className="student-event-location"><Icon name="pin" size={14} />Venue details will be posted by the event organizer.</p>
+      <p className="student-event-location"><Icon name="pin" size={14} />{event.venue_name || 'Online / venue to be announced'}</p>
       <div className="student-event-status-row">
         <span className={`student-status student-status-${status.toLowerCase().replaceAll(' ', '-')}`}><i />{status}</span>
         {isConfirmed && <span className="student-card-note">Registration confirmed</span>}
@@ -76,7 +70,7 @@ function NotificationsPopover({ notifications, onRead, onClose }) {
     <div className="student-notification-list">
       {notifications.length ? notifications.map(notification => <div className={`student-notification ${notification.read_at ? 'is-read' : ''}`} key={notification.notification_id}>
         <span className="student-notification-dot" aria-hidden="true" />
-        <div className="student-notification-copy"><strong>{notification.notification_type}</strong><p>{notification.message}</p><time dateTime={notification.created_at}>{relativeTime(notification.created_at)}</time></div>
+        <div className="student-notification-copy"><strong>{notification.notification_type}</strong><p>{notification.message}</p><NotificationDates notification={notification} /></div>
         <button className="student-dismiss-button" type="button" onClick={() => onRead(notification)} aria-label={`Mark “${notification.notification_type}” as read`}><Icon name="x" size={13} /></button>
       </div>) : <p className="student-empty-notifications">You’re all caught up. New updates will appear here.</p>}
     </div>
@@ -98,11 +92,13 @@ export default function StudentDashboard() {
   const [events, setEvents] = useState([])
   const [registrations, setRegistrations] = useState([])
   const [notifications, setNotifications] = useState([])
+  useBellNotifications(setNotifications)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [openPopover, setOpenPopover] = useState(null)
   const [profileMenuPinned, setProfileMenuPinned] = useState(false)
   const [currentTime, setCurrentTime] = useState(() => Date.now())
+  const [revision, setRevision] = useState(0)
   const [activeView, setActiveView] = useState('upcoming')
   const [activeFilter, setActiveFilter] = useState('all')
   const notificationRef = useRef(null)
@@ -113,13 +109,13 @@ export default function StudentDashboard() {
     async function loadStudentData() {
       setLoading(true); setError('')
       const [eventResult, registrationResult, notificationResult] = await Promise.all([
-        supabase.from('event').select('event_id,post_caption,starts_at,ends_at,event_status,publication_status,registration_status,event_type(event_type_id,description)').eq('publication_status', 'Published').in('event_status', ['Upcoming', 'Ongoing']).order('starts_at', { ascending: true }).limit(50),
+        supabase.rpc('get_student_dashboard_events'),
         supabase.from('registration').select('event_id,reg_status').eq('student_number', profile.user_id),
         supabase.from('notifications').select('notification_id,notification_type,message,created_at,read_at,event_id').order('created_at', { ascending: false }).limit(20),
       ])
       if (!active) return
       const firstError = eventResult.error || registrationResult.error || notificationResult.error
-      if (firstError) setError('Some student updates could not be loaded. Please refresh and try again.')
+      if (firstError) setError('Some student updates could not be loaded. Please retry or refresh.')
       setEvents(eventResult.data || [])
       setRegistrations(registrationResult.data || [])
       setNotifications(notificationResult.data || [])
@@ -127,7 +123,7 @@ export default function StudentDashboard() {
     }
     loadStudentData()
     return () => { active = false }
-  }, [profile.user_id])
+  }, [profile.user_id, revision])
 
   useEffect(() => {
     const timer = window.setInterval(() => setCurrentTime(Date.now()), 60000)
@@ -146,7 +142,7 @@ export default function StudentDashboard() {
   }, [])
 
   async function markAsRead(notification) {
-    if (!notification.read_at) await supabase.from('notifications').update({ read_at: new Date().toISOString() }).eq('notification_id', notification.notification_id)
+    if (!notification.read_at) { const result = await supabase.from('notifications').update({ read_at: new Date().toISOString() }).eq('notification_id', notification.notification_id); if (result.error) { setError('Notification could not be marked as read.'); return } }
     setNotifications(current => current.map(item => item.notification_id === notification.notification_id ? { ...item, read_at: item.read_at || new Date().toISOString() } : item))
   }
 
@@ -185,12 +181,12 @@ export default function StudentDashboard() {
       <a href="/student/dashboard" className="student-brand" aria-label="PLM SEAMS student dashboard"><img src={logoImage} alt="PLM SEAMS" width="112" height="40" /></a>
       <nav className="student-primary-nav" aria-label="Student portal sections"><Link className={activeView === 'upcoming' ? 'is-active' : ''} to="/student/dashboard" onClick={() => setActiveView('upcoming')}><Icon name="calendar" size={14} />Upcoming</Link><Link className={activeView === 'discover' ? 'is-active' : ''} to="/student/discover" onClick={() => setActiveView('discover')}><Icon name="compass" size={14} />Discover</Link></nav>
       <div className="student-header-actions">
-        <div className="student-header-popover-wrap" ref={notificationRef} onMouseEnter={() => setOpenPopover('notifications')} onMouseLeave={() => setOpenPopover(null)}>
+        <div className="student-header-popover-wrap" ref={notificationRef}>
           <button className="student-icon-button" type="button" onClick={() => setOpenPopover(current => current === 'notifications' ? null : 'notifications')} aria-label={`Notifications${unreadCount ? `, ${unreadCount} unread` : ''}`} aria-expanded={openPopover === 'notifications'}><Icon name="bell" size={18} />{unreadCount > 0 && <span className="student-unread-dot" />}</button>
           {openPopover === 'notifications' && <NotificationsPopover notifications={notifications} onRead={markAsRead} onClose={() => setOpenPopover(null)} />}
         </div>
         <div className="student-header-popover-wrap" ref={profileRef} onMouseEnter={() => setOpenPopover('profile')} onMouseLeave={() => { if (!profileMenuPinned) setOpenPopover(null) }}>
-          <button className="student-profile-button" type="button" onClick={() => { const nextPinned = !profileMenuPinned; setProfileMenuPinned(nextPinned); setOpenPopover(nextPinned ? 'profile' : null) }} aria-label="Open profile menu" aria-expanded={openPopover === 'profile'}><span><Icon name="user" size={16} /></span><Icon name="chevron" size={13} /></button>
+          <button className="student-profile-button" type="button" onClick={() => { const nextPinned = !profileMenuPinned; setProfileMenuPinned(nextPinned); setOpenPopover(nextPinned ? 'profile' : null) }} aria-label="Open profile menu" aria-expanded={openPopover === 'profile'}><span><ProfileImage fallback={<Icon name="user" size={16} />} /></span><Icon name="chevron" size={13} /></button>
           {openPopover === 'profile' && <ProfilePopover onSignOut={signOut} />}
         </div>
       </div>
@@ -201,7 +197,7 @@ export default function StudentDashboard() {
         <span className="student-confirmed-count"><i />{confirmedCount} Confirmed Event{confirmedCount === 1 ? '' : 's'}</span>
         <div className="student-filter-strip" role="group" aria-label="Event filters"><button className={activeFilter === 'all' ? 'is-active' : ''} type="button" onClick={() => setActiveFilter('all')}>All ({filterCounts.all})</button><button className={activeFilter === 'week' ? 'is-active' : ''} type="button" onClick={() => setActiveFilter('week')}>This Week ({filterCounts.week})</button><button className={activeFilter === 'next-month' ? 'is-active' : ''} type="button" onClick={() => setActiveFilter('next-month')}>Next Month ({filterCounts['next-month']})</button></div>
       </div>
-      {error && <p className="student-inline-error" role="alert">{error}</p>}
+      {error && <p className="student-inline-error" role="alert">{error} <button type="button" onClick={() => setRevision(v => v+1)}>Retry</button></p>}
       <div className="student-event-list" aria-live="polite">
         {loading ? <p className="student-loading" role="status">Loading events…</p> : visibleEvents.length ? visibleEvents.map(event => <EventCard key={event.event_id} event={event} registration={registrationMap.get(event.event_id)} />) : <div className="student-empty-state"><h2>{events.length ? 'No events in this filter' : 'No upcoming events yet'}</h2><p>{events.length ? 'Try another date range to see more published events.' : 'Published student events will appear here when they become available.'}</p></div>}
       </div>

@@ -1,3 +1,7 @@
+import useBellNotifications from './useBellNotifications'
+import NotificationDates from './NotificationDates'
+import { eligibilityLabel } from './discoverEligibility'
+import { ProfileImage } from '../account/AccountControls'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { supabase } from '../../lib/supabase'
@@ -37,7 +41,7 @@ function NotificationsPopover({ notifications, onRead, onClose }) {
     <div className="student-notification-list">
       {notifications.length ? notifications.map(notification => <div className={`student-notification ${notification.read_at ? 'is-read' : ''}`} key={notification.notification_id}>
         <span className="student-notification-dot" aria-hidden="true" />
-        <div className="student-notification-copy"><strong>{notification.notification_type}</strong><p>{notification.message}</p><time dateTime={notification.created_at}>{formatDateTime(notification.created_at)}</time></div>
+        <div className="student-notification-copy"><strong>{notification.notification_type}</strong><p>{notification.message}</p><NotificationDates notification={notification} /></div>
         <button className="student-dismiss-button" type="button" onClick={() => onRead(notification)} aria-label={`Mark “${notification.notification_type}” as read`}><Icon name="x" size={13} /></button>
       </div>) : <p className="student-empty-notifications">You’re all caught up. New updates will appear here.</p>}
     </div>
@@ -54,12 +58,12 @@ function ProfilePopover({ onSignOut }) {
 }
 
 function DiscoverCard({ event }) {
-  const isLimited = event.registration_capacity > 0 && event.confirmed_registrations >= event.registration_capacity
+  const isLimited = Number(event.confirmed_registrations) >= Number(event.registration_capacity)
   const category = (event.event_type || 'Event').toUpperCase()
   return <Link className="discover-event-card" to={`/student/events/${event.event_id}`}>
     <div className="discover-event-image" aria-label="Event image placeholder"><span>{category.slice(0, 8)}</span></div>
     <div className="discover-event-content">
-      <div className="discover-event-topline"><p>{formatDateTime(event.starts_at)}</p><span className={isLimited ? 'is-limited' : ''}>{isLimited ? 'Limited Seats' : 'Open to All'}</span></div>
+      <div className="discover-event-topline"><p>{formatDateTime(event.starts_at)}</p><span className={isLimited ? 'is-limited' : ''}>{eligibilityLabel(event)}{isLimited ? ' · Waitlist' : ''}</span></div>
       <h3>{event.event_name}</h3>
       <p className="discover-event-organization">{event.organization_name}</p>
       <div className="discover-event-meta"><span><Icon name="pin" size={13} />{event.venue_name || 'Venue to be announced'}</span><span className="discover-event-arrow" aria-label={`View ${event.event_name}`}><Icon name="arrow" size={14} /></span></div>
@@ -71,7 +75,9 @@ export default function DiscoverEvents() {
   const navigate = useNavigate()
   const [events, setEvents] = useState([])
   const [notifications, setNotifications] = useState([])
+  useBellNotifications(setNotifications)
   const [search, setSearch] = useState('')
+  const [revision, setRevision] = useState(0)
   const [college, setCollege] = useState('all')
   const [openPopover, setOpenPopover] = useState(null)
   const [profileMenuPinned, setProfileMenuPinned] = useState(false)
@@ -86,10 +92,10 @@ export default function DiscoverEvents() {
       setLoading(true); setError('')
       const [eventsResult, notificationsResult] = await Promise.all([
         supabase.rpc('get_student_discover_events'),
-        supabase.from('notifications').select('notification_id,notification_type,message,created_at,read_at').order('created_at', { ascending: false }).limit(20),
+        supabase.from('notifications').select('notification_id,notification_type,message,created_at,read_at,event_id').order('created_at', { ascending: false }).limit(20),
       ])
       if (!active) return
-      if (eventsResult.error) setError('Discover events could not be loaded. Make sure the latest Supabase migration has been applied.')
+      if (eventsResult.error) setError('Discover events could not be loaded. Please retry or try again later.')
       if (notificationsResult.error && !eventsResult.error) setError('Notifications could not be loaded. Please refresh and try again.')
       setEvents(eventsResult.data || [])
       setNotifications(notificationsResult.data || [])
@@ -97,7 +103,7 @@ export default function DiscoverEvents() {
     }
     loadDiscoverData()
     return () => { active = false }
-  }, [])
+  }, [revision])
 
   useEffect(() => {
     function closeOnOutside(event) {
@@ -113,13 +119,13 @@ export default function DiscoverEvents() {
     const term = search.trim().toLowerCase()
     return events.filter(event => {
       const searchable = [event.event_name, event.organization_name, event.eligible_college, event.event_type, event.venue_name].filter(Boolean).join(' ').toLowerCase()
-      return (!term || searchable.includes(term)) && (college === 'all' || event.eligible_college !== 'All Colleges')
+      return (!term || searchable.includes(term)) && (college === 'all' || event.is_eligible === true)
     })
   }, [college, events, search])
   const unreadCount = notifications.filter(item => !item.read_at).length
 
   async function markAsRead(notification) {
-    if (!notification.read_at) await supabase.from('notifications').update({ read_at: new Date().toISOString() }).eq('notification_id', notification.notification_id)
+    if (!notification.read_at) { const result = await supabase.from('notifications').update({ read_at: new Date().toISOString() }).eq('notification_id', notification.notification_id); if (result.error) { setError('Notification could not be marked as read.'); return } }
     setNotifications(current => current.map(item => item.notification_id === notification.notification_id ? { ...item, read_at: item.read_at || new Date().toISOString() } : item))
   }
 
@@ -135,16 +141,16 @@ export default function DiscoverEvents() {
       <a href="/student/dashboard" className="student-brand" aria-label="PLM SEAMS student dashboard"><img src={logoImage} alt="PLM SEAMS" width="112" height="40" /></a>
       <nav className="student-primary-nav" aria-label="Student portal sections"><Link to="/student/dashboard"><Icon name="calendar" size={14} />Upcoming</Link><Link className="is-active" to="/student/discover"><Icon name="compass" size={14} />Discover</Link></nav>
       <div className="student-header-actions">
-        <div className="student-header-popover-wrap" ref={notificationRef} onMouseEnter={() => setOpenPopover('notifications')} onMouseLeave={() => setOpenPopover(null)}><button className="student-icon-button" type="button" onClick={() => setOpenPopover(current => current === 'notifications' ? null : 'notifications')} aria-label={`Notifications${unreadCount ? `, ${unreadCount} unread` : ''}`} aria-expanded={openPopover === 'notifications'}><Icon name="bell" size={18} />{unreadCount > 0 && <span className="student-unread-dot" />}</button>{openPopover === 'notifications' && <NotificationsPopover notifications={notifications} onRead={markAsRead} onClose={() => setOpenPopover(null)} />}</div>
-        <div className="student-header-popover-wrap" ref={profileRef} onMouseEnter={() => setOpenPopover('profile')} onMouseLeave={() => { if (!profileMenuPinned) setOpenPopover(null) }}><button className="student-profile-button" type="button" onClick={() => { const nextPinned = !profileMenuPinned; setProfileMenuPinned(nextPinned); setOpenPopover(nextPinned ? 'profile' : null) }} aria-label="Open profile menu" aria-expanded={openPopover === 'profile'}><span><Icon name="user" size={16} /></span><Icon name="chevron" size={13} /></button>{openPopover === 'profile' && <ProfilePopover onSignOut={signOut} />}</div>
+        <div className="student-header-popover-wrap" ref={notificationRef}><button className="student-icon-button" type="button" onClick={() => setOpenPopover(current => current === 'notifications' ? null : 'notifications')} aria-label={`Notifications${unreadCount ? `, ${unreadCount} unread` : ''}`} aria-expanded={openPopover === 'notifications'}><Icon name="bell" size={18} />{unreadCount > 0 && <span className="student-unread-dot" />}</button>{openPopover === 'notifications' && <NotificationsPopover notifications={notifications} onRead={markAsRead} onClose={() => setOpenPopover(null)} />}</div>
+        <div className="student-header-popover-wrap" ref={profileRef} onMouseEnter={() => setOpenPopover('profile')} onMouseLeave={() => { if (!profileMenuPinned) setOpenPopover(null) }}><button className="student-profile-button" type="button" onClick={() => { const nextPinned = !profileMenuPinned; setProfileMenuPinned(nextPinned); setOpenPopover(nextPinned ? 'profile' : null) }} aria-label="Open profile menu" aria-expanded={openPopover === 'profile'}><span><ProfileImage fallback={<Icon name="user" size={16} />} /></span><Icon name="chevron" size={13} /></button>{openPopover === 'profile' && <ProfilePopover onSignOut={signOut} />}</div>
       </div>
     </header>
     <section className="discover-main" aria-labelledby="discover-events-heading">
       <div className="discover-heading-row"><h1 id="discover-events-heading">Discover Campus Events</h1><label className="discover-search"><span className="sr-only">Search events</span><Icon name="search" size={14} /><input type="search" value={search} onChange={event => setSearch(event.target.value)} placeholder="Search events, keywords…" spellCheck="false" /></label></div>
       <div className="discover-filter-bar"><span className="discover-filter-label"><Icon name="filter" size={14} />Filter:</span><label><span className="sr-only">Filter by college eligibility</span><select value={college} onChange={event => setCollege(event.target.value)}><option value="all">All Colleges</option><option value="eligible">Eligible Colleges Only</option></select></label></div>
       <div className="discover-section-heading"><h2><i />Approved Upcoming Events</h2><span>Sort: <strong>Earliest Date ↓</strong></span></div>
-      {error && <p className="discover-error" role="alert">{error}</p>}
-      <div className="discover-event-list" aria-live="polite">{loading ? <p className="discover-status" role="status">Loading events…</p> : filteredEvents.length ? filteredEvents.map(event => <DiscoverCard key={event.event_id} event={event} />) : <div className="discover-empty"><h3>{events.length ? 'No events match your search' : 'No open upcoming events'}</h3><p>{events.length ? 'Try another keyword or college filter.' : 'New events open for registration will appear here.'}</p></div>}</div>
+      {error && <p className="discover-error" role="alert">{error} <button type="button" onClick={() => setRevision(v => v+1)}>Retry</button></p>}
+      <div className="discover-event-list" aria-live="polite">{loading ? <p className="discover-status" role="status">Loading events…</p> : filteredEvents.length ? filteredEvents.map(event => <DiscoverCard key={event.event_id} event={event} />) : <div className="discover-empty"><h3>{events.length ? 'No events match your search' : 'No upcoming events'}</h3><p>{events.length ? 'Try another keyword or college filter.' : 'New published upcoming events will appear here.'}</p></div>}</div>
     </section>
     <footer className="student-portal-footer"><strong>Pamantasan ng Lungsod ng Maynila • SEAMS</strong><span>© 2026 PLM Student Event Administration &amp; Management System.</span></footer>
   </main>
