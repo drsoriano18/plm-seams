@@ -1,0 +1,37 @@
+.admin-profile-main { flex: 1; width: 100%; padding: 72px 48px 32px; }
+.admin-profile-breadcrumb { display: flex; gap: 6px; align-items: center; max-width: 1180px; width: 100%; margin: 0 auto 16px; color: #807663; font: 600 13px/20px 'Admin Montserrat', Arial, sans-serif; }
+.admin-profile-breadcrumb strong { color: #1b1c1c; }
+.admin-profile-card { max-width: 896px; width: 100%; margin: 0 auto; overflow: hidden; border: 1px solid rgb(209 197 175 / 40%); border-radius: 8px; background: #fff; box-shadow: 0 1px 2px rgb(0 0 0 / 5%); }
+.admin-profile-toolbar { padding: 14px 16px 15px; border-bottom: 1px solid rgb(209 197 175 / 30%); background: #f5f3f3; }
+.admin-edit-settings { display: inline-flex; align-items: center; padding: 6px 13px; border: 1px solid rgb(209 197 175 / 40%); border-radius: 2px; background: white; color: #041a40; font: 600 13px/20px 'Admin Montserrat', Arial, sans-serif; text-decoration: none; }
+.admin-profile-body { display: grid; grid-template-columns: 192px minmax(0, 1fr); gap: 24px; align-items: center; padding: 24px; min-height: 275px; }
+.admin-profile-avatar { width: 144px; height: 168px; overflow: hidden; border-radius: 5px; background: #efeded; }
+.admin-profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.admin-profile-avatar span { display: block; width: 100%; height: 100%; }
+.admin-profile-copy { display: grid; gap: 8px; }
+.admin-profile-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.admin-profile-tags span { padding: 2px 8px; border-radius: 2px; background: #efeded; color: #4e4635; font: 500 12px/16px 'Admin Inter', Arial, sans-serif; }
+.admin-profile-tags span:nth-child(2) { background: #d9e2ff; color: #34466e; }
+.admin-profile-tags span:nth-child(3) { background: #ffdf98; color: #251a00; }
+.admin-profile-copy h1 { color: #041a40; font: 600 32px/40px 'Admin Playfair Display', Georgia, serif; letter-spacing: -.8px; }
+.admin-profile-copy p { color: #041a40; font: 600 15px/24px 'Admin Inter', Arial, sans-serif; }
+.admin-account-main { flex: 1; width: 100%; padding: 31px 48px 32px; }
+.admin-account-layout { display: grid; grid-template-columns: minmax(0, 7fr) minmax(300px, 5fr); gap: 32px; max-width: 1320px; margin: 0 auto; }
+.admin-account-left { display: grid; gap: 24px; }
+.admin-account-card, .admin-account-info { padding: 24px; border-radius: 8px; background: white; box-shadow: 0 1px 1px rgb(0 0 0 / 5%); }
+.admin-account-card h2, .admin-account-info h2 { margin: 0 0 16px; color: #041a40; font: 600 20px/28px 'Admin Playfair Display', Georgia, serif; }
+.admin-account-picture-row { display: flex; align-items: flex-start; gap: 24px; }
+.admin-photo-uploader { display: grid; gap: 8px; }
+.admin-photo-button { position: relative; width: 112px; height: 112px; overflow: hidden; padding: 0; border: 0; background: #ccc; cursor: pointer; }
+.admin-photo-button::after { content: '◉'; position: absolute; right: 0; bottom: 0; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 12px; background: #041a40; color: white; box-shadow: 0 0 0 2px rgb(59 130 246 / 50%); }
+.admin-photo-button img { width: 100%; height: 100%; object-fit: cover; }
+.admin-account-help { max-width: 420px; padding-top: 8px; color: #4e4635; font-size: 13px; line-height: 20px; }
+.admin-account-info { align-self: start; }
+.admin-account-info dl { display: grid; gap: 8px; margin: 0; }
+.admin-account-info dl div { padding: 10px 12px; border-radius: 4px; background: #f5f3f3; }
+.admin-account-info dt { color: #807663; font: 700 11px/16px 'Admin Montserrat', Arial, sans-serif; letter-spacing: 1.32px; text-transform: uppercase; }
+.admin-account-info dd { margin: 2px 0 0; color: #0b2046; font: 600 16px/24px 'Admin Inter', Arial, sans-serif; }
+.admin-account-signout { display: flex; justify-content: space-between; align-items: center; padding: 24px; border-radius: 8px; background: white; box-shadow: 0 1px 1px rgb(0 0 0 / 5%); }
+.admin-account-signout button { padding: 10px 16px; border: 1px solid #f2a0a0; border-radius: 4px; background: white; color: #b91c1c; }
+.admin-notification-dismiss { margin-left: auto; width: 24px; height: 24px; padding: 0!important; border: 1px solid #e5e7eb!important; border-radius: 50%!important; background: white!important; color: #807663!important; font-size: 16px; line-height: 20px; }
+@media (max-width: 720px) { .admin-profile-main { padding: 28px 16px 32px; } .admin-account-main { padding: 20px 16px 32px; } .admin-profile-body { grid-template-columns: 112px minmax(0, 1fr); min-height: 220px; padding: 18px; } .admin-profile-avatar { width: 112px; height: 132px; } .admin-profile-copy h1 { font-size: 26px; line-height: 32px; } .admin-account-layout { grid-template-columns: 1fr; gap: 20px; } }

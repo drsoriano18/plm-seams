@@ -49,6 +49,7 @@ export function PhotoUploader({ className = 'settings-picture-button' }) {
 }
 export function PasswordForm() {
   const [busy, setBusy] = useState(false), [error, setError] = useState(''), [message, setMessage] = useState('')
+  const [visible, setVisible] = useState({ current: false, password: false, confirmation: false })
   async function submit(e) {
     e.preventDefault()
     const form = e.currentTarget, values = new FormData(form)
@@ -59,5 +60,6 @@ export function PasswordForm() {
       form.reset(); setMessage('Password updated. Use your new password next time you sign in.')
     } catch (e) { setError(e.message) } finally { setBusy(false) }
   }
-  return <form className="account-password-form" onSubmit={submit}><h2>Password</h2><label>Current password<input name="current" type="password" autoComplete="current-password" required disabled={busy} /></label><label>New password<input name="password" type="password" autoComplete="new-password" minLength={8} required disabled={busy} /></label><label>Confirm new password<input name="confirmation" type="password" autoComplete="new-password" minLength={8} required disabled={busy} /></label><button className="settings-save-button" disabled={busy}>{busy ? 'Saving…' : 'Save password'}</button>{error && <p role="alert">{error}</p>}{message && <p role="status">{message}</p>}</form>
+  const field = (name, label, autoComplete, minLength) => <label key={name}>{label}<span className="password-input-wrap"><input name={name} type={visible[name] ? 'text' : 'password'} autoComplete={autoComplete} minLength={minLength} required disabled={busy} /><button type="button" className="password-visibility-toggle" aria-label={visible[name] ? `Hide ${label}` : `Show ${label}`} onClick={() => setVisible(current => ({ ...current, [name]: !current[name] }))}>{visible[name] ? '◉' : '◌'}</button></span></label>
+  return <form className="account-password-form" onSubmit={submit}><h2>Password</h2>{field('current', 'Current password', 'current-password')}{field('password', 'New password', 'new-password', 8)}{field('confirmation', 'Confirm new password', 'new-password', 8)}<button className="settings-save-button" disabled={busy}>{busy ? 'Saving…' : 'Save password'}</button>{error && <p role="alert">{error}</p>}{message && <p role="status">{message}</p>}</form>
 }

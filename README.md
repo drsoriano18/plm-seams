@@ -35,6 +35,20 @@ On a static production host, configure SPA fallback to `frontend/dist/index.html
 
 ## Access and workflows
 
+The admin landing route `/admin/dashboard` uses the Figma opening dashboard. It shows the four newest Pending proposals; **Review All** expands the complete queue on the same page. A Pending proposal whose latest review requested revisions is labelled **Resubmitted**. Proposals still awaiting organization revisions are excluded. Sorting and the submission age use the original `submission_date` stored in the database.
+
+The Agenda Feed shows approved, Published, non-cancelled events overlapping today or tomorrow in **Asia/Manila**, including events in progress and excluding events that have ended. Empty lists show an empty state; no demonstration records are inserted into Supabase. Notifications are restricted to the current admin and support marking updates as read. The profile menu supports sign out. Calendar, Archives, and View Profile currently open placeholders pending their separate designs.
+
+**Proposal review:** `/admin/proposals/:proposalId` displays the submitted proposal read-only. Admin remarks are optional for approval and required for revisions/rejection; every decision needs confirmation. Approval stays on the page with the heading **Event Proposal Review - Approved**, read-only saved remarks, and no decision buttons. Other decisions return to the overview with a confirmation message. The **Proposals** back link returns to the first four proposals.
+
+`review_proposal` saves the review, status, organization notification, and (for approval) one **Unpublished / Closed** event atomically. It copies the primary schedule and uses expected attendance as registration capacity. Only the primary venue is reserved; overlapping confirmed bookings are prevented by a database exclusion constraint, including setup/cleanup buffers on existing bookings. Rejection is final; an organization may resubmit a returned proposal. **Publish** makes the event Published and opens registration together. The migration is already applied to the shared PLM-SEAMS project; do not rerun it manually.
+
+`supabase/tests/proposal_review.sql` verifies these database operations and permissions in a transaction that is rolled back. `npm run test:review-browser` checks the review UI, confirmations, conflict handling, persistent approved view, final rejection, and mobile widths using mocked APIs.
+
+The admin profile menu also exposes **Account Settings** at `/admin/account`, retaining the password controls from the updated main branch. Proposal review displays Program-Specific eligibility and the submitted program list. The local SQL runner supports Windows paths and loads `btree_gist` to validate the primary-venue overlap constraint alongside the portal tests.
+
+`npm run test:admin-browser` (from `frontend`) checks the populated and empty admin views, review-list expansion, notifications, placeholders, error recovery, keyboard controls, and mobile widths. It uses Playwright fixtures and writes no live database data. Set `CHROMIUM_PATH` to an installed Chrome/Chromium executable, or install Playwright Chromium first. Screenshots are saved to the ignored `frontend/verification.local/` directory.
+
 | Data/action | Student | Student Organization | Admin |
 | --- | --- | --- | --- |
 | Base account | Read own safe columns | Read own safe columns | Read safe account columns |
