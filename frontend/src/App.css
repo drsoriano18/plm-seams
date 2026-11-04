@@ -28,3 +28,7 @@
 @media (max-width: 900px) { .landing-page { overflow: auto; padding: 48px 24px 104px; } .landing-content { transform: none; } .portal-list { grid-template-columns: 1fr; max-width: 560px; } }
 @media (max-width: 520px) { .landing-page { padding-inline: 16px; } .seams-logo { width: 158px; } .welcome-copy { margin-bottom: 28px; } .welcome-copy h1 { font-size: 2.2rem; } .portal-card { gap: 16px; padding: 20px; } .portal-icon-wrap { width: 52px; height: 52px; flex-basis: 52px; } .portal-title { font-size: 1.15rem; } .landing-footer p { font-size: 0.62rem; letter-spacing: 0.06em; } }
 @media (prefers-reduced-motion: reduce) { .portal-card, .portal-icon-wrap, .portal-description, .portal-chevron { transition: none; } }
+
+/* Responsive audit: titles wrap instead of spilling out of the card when the text does not fit. */
+@media (max-width: 1280px) { .portal-title { white-space: normal; overflow-wrap: anywhere; } }
+@media (max-width: 900px) { .portal-card { min-height: 88px; } .landing-footer { padding-inline: 4px; } .landing-footer p { text-wrap: balance; } }

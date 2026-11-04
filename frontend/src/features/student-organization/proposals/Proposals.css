@@ -1,0 +1,257 @@
+/* Event proposal pages. Tokens: navy #041a40, gold #c59b27 / #775a00, ink #1b1c1c, page #fbf9f9. */
+.organization-proposal-page{--pp-navy:#041a40;--pp-gold:#c59b27;--pp-gold-ink:#775a00;--pp-ink:#1b1c1c;--pp-muted:#6f6657;--pp-line:#e9e6e4;--pp-field:#8f887a;--pp-danger:#ba1a1a;--pp-tint:#f5f3f3}
+.organization-proposal-content{display:flex;flex-direction:column;gap:20px;width:min(100% - 48px,1000px);margin:0 auto;padding:20px 0 56px}
+
+/* Breadcrumb */
+.organization-proposal-breadcrumb ol{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0;padding:0;list-style:none;color:#4e4635;font:600 12px/18px Inter,Arial,sans-serif;letter-spacing:.3px;text-transform:uppercase}
+.organization-proposal-breadcrumb li{display:flex;align-items:center;min-width:0;overflow-wrap:anywhere}
+.organization-proposal-breadcrumb a{display:inline-flex;align-items:center;gap:6px;min-height:44px;color:#775a00;text-decoration:none}
+.organization-proposal-breadcrumb a:hover{text-decoration:underline}
+.organization-proposal-breadcrumb a:focus-visible{outline:2px solid #041a40;outline-offset:2px;border-radius:2px;text-decoration:underline}
+
+/* Page head and states */
+.organization-proposal-head h1,.organization-proposal-result h1{margin:0;color:var(--pp-navy);font:700 clamp(26px,4vw,34px)/1.2 'Playfair Display',Georgia,serif;overflow-wrap:anywhere}
+.organization-proposal-head h1:focus,.organization-proposal-result h1:focus{outline:none}
+.organization-proposal-subtitle{margin:8px 0 0;max-width:72ch;color:var(--pp-muted);font:400 14px/22px Inter,Arial,sans-serif}
+.organization-proposal-required-note{margin:14px 0 0;padding:10px 14px;border-radius:6px;background:#f4ecd6;color:#473500;font:500 13px/20px Inter,Arial,sans-serif}
+.organization-proposal-state{margin:0;padding:40px 24px;border-radius:8px;background:#fff;color:var(--pp-muted);font:500 14px/22px Inter,Arial,sans-serif;text-align:center;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.organization-proposal-state.is-error{display:flex;flex-direction:column;align-items:flex-start;gap:14px;border:1px solid #f3c9c9;background:#fff5f5;color:var(--pp-danger);text-align:left}
+.organization-proposal-state.is-error p{margin:0}
+.organization-proposal-banner{display:flex;align-items:flex-start;gap:12px;padding:14px 18px;border:1px solid var(--pp-line);border-radius:8px;background:#fff;color:var(--pp-ink)}
+.organization-proposal-banner svg{flex:0 0 auto;margin-top:2px}
+.organization-proposal-banner strong{display:block;font:700 14px/20px Inter,Arial,sans-serif}
+.organization-proposal-banner p{margin:4px 0 0;font:400 13px/20px Inter,Arial,sans-serif;overflow-wrap:anywhere;white-space:pre-line}
+.organization-proposal-banner .organization-proposal-banner-meta{color:var(--pp-muted);font-size:12px}
+.organization-proposal-banner.is-draft{background:#f5f3f3}
+.organization-proposal-banner.is-draft svg{color:var(--pp-navy)}
+.organization-proposal-banner.is-revision{border-color:#e6cf8f;background:#fbf3d9;color:#473500}
+.organization-proposal-banner.is-revision svg{color:var(--pp-gold-ink)}
+
+/* Form and section cards */
+.organization-proposal-form{display:flex;flex-direction:column;gap:20px}
+.organization-proposal-card{min-width:0;padding:28px;border:1px solid var(--pp-line);border-radius:8px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.organization-proposal-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px 16px;margin-bottom:24px}
+.organization-proposal-card-head h2{margin:0;color:var(--pp-navy);font:700 22px/30px 'Playfair Display',Georgia,serif;overflow-wrap:anywhere}
+.organization-proposal-card-head p{max-width:64ch;margin:4px 0 0;color:var(--pp-muted);font:400 13px/20px Inter,Arial,sans-serif}
+.organization-proposal-tag{flex:0 0 auto;padding:3px 10px;border-radius:999px;background:rgba(197,155,39,.18);color:var(--pp-gold-ink);font:700 10px/16px Montserrat,Arial,sans-serif;letter-spacing:.6px;text-transform:uppercase}
+.organization-proposal-tag.is-optional{background:#eae7e7;color:#4e4635}
+.organization-proposal-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 24px}
+.organization-proposal-grid+.organization-proposal-fieldset,.organization-proposal-fieldset+.organization-proposal-fieldset,.organization-proposal-fieldset+.organization-proposal-grid,.organization-proposal-grid+.organization-proposal-grid{margin-top:24px}
+
+/* Fields */
+.organization-proposal-field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.organization-proposal-field.is-full{grid-column:1/-1}
+.organization-proposal-field label,.organization-proposal-fieldset legend{color:#4e4635;font:600 11px/16px Montserrat,Arial,sans-serif;letter-spacing:.6px;text-transform:uppercase}
+.organization-proposal-fieldset legend{padding:0;margin-bottom:10px}
+.organization-proposal-control{box-sizing:border-box;width:100%;min-height:44px;padding:10px 12px;border:1px solid var(--pp-field);border-radius:4px;background:#fff;color:var(--pp-ink);font:400 14px/22px Inter,Arial,sans-serif}
+textarea.organization-proposal-control{resize:vertical}
+select.organization-proposal-control{cursor:pointer}
+.organization-proposal-control:focus-visible{outline:2px solid var(--pp-navy);outline-offset:1px;border-color:var(--pp-navy);box-shadow:0 0 0 4px rgba(197,155,39,.35)}
+.organization-proposal-control[aria-invalid="true"]{border-color:var(--pp-danger)}
+.organization-proposal-control.is-readonly{border-style:dashed;border-color:#c9c3b8;background:#f1eeed;color:#4e4635;cursor:default}
+.organization-proposal-control.is-readonly::placeholder{color:#8a8374}
+.organization-proposal-control.is-readonly:focus-visible{box-shadow:none}
+.organization-proposal-help{margin:0;color:var(--pp-muted);font:400 12px/18px Inter,Arial,sans-serif}
+.organization-proposal-error-line{margin:0;color:var(--pp-danger);font:500 12px/18px Inter,Arial,sans-serif;overflow-wrap:anywhere}
+.organization-proposal-error-line:empty{display:none}
+.organization-proposal-suffix{position:relative;display:flex;align-items:center}
+.organization-proposal-suffix .organization-proposal-control{padding-right:52px}
+.organization-proposal-suffix span{position:absolute;right:12px;color:var(--pp-muted);font:700 11px/16px Montserrat,Arial,sans-serif;letter-spacing:.6px;pointer-events:none}
+.organization-proposal-fieldset{min-width:0;margin:0;padding:0;border:0}
+.organization-proposal-fieldset:focus{outline:none}
+.organization-proposal-fieldset[aria-invalid="true"] .organization-proposal-choice,.organization-proposal-fieldset[aria-invalid="true"] .organization-proposal-colleges{border-color:var(--pp-danger)}
+.organization-proposal-fieldset>.organization-proposal-help,.organization-proposal-fieldset>.organization-proposal-error-line{margin-top:8px}
+
+/* Date and time inputs show a calendar icon */
+.organization-proposal-control.is-datetime{padding-right:8px}
+.organization-proposal-control.is-datetime::-webkit-calendar-picker-indicator{width:28px;height:28px;padding:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23775a00' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='5' width='18' height='16' rx='2'/%3E%3Cpath d='M8 3v4M16 3v4M3 10h18'/%3E%3C/svg%3E") center/18px no-repeat;cursor:pointer}
+
+/* Choice cards (eligibility and modality) */
+.organization-proposal-choices{display:grid;gap:12px}
+.organization-proposal-choices.is-two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.organization-proposal-choices.is-three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.organization-proposal-choice{display:flex;align-items:flex-start;gap:12px;min-width:0;padding:16px;border:1px solid var(--pp-field);border-radius:8px;background:#fff;cursor:pointer;transition:background-color 160ms ease,border-color 160ms ease}
+.organization-proposal-choice:hover:not(.is-disabled){background:#fdfaf0}
+.organization-proposal-choice input{flex:0 0 auto;width:18px;height:18px;margin:2px 0 0;accent-color:var(--pp-navy)}
+.organization-proposal-choice.is-selected{border-color:var(--pp-gold);background:#fbf5e1;box-shadow:inset 0 0 0 1px var(--pp-gold)}
+.organization-proposal-choice:focus-within{outline:2px solid var(--pp-navy);outline-offset:2px}
+.organization-proposal-choice.is-disabled{border-color:var(--pp-line);background:var(--pp-tint);cursor:not-allowed}
+.organization-proposal-choice.is-disabled .organization-proposal-choice-title,.organization-proposal-choice.is-disabled .organization-proposal-choice-text{color:#6f6657}
+.organization-proposal-choice-body{display:flex;flex-direction:column;gap:4px;min-width:0}
+.organization-proposal-choice-title{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;color:var(--pp-navy);font:700 14px/20px Inter,Arial,sans-serif}
+.organization-proposal-choice-title em{padding:1px 8px;border-radius:999px;background:rgba(197,155,39,.2);color:var(--pp-gold-ink);font:700 10px/16px Montserrat,Arial,sans-serif;font-style:normal;letter-spacing:.4px}
+.organization-proposal-choice-text{color:#4e4635;font:400 12px/18px Inter,Arial,sans-serif}
+.organization-proposal-choice-hint{color:var(--pp-muted);font:500 11px/16px Inter,Arial,sans-serif}
+
+/* Colleges and checkboxes */
+.organization-proposal-colleges{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;padding:8px 12px;border:1px solid var(--pp-line);border-radius:8px}
+.organization-proposal-check{display:flex;align-items:flex-start;gap:10px;min-width:0;min-height:44px;padding:10px 0;color:var(--pp-ink);font:400 13px/20px Inter,Arial,sans-serif;cursor:pointer}
+.organization-proposal-check input{flex:0 0 auto;width:18px;height:18px;margin:1px 0 0;accent-color:var(--pp-navy)}
+.organization-proposal-check input:focus-visible{outline:2px solid var(--pp-navy);outline-offset:2px}
+.organization-proposal-check strong{display:block;color:var(--pp-navy);font:700 14px/20px Inter,Arial,sans-serif}
+.organization-proposal-check.is-sponsorship{margin-top:24px;padding:14px 16px;border:1px solid var(--pp-line);border-radius:8px;background:var(--pp-tint)}
+.organization-proposal-check.is-sponsorship .organization-proposal-help{display:block;margin-top:2px}
+
+/* Venue reservations */
+.organization-proposal-venue{display:flex;flex-direction:column;gap:16px;margin-top:28px;padding-top:24px;border-top:1px solid var(--pp-line)}
+.organization-proposal-venue-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px}
+.organization-proposal-venue-head h3{margin:0;color:var(--pp-gold-ink);font:700 12px/16px Montserrat,Arial,sans-serif;letter-spacing:.8px;text-transform:uppercase}
+.organization-proposal-hold{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:#e2f4ea;color:#1b6f45;font:700 11px/16px Inter,Arial,sans-serif}
+.organization-proposal-range{margin:0;color:var(--pp-navy);font:600 13px/20px Inter,Arial,sans-serif}
+.organization-proposal-warnings{display:flex;flex-direction:column;gap:6px;margin:0;padding:0;list-style:none}
+.organization-proposal-warnings li{display:flex;align-items:flex-start;gap:8px;padding:8px 12px;border-radius:6px;background:#fbf3d9;color:#473500;font:500 12px/18px Inter,Arial,sans-serif}
+.organization-proposal-warnings svg{flex:0 0 auto;margin-top:2px}
+.organization-proposal-link-button{align-self:flex-start;min-height:44px;padding:0 4px;border:0;background:transparent;color:var(--pp-gold-ink);font:600 13px/20px Inter,Arial,sans-serif;text-decoration:underline;cursor:pointer;touch-action:manipulation}
+.organization-proposal-link-button:focus-visible{outline:2px solid var(--pp-navy);outline-offset:2px}
+
+/* Sponsorship advisory */
+.organization-proposal-advisory{display:flex;align-items:flex-start;gap:12px;margin-top:16px;padding:16px 18px;border:1px solid #e6cf8f;border-radius:8px;background:#fbf3d9;color:#473500}
+.organization-proposal-advisory svg{flex:0 0 auto;margin-top:2px;color:var(--pp-gold-ink)}
+.organization-proposal-advisory p{margin:6px 0 0;font:400 13px/20px Inter,Arial,sans-serif}
+.organization-proposal-advisory .organization-proposal-advisory-title{margin:0 0 4px;font:700 11px/16px Montserrat,Arial,sans-serif;letter-spacing:.6px;text-transform:uppercase}
+.organization-proposal-advisory strong{display:block;font:700 14px/20px Inter,Arial,sans-serif}
+
+/* Messages and actions */
+.organization-proposal-messages{display:flex;flex-direction:column;gap:8px}
+.organization-proposal-message{margin:0;padding:12px 16px;border-radius:6px;background:#e4ecf8;color:#1d3a6b;font:500 13px/20px Inter,Arial,sans-serif;overflow-wrap:anywhere}
+.organization-proposal-message.is-error{border:1px solid #f3c9c9;background:#fff5f5;color:var(--pp-danger)}
+.organization-proposal-message:empty{display:none}
+.organization-proposal-actions{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 16px;padding:20px 28px;border:1px solid var(--pp-line);border-radius:8px;background:#fff}
+.organization-proposal-actions-main{display:flex;flex-wrap:wrap;gap:12px;margin-left:auto}
+.organization-proposal-primary,.organization-proposal-secondary,.organization-proposal-danger{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 20px;border-radius:6px;font:700 12px/16px Montserrat,Arial,sans-serif;letter-spacing:.6px;text-align:center;text-decoration:none;text-transform:uppercase;cursor:pointer;touch-action:manipulation;transition:background-color 160ms ease}
+.organization-proposal-primary{border:1px solid var(--pp-navy);background:var(--pp-navy);color:#fff}
+.organization-proposal-primary:hover:not(:disabled){background:#0b2b66}
+.organization-proposal-secondary{border:1px solid var(--pp-navy);background:#fff;color:var(--pp-navy)}
+.organization-proposal-secondary:hover:not(:disabled){background:var(--pp-tint)}
+.organization-proposal-danger{border:1px solid transparent;background:transparent;color:var(--pp-danger)}
+.organization-proposal-danger:hover:not(:disabled){background:#fff5f5}
+.organization-proposal-primary:focus-visible,.organization-proposal-secondary:focus-visible,.organization-proposal-danger:focus-visible{outline:2px solid var(--pp-gold);outline-offset:3px}
+.organization-proposal-actions button:disabled{opacity:.6;cursor:not-allowed}
+.organization-proposal-result{display:flex;flex-direction:column;gap:12px}
+.organization-proposal-result p{margin:0;color:#4e4635;font:400 14px/22px Inter,Arial,sans-serif}
+.organization-proposal-result-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+
+/* Check Calendar Availability */
+.organization-proposal-avail{margin-top:24px}
+.organization-proposal-avail-trigger{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 18px;border:1px solid var(--pp-gold);border-radius:6px;background:#fff;color:var(--pp-navy);font:700 12px/16px Montserrat,Arial,sans-serif;letter-spacing:.6px;text-transform:uppercase;cursor:pointer;touch-action:manipulation}
+.organization-proposal-avail-trigger:hover{background:#fbf5e1}
+.organization-proposal-avail-trigger:focus-visible{outline:2px solid var(--pp-navy);outline-offset:2px}
+.organization-proposal-avail-trigger svg{color:var(--pp-gold-ink)}
+.organization-proposal-avail-chevron{display:grid;transition:transform 180ms ease}
+.organization-proposal-avail-chevron.is-open{transform:rotate(180deg)}
+.organization-proposal-avail-card{margin-top:12px;border:1px solid var(--pp-line);border-radius:4px;background:#fff}
+.organization-proposal-avail-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;padding:20px 24px 14px}
+.organization-proposal-avail-venue{display:flex;flex-direction:column;gap:4px;min-width:0}
+.organization-proposal-avail-venue h3{display:flex;align-items:center;gap:8px;margin:0 0 6px;color:var(--pp-ink);font:700 18px/26px 'Playfair Display',Georgia,serif}
+.organization-proposal-avail-venue h3 svg{color:var(--pp-gold-ink)}
+.organization-proposal-avail-venue label{color:#4e4635;font:600 11px/16px Montserrat,Arial,sans-serif}
+.organization-proposal-avail-venue select{min-width:240px;max-width:100%;min-height:44px;padding:8px 10px;border:1px solid var(--pp-field);border-radius:2px;background:#fbf9f9;color:var(--pp-ink);font:600 13px/20px Inter,Arial,sans-serif}
+.organization-proposal-avail-month{display:flex;align-items:center;gap:10px;flex:0 0 auto}
+.organization-proposal-avail-month h4{min-width:150px;margin:0;color:var(--pp-ink);font:700 16px/24px Montserrat,Arial,sans-serif;text-align:center}
+.organization-proposal-avail-month button{display:grid;place-items:center;width:44px;height:44px;padding:0;border:1px solid var(--pp-line);border-radius:2px;background:#fff;color:var(--pp-gold-ink);cursor:pointer;touch-action:manipulation}
+.organization-proposal-avail-month button:hover{background:var(--pp-tint)}
+.organization-proposal-avail-venue select:focus-visible,.organization-proposal-avail-month button:focus-visible,.organization-proposal-cal-cell:focus-visible,.organization-proposal-slot-actions button:focus-visible{outline:2px solid var(--pp-navy);outline-offset:2px}
+.organization-proposal-avail-card>.organization-proposal-error-line,.organization-proposal-avail-notice{margin:0 24px 8px}
+.organization-proposal-avail-notice{padding:10px 14px;border-radius:4px;background:#f4ecd6;color:#473500;font:400 12px/18px Inter,Arial,sans-serif}
+.organization-proposal-avail-empty{margin:0 24px 20px;padding:24px 12px;border:1px dashed #d9d4c8;border-radius:4px;color:var(--pp-muted);font-size:13px;text-align:center}
+.organization-proposal-avail-body{padding:8px 24px 12px;transition:opacity 160ms ease}
+.organization-proposal-avail-body.is-loading{opacity:.6}
+.organization-proposal-cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.organization-proposal-cal-weekday{padding-bottom:6px;color:var(--pp-muted);font:600 10px/16px Inter,Arial,sans-serif;letter-spacing:.5px;text-align:center}
+.organization-proposal-cal-cell{display:grid;place-items:center;min-width:0;height:48px;padding:0;border:0;border-radius:2px;background:#fff;color:var(--pp-ink);font:400 15px/20px Inter,Arial,sans-serif}
+button.organization-proposal-cal-cell{cursor:pointer;touch-action:manipulation;transition:background-color 160ms ease,box-shadow 160ms ease}
+button.organization-proposal-cal-cell.is-open:hover{background:var(--pp-tint);box-shadow:inset 0 0 0 1px var(--pp-gold)}
+.organization-proposal-cal-cell.is-outside{color:#b8b2a6}
+.organization-proposal-cal-cell.is-unavailable{background:#ffd9d9;color:#8a1f22}
+.organization-proposal-cal-cell.is-past{color:#8a8374;cursor:not-allowed}
+.organization-proposal-cal-cell.is-pending{color:var(--pp-muted);cursor:wait}
+.organization-proposal-cal-cell.is-today{font-weight:800}
+button.organization-proposal-cal-cell.is-selected{background:var(--pp-gold);color:var(--pp-ink);font-weight:800}
+.organization-proposal-avail-legend{display:flex;flex-wrap:wrap;gap:20px;margin:0;padding:12px 24px 20px;list-style:none;color:var(--pp-muted);font-size:12px}
+.organization-proposal-avail-legend li{display:flex;align-items:center;gap:7px}
+.organization-proposal-avail-legend i{width:14px;height:14px;border:1px solid var(--pp-line);border-radius:2px;background:#fff}
+.organization-proposal-avail-legend i.is-selected{border-color:var(--pp-gold);background:var(--pp-gold)}
+.organization-proposal-avail-legend i.is-unavailable{background:#ffd9d9}
+.organization-proposal-avail-message{padding:18px 24px;border-top:1px solid var(--pp-line);background:var(--pp-tint)}
+.organization-proposal-avail-message.is-unavailable{background:#ffd9d9}
+.organization-proposal-avail-message-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-bottom:4px}
+.organization-proposal-avail-message-row strong{color:var(--pp-ink);font:600 13px/20px Inter,Arial,sans-serif}
+.organization-proposal-avail-message p{margin:0;color:var(--pp-muted);font:400 11px/16px Inter,Arial,sans-serif}
+.organization-proposal-avail-message.is-unavailable p{color:#6a1618}
+.organization-proposal-avail-pill{padding:2px 8px;border-radius:2px;font:600 11px/16px Inter,Arial,sans-serif}
+.organization-proposal-avail-pill.is-available{background:rgba(210,246,185,.67);color:#775a00}
+.organization-proposal-avail-pill.is-unavailable{background:#ffd9d9;color:#9c2323}
+.organization-proposal-avail-message .organization-proposal-avail-alert{display:flex;align-items:flex-start;gap:8px;margin-top:10px;padding:8px 10px;border-radius:4px;background:#ffd9d9;color:#9c2323;font:500 11px/16px Inter,Arial,sans-serif}
+.organization-proposal-avail-message.is-unavailable .organization-proposal-avail-alert{border:1px solid rgba(156,35,35,.35);color:#7d1b1b}
+.organization-proposal-avail-alert svg{flex:0 0 auto}
+.organization-proposal-avail-times{padding:20px 24px 24px;border-top:1px solid var(--pp-line)}
+.organization-proposal-avail-times h4{margin:0;color:var(--pp-ink);font:700 16px/24px 'Playfair Display',Georgia,serif}
+.organization-proposal-avail-times>p{margin:4px 0 16px;color:var(--pp-muted);font:400 12px/18px Inter,Arial,sans-serif}
+.organization-proposal-avail-times h5{margin:0 0 8px;color:#4e4635;font:600 11px/16px Montserrat,Arial,sans-serif;letter-spacing:.6px;text-transform:uppercase}
+.organization-proposal-avail-times ul{display:flex;flex-direction:column;margin:0;padding:0;list-style:none}
+.organization-proposal-slot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;padding:12px 0;border-bottom:1px solid var(--pp-line)}
+.organization-proposal-slot-main{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.organization-proposal-slot-main strong{color:var(--pp-ink);font:700 13px/20px Inter,Arial,sans-serif}
+.organization-proposal-slot-tag{padding:2px 8px;border-radius:2px;font:600 10px/16px Inter,Arial,sans-serif}
+.organization-proposal-slot-tag.is-free{background:#dcf5c9;color:#2f5a14}
+.organization-proposal-slot-tag.is-occupied{background:#ffd9d9;color:#8a1f22}
+.organization-proposal-slot-tag.is-past{background:#eae7e7;color:#5f594e}
+.organization-proposal-slot-note{flex-basis:100%;order:3;margin:0;color:var(--pp-muted);font:400 12px/18px Inter,Arial,sans-serif;overflow-wrap:anywhere}
+.organization-proposal-slot-actions{display:flex;flex-wrap:wrap;gap:8px}
+.organization-proposal-slot-actions button{min-height:44px;padding:0 14px;border:1px solid var(--pp-navy);border-radius:4px;background:#fff;color:var(--pp-navy);font:700 11px/16px Montserrat,Arial,sans-serif;letter-spacing:.4px;text-transform:uppercase;cursor:pointer;touch-action:manipulation}
+.organization-proposal-slot-actions button:hover{background:var(--pp-tint)}
+
+/* Confirmation dialog */
+.organization-proposal-dialog{width:min(100% - 32px,520px);max-height:calc(100dvh - 32px);padding:0;overflow:auto;border:0;border-radius:12px;background:#fff;color:var(--pp-ink);box-shadow:0 24px 64px rgba(4,26,64,.28)}
+.organization-proposal-dialog::backdrop{background:rgba(4,26,64,.5)}
+.organization-proposal-dialog-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:24px 24px 20px;background:var(--pp-tint)}
+.organization-proposal-dialog-head h2{margin:0;color:var(--pp-navy);font:700 24px/32px 'Playfair Display',Georgia,serif;overflow-wrap:anywhere}
+.organization-proposal-dialog-text{margin-top:8px;color:#4e4635;font:400 14px/22px Inter,Arial,sans-serif}
+.organization-proposal-dialog-text p{margin:0}
+.organization-proposal-dialog-close{display:grid;flex:0 0 auto;place-items:center;width:44px;height:44px;padding:0;border:1px solid var(--pp-line);border-radius:8px;background:#fff;color:var(--pp-navy);cursor:pointer;touch-action:manipulation}
+.organization-proposal-dialog-close:hover:not(:disabled){background:#efeded}
+.organization-proposal-dialog-body{display:flex;flex-direction:column;gap:16px;padding:20px 24px 24px}
+.organization-proposal-dialog-error{margin:0;color:var(--pp-danger);font:500 13px/20px Inter,Arial,sans-serif}
+.organization-proposal-dialog-error:empty{display:none}
+.organization-proposal-dialog-actions{display:flex;flex-direction:column;gap:10px}
+.organization-proposal-dialog-confirm,.organization-proposal-dialog-cancel{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 20px;border-radius:6px;font:700 12px/16px Montserrat,Arial,sans-serif;letter-spacing:.6px;text-transform:uppercase;cursor:pointer;touch-action:manipulation}
+.organization-proposal-dialog-confirm{border:1px solid var(--pp-gold);background:#f6e7b4;color:#5b4300}
+.organization-proposal-dialog-confirm:hover:not(:disabled){background:#efd98f}
+.organization-proposal-dialog-confirm.is-danger{border-color:var(--pp-danger);background:#fde7e7;color:#8f1313}
+.organization-proposal-dialog-confirm.is-danger:hover:not(:disabled){background:#f9d3d3}
+.organization-proposal-dialog-cancel{border:1px solid var(--pp-navy);background:#fff;color:var(--pp-navy)}
+.organization-proposal-dialog-cancel:hover:not(:disabled){background:var(--pp-tint)}
+.organization-proposal-dialog button:disabled{opacity:.6;cursor:not-allowed}
+.organization-proposal-dialog button:focus-visible{outline:2px solid var(--pp-navy);outline-offset:2px}
+
+@media (max-width:767px){
+  .organization-proposal-content{width:min(100% - 32px,1000px)}
+  .organization-proposal-card{padding:20px 16px}
+  .organization-proposal-grid,.organization-proposal-choices.is-two,.organization-proposal-choices.is-three,.organization-proposal-colleges{grid-template-columns:minmax(0,1fr)}
+  .organization-proposal-card-head{flex-direction:column-reverse;align-items:flex-start}
+  .organization-proposal-control,.organization-proposal-avail-venue select{font-size:16px}
+  .organization-proposal-actions{flex-direction:column-reverse;align-items:stretch;padding:16px}
+  .organization-proposal-actions-main{flex-direction:column-reverse;margin-left:0}
+  .organization-proposal-primary,.organization-proposal-secondary,.organization-proposal-danger{width:100%}
+  .organization-proposal-avail-head{flex-direction:column;padding:16px 16px 12px}
+  .organization-proposal-avail-venue select{width:100%;min-width:0}
+  .organization-proposal-avail-month{justify-content:space-between;width:100%}
+  .organization-proposal-avail-month h4{min-width:0;flex:1}
+  .organization-proposal-avail-body{padding:4px 12px 8px}
+  .organization-proposal-cal-grid{gap:3px}
+  .organization-proposal-cal-cell{height:44px;font-size:14px}
+  .organization-proposal-avail-legend,.organization-proposal-avail-message,.organization-proposal-avail-times{padding-inline:16px}
+  .organization-proposal-avail-card>.organization-proposal-error-line,.organization-proposal-avail-notice,.organization-proposal-avail-empty{margin-inline:16px}
+  .organization-proposal-avail-trigger{width:100%;justify-content:space-between}
+  .organization-proposal-dialog-head{padding:20px 16px 16px}
+  .organization-proposal-dialog-body{padding:16px}
+}
+@media (max-width:360px){
+  .organization-proposal-cal-grid{gap:2px}
+  .organization-proposal-cal-cell{font-size:13px}
+  .organization-proposal-cal-weekday{font-size:9px;letter-spacing:0}
+  .organization-proposal-avail-month h4{font-size:14px}
+}
+@media (prefers-reduced-motion:reduce){
+  .organization-proposal-choice,.organization-proposal-avail-chevron,.organization-proposal-avail-body,button.organization-proposal-cal-cell,.organization-proposal-primary,.organization-proposal-secondary,.organization-proposal-danger{transition:none}
+}

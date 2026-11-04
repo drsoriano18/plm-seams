@@ -1,0 +1,3 @@
+.organization-primary-nav a[aria-current='page']{border-color:#d9d4c8;background:#f5f3f3;color:#041a40;box-shadow:inset 0 -2px #c59b27}
+.organization-primary-nav a:focus-visible,.organization-icon-button:focus-visible,.organization-profile-button:focus-visible{outline:2px solid #041a40;outline-offset:2px}
+.organization-header-error{margin:0;padding:10px clamp(20px,4vw,48px);background:#fdf0f0;color:#9c2323;font-size:13px}

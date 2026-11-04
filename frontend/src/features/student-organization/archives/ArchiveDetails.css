@@ -1,0 +1,71 @@
+.organization-archive-detail-content{display:flex;flex-direction:column;gap:20px;width:min(100% - 48px,1220px);margin:0 auto;padding:28px 0 56px}
+.organization-archive-breadcrumb ol{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0;padding:0;list-style:none;color:#4e4635;font:600 12px/18px Inter,Arial,sans-serif}
+.organization-archive-breadcrumb li{display:flex;align-items:center;min-width:0;overflow-wrap:anywhere}
+.organization-archive-breadcrumb a{color:#775a00;text-decoration:none}
+.organization-archive-breadcrumb a:hover{text-decoration:underline}
+.organization-archive-breadcrumb a:focus-visible,.organization-archive-back:focus-visible,.organization-archive-record-button:focus-visible{outline:2px solid #041a40;outline-offset:2px;border-radius:2px}
+.organization-archive-access{margin:-12px 0 0;color:#807665;font:600 11px/16px Montserrat,Arial,sans-serif}
+.organization-archive-banner{display:flex;align-items:center;gap:14px;padding:16px 20px;border:1px solid #e9e6e4;border-radius:8px;background:#f5f3f3}
+.organization-archive-banner>div{flex:1;min-width:0}
+.organization-archive-banner strong{display:block;color:#041a40;font:700 13px/20px Montserrat,Arial,sans-serif}
+.organization-archive-banner p{margin:2px 0 0;color:#807665;font-size:12px;line-height:18px}
+.organization-archive-banner-icon{display:grid;flex:0 0 auto;place-items:center;width:36px;height:36px;border-radius:50%;background:#fff;color:#775a00}
+.organization-archive-banner-label{flex:0 0 auto;color:#775a00;font:700 11px/16px Montserrat,Arial,sans-serif;letter-spacing:.55px;text-transform:uppercase}
+
+.organization-archive-detail-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:24px;align-items:start}
+.organization-archive-side,.organization-archive-main{display:flex;flex-direction:column;gap:20px;min-width:0}
+.organization-archive-card{min-width:0;padding:20px 24px;border-radius:8px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.organization-archive-card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+.organization-archive-card h2,.organization-archive-time h2{display:flex;align-items:center;gap:8px;margin:0;color:#775a00;font:700 11px/16px Montserrat,Arial,sans-serif;letter-spacing:.55px;text-transform:uppercase}
+.organization-archive-tiles{display:flex;flex-direction:column;gap:10px;margin:0}
+.organization-archive-tile{padding:10px 14px;border-radius:6px;background:#f5f3f3}
+.organization-archive-tile dt,.organization-archive-venue dt{color:#807665;font:600 11px/16px Montserrat,Arial,sans-serif;letter-spacing:.3px}
+.organization-archive-tile dd{margin:2px 0 0;color:#1b1c1c;font:600 13px/20px Inter,Arial,sans-serif;overflow-wrap:anywhere}
+.organization-archive-venue{display:flex;flex-direction:column;gap:12px;margin:0}
+.organization-archive-venue>div{display:flex;flex-direction:column;gap:2px}
+.organization-archive-venue dd{margin:0;color:#1b1c1c;font:500 13px/20px Inter,Arial,sans-serif;overflow-wrap:anywhere}
+.organization-archive-modality-badge{display:inline-block;padding:3px 8px;border-radius:2px;background:rgba(119,90,0,.1);color:#775a00;font:700 10px/16px Montserrat,Arial,sans-serif;letter-spacing:.4px;text-transform:uppercase}
+.organization-archive-venue-note{margin:14px 0 0;color:#807665;font-size:12px;line-height:18px}
+
+.organization-archive-title{display:flex;flex-direction:column;gap:6px;min-width:0}
+.organization-archive-org{margin:0;color:#775a00;font:700 11px/16px Montserrat,Arial,sans-serif;letter-spacing:.55px;text-transform:uppercase}
+.organization-archive-title h1{margin:0;color:#041a40;font:700 clamp(28px,3vw,40px)/1.2 'Playfair Display',Georgia,serif;letter-spacing:-1px;overflow-wrap:anywhere}
+.organization-archive-subline{margin:0;color:#807665;font-size:13px;line-height:20px}
+.organization-archive-times{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.organization-archive-time p{margin:6px 0 0;color:#807665;font-size:13px;line-height:20px}
+.organization-archive-time p.organization-archive-time-date{color:#041a40;font:600 22px/30px 'Playfair Display',Georgia,serif}
+.organization-archive-info p{margin:12px 0 0;color:#4e4635;font-size:14px;line-height:22px;overflow-wrap:anywhere}
+.organization-archive-info p.organization-archive-objectives{color:#807665;font-size:13px}
+
+.organization-archive-records-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:16px}
+.organization-archive-records-head h2{margin:0;color:#1b1c1c;font:600 24px/32px 'Playfair Display',Georgia,serif}
+.organization-archive-records-head span{color:#775a00;font:700 11px/16px Montserrat,Arial,sans-serif;letter-spacing:.55px;text-transform:uppercase}
+.organization-archive-records-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:20px}
+.organization-archive-record{display:flex;flex-direction:column;align-items:flex-start;min-width:0;padding:24px;border-radius:8px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.organization-archive-record-icon{display:grid;place-items:center;width:36px;height:36px;margin-bottom:12px;border-radius:50%;background:#f5f3f3;color:#775a00}
+.organization-archive-record h3{margin:0;color:#807665;font:700 11px/16px Montserrat,Arial,sans-serif;letter-spacing:.55px;text-transform:uppercase}
+.organization-archive-record-value{margin:6px 0 0;color:#041a40;font:600 24px/32px 'Playfair Display',Georgia,serif;overflow-wrap:anywhere}
+.organization-archive-record-note{margin:2px 0 0;color:#807665;font-size:12px;line-height:18px}
+.organization-archive-record-text{flex:1;margin:10px 0 18px;color:#4e4635;font-size:13px;line-height:20px}
+.organization-archive-record-button,.organization-archive-back{display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:8px 14px;border-radius:4px;background:#041a40;color:#fff;text-decoration:none;font:600 12px/16px Inter,Arial,sans-serif;touch-action:manipulation;transition:background-color 180ms ease}
+.organization-archive-record-button:hover,.organization-archive-back:hover{background:#0b2b66}
+.organization-archive-record-button.is-disabled{background:#efeded;color:#807665;cursor:not-allowed}
+.organization-archive-back{margin-top:16px}
+.organization-archive-detail-content .organization-archive-empty{align-items:center}
+.organization-archive-detail-content .organization-archive-empty h1{margin:0 0 6px;color:#041a40;font:600 24px/32px 'Playfair Display',Georgia,serif}
+
+@media (max-width:900px){
+  .organization-archive-detail-grid,.organization-archive-records-grid{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .organization-archive-detail-content{width:min(100% - 24px,680px);padding-top:20px}
+  .organization-archive-banner{flex-wrap:wrap;padding:14px 16px}
+  .organization-archive-banner-label{flex-basis:100%}
+  .organization-archive-card{padding:16px}
+  .organization-archive-times{grid-template-columns:1fr}
+  .organization-archive-records-head{flex-direction:column;gap:4px}
+  .organization-archive-record{padding:18px}
+  .organization-archive-record-button,.organization-archive-back{min-height:44px}
+  .organization-archive-breadcrumb a{display:inline-flex;align-items:center;min-height:44px}
+}
+@media (prefers-reduced-motion:reduce){.organization-archive-page *{transition:none!important;animation:none!important}}

@@ -1,0 +1,4 @@
+.organization-information-panel dl div:nth-child(3) dd{color:#775a00}
+.organization-accreditation-value{display:inline-flex;align-items:center;gap:6px}
+.organization-accreditation-value span{display:inline-block;width:10px;height:10px;margin:0;border-radius:50%;background:#d9f2e6;color:transparent;font-size:0;flex:0 0 10px}
+.organization-accreditation-value span::after{content:'';display:block;width:4px;height:2px;margin:3px 0 0 2px;border-bottom:1.5px solid #1a753f;border-left:1.5px solid #1a753f;transform:rotate(-45deg)}
