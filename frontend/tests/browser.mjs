@@ -60,6 +60,9 @@ try {
     if(role==='Student') {
       await page.getByRole('heading',{name:'Events',exact:true}).waitFor()
       await page.getByText('No upcoming events yet').waitFor()
+    } else if(role==='Admin') {
+      await page.getByRole('heading',{name:'Administrator Dashboard'}).waitFor()
+      await page.getByText('No proposals need your review').waitFor()
     } else {
       await page.getByRole('heading',{name:`${role} workspace`}).waitFor()
       await page.getByText('No records available for your account.').waitFor()
@@ -67,7 +70,8 @@ try {
     const wrong=role==='Admin'?'student':'admin'
     await page.goto(`${base}/${wrong}/dashboard`)
     await page.waitForURL(`**/${route}/dashboard`)
-    if(role!=='Student') await page.getByRole('heading',{name:`${role} workspace`}).waitFor()
+    if(role==='Admin') await page.getByRole('heading',{name:'Administrator Dashboard'}).waitFor()
+    else if(role!=='Student') await page.getByRole('heading',{name:`${role} workspace`}).waitFor()
     if(role==='Student Organization') {
       await page.getByRole('button',{name:'Create',exact:true}).click()
       await page.getByRole('heading',{name:'Create event proposal'}).waitFor()
@@ -75,7 +79,7 @@ try {
     }
     await page.setViewportSize({width:390,height:844})
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth))
-    if(role==='Student') {
+    if(role==='Student' || role==='Admin') {
       await page.getByRole('button',{name:'Open profile menu'}).click()
       await page.getByRole('menuitem',{name:'Sign Out'}).click()
     } else await page.getByRole('button',{name:'Sign out',exact:true}).click()

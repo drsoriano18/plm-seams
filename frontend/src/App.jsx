@@ -3,6 +3,16 @@ import './App.css'
 import { AuthProvider, ProtectedRoute } from './features/auth/AuthProvider'
 import { lazy, Suspense } from 'react'
 const Dashboard = lazy(() => import('./features/dashboard/Dashboard'))
+const AdminDashboard = lazy(() => import('./features/administrators/AdminDashboard'))
+const AdminAccount = lazy(() => import('./features/administrators/AdminAccount'))
+const AdminProfile = lazy(() => import('./features/administrators/AdminProfile'))
+const AdminCalendar = lazy(() => import('./features/administrators/AdminCalendar'))
+const ApprovedEvents = lazy(() => import('./features/administrators/ApprovedEvents'))
+const AllProposals = lazy(() => import('./features/administrators/AllProposals'))
+const ProposalReview = lazy(() => import('./features/administrators/ProposalReview'))
+const ArchivedEvents = lazy(() => import('./features/administrators/ArchivedEvents'))
+const ArchivedEventDetail = lazy(() => import('./features/administrators/ArchivedEventDetail'))
+const ArchivedEventAttendees = lazy(() => import('./features/administrators/ArchivedEventAttendees'))
 const StudentDashboard = lazy(() => import('./features/dashboard/StudentDashboard'))
 const StudentProfile = lazy(() => import('./features/dashboard/StudentProfile'))
 const StudentProfileSettings = lazy(() => import('./features/dashboard/StudentProfileSettings'))
@@ -66,7 +76,16 @@ function App() {
         <Route path="/student/profile/settings" element={<ProtectedRoute role="Student"><StudentProfileSettings /></ProtectedRoute>} />
         <Route path="/student/events/:eventId" element={<ProtectedRoute role="Student"><StudentEventDetails /></ProtectedRoute>} />
         <Route path="/student-organization/dashboard" element={<ProtectedRoute role="Student Organization"><Dashboard /></ProtectedRoute>} />
-        <Route path="/admin/dashboard" element={<ProtectedRoute role="Admin"><Dashboard /></ProtectedRoute>} />
+        <Route path="/admin/dashboard" element={<ProtectedRoute role="Admin"><AdminDashboard /></ProtectedRoute>} />
+        <Route path="/admin/account" element={<ProtectedRoute role="Admin"><AdminAccount /></ProtectedRoute>} />
+        <Route path="/admin/profile" element={<ProtectedRoute role="Admin"><AdminProfile /></ProtectedRoute>} />
+        <Route path="/admin/calendar" element={<ProtectedRoute role="Admin"><AdminCalendar /></ProtectedRoute>} />
+        <Route path="/admin/calendar/events" element={<ProtectedRoute role="Admin"><ApprovedEvents /></ProtectedRoute>} />
+        <Route path="/admin/archives" element={<ProtectedRoute role="Admin"><ArchivedEvents /></ProtectedRoute>} />
+        <Route path="/admin/archives/:eventId/attendees" element={<ProtectedRoute role="Admin"><ArchivedEventAttendees /></ProtectedRoute>} />
+        <Route path="/admin/archives/:eventId" element={<ProtectedRoute role="Admin"><ArchivedEventDetail /></ProtectedRoute>} />
+        <Route path="/admin/proposals" element={<ProtectedRoute role="Admin"><AllProposals /></ProtectedRoute>} />
+        <Route path="/admin/proposals/:proposalId" element={<ProtectedRoute role="Admin"><ProposalReview /></ProtectedRoute>} />
         <Route path="*" element={<LandingPage />} />
       </Routes></Suspense></AuthProvider>
     </BrowserRouter>

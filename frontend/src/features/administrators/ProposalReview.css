@@ -1,0 +1,83 @@
+.proposal-review-main { width: 100%; max-width: 1480px; margin-inline: auto; padding: 48px 32px; flex: 1; color: #1b1c1c; }
+.proposal-breadcrumb { display: flex; align-items: center; gap: 12px; padding-bottom: 13px; margin-bottom: 24px; border-bottom: 1px solid rgb(231 229 228 / 60%); color: #041a40; font: 600 13px/18px 'Admin Montserrat', Arial, sans-serif; letter-spacing: 1.04px; }
+.proposal-breadcrumb a { display: flex; align-items: center; gap: 6px; color: #041a40; text-decoration: none; }
+.proposal-breadcrumb a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.proposal-title-banner { padding: 32px; margin-bottom: 32px; border-radius: 8px; background: white; box-shadow: 0 1px 2px rgb(0 0 0 / 5%); }
+.proposal-title-banner h1 { font: 700 40px/50px 'Admin Playfair Display', Georgia, serif; letter-spacing: -1px; margin: 0 0 8px; outline: none; }
+.proposal-title-banner p { font: 700 15px/24px 'Admin Inter', Arial, sans-serif; color: #4e4635; overflow-wrap: anywhere; }
+.proposal-title-banner p > span { white-space: pre; }
+.proposal-review-section { display: flex; flex-direction: column; gap: 24px; padding: 32px; margin-bottom: 40px; border-radius: 8px; background: white; box-shadow: 0 1px 1px rgb(0 0 0 / 5%); }
+.proposal-section-heading { display: flex; align-items: center; gap: 12px; padding-bottom: 12px; }
+.proposal-section-heading > span { display: grid; place-items: center; flex: 0 0 28px; width: 28px; height: 28px; border-radius: 2px; background: #0c2340; color: #ffdf98; font: 700 13px/18px 'Admin Montserrat', Arial, sans-serif; letter-spacing: 1.04px; }
+.proposal-section-heading h2 { font: 600 24px/32px 'Admin Playfair Display', Georgia, serif; }
+.proposal-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.proposal-field-label { display: block; color: #4e4635; font: 700 11px/16px 'Admin Montserrat', Arial, sans-serif; letter-spacing: 1.32px; text-transform: uppercase; }
+.proposal-field-label > span { color: #db1f26; }
+.proposal-readonly { display: flex; align-items: flex-start; gap: 10px; min-height: 48px; padding: 12px 16px; border-radius: 2px; background: #f5f3f3; color: #1b1c1c; font: 400 15px/24px 'Admin Inter', Arial, sans-serif; }
+.proposal-readonly > span:first-of-type { flex: 1; min-width: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.proposal-readonly:focus-visible { outline: 2px solid #c59b27; outline-offset: 2px; }
+.proposal-field-suffix { padding-left: 12px; color: #807663; font-size: 12px; }
+.proposal-description-field .proposal-readonly { min-height: 120px; }
+.proposal-attendance-field { max-width: 293px; width: 100%; padding: 6px 0; }
+.proposal-eligibility, .proposal-modality { padding: 0; margin: 0; min-width: 0; border: 0; }
+.proposal-eligibility legend { margin-bottom: 16px; }
+.proposal-eligibility-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.proposal-eligibility-options label:last-child:nth-child(3) { grid-column: 1 / -1; }
+.proposal-eligibility-options label { display: flex; align-items: flex-start; gap: 10px; padding: 16px; border: 1px solid transparent; border-radius: 4px; background: #f5f3f3; }
+.proposal-eligibility-options label.is-selected, .proposal-modality label.is-selected { border-color: #8597c6; background: #f5f7ff; }
+.proposal-eligibility-options strong, .proposal-modality strong { display: block; font: 600 13px/18px 'Admin Montserrat', Arial, sans-serif; letter-spacing: 1.04px; }
+.proposal-eligibility-options label > span > span { display: block; max-width: 310px; font: 400 13px/20px 'Admin Inter', Arial, sans-serif; color: #4e4635; }
+.proposal-review-main input[type='radio'], .proposal-review-main input[type='checkbox'] { appearance: none; width: 13px; height: 13px; min-width: 13px; margin: 4px 0 0; border: 1px solid #807663; background: white; opacity: 1; }
+.proposal-review-main input[type='radio'] { border-radius: 50%; }
+.proposal-review-main input[type='radio']:checked { background: radial-gradient(#775a00 0 3px, white 3px); border-color: #775a00; }
+.proposal-review-main input[type='checkbox'] { border-radius: 2.5px; }
+.proposal-review-main input[type='checkbox']:checked { background: #0c2340; border-color: #0c2340; }
+.proposal-classification { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px; border: 1px solid #e7e5e4; border-radius: 4px; font: 600 13px/18px 'Admin Montserrat', Arial, sans-serif; letter-spacing: 1.04px; }
+.proposal-classification strong { font-weight: 600; }
+.proposal-modality { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.proposal-modality label { display: flex; flex-direction: column; align-items: flex-start; padding: 16px; border: 1px solid transparent; border-radius: 4px; background: #f5f3f3; }
+.proposal-modality-top { display: flex; justify-content: space-between; align-items: center; align-self: stretch; min-height: 24px; margin-bottom: 4px; }
+.proposal-modality-top input { margin: 0 !important; }
+.proposal-modality label > span:last-child { display: block; max-width: 200px; font: 400 13px/20px 'Admin Inter', Arial, sans-serif; color: #4e4635; }
+.proposal-venue-section { padding: 20px; border-radius: 4px; background: #f5f3f3; }
+.proposal-venue-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+.proposal-venue-heading h3 { display: flex; align-items: center; gap: 8px; font: 700 13px/18px 'Admin Montserrat', Arial, sans-serif; text-transform: uppercase; }
+.proposal-venue-heading > span { padding: 3px 8px; background: #fff0cd; color: #775a00; font: 500 12px/16px 'Admin Inter', Arial, sans-serif; white-space: nowrap; }
+.proposal-venue-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 16px; }
+.proposal-venue-grid .proposal-readonly { background: white; }
+.proposal-readonly.has-icon { align-items: center; gap: 12px; min-height: 40px; font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: -.12px; }
+.proposal-no-schedule { padding: 12px 0; color: #807663; font-size: 14px; }
+.proposal-resources-field, .proposal-budget-field { padding-bottom: 20px; }
+.proposal-budget-field { padding-top: 8px; }
+.proposal-sponsorship { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; padding: 24px 16px 16px; border-radius: 4px; background: #f5f3f3; }
+.proposal-sponsorship label { display: flex; align-items: flex-start; gap: 12px; min-width: 0; }
+.proposal-sponsorship strong { display: block; font: 600 13px/18px 'Admin Montserrat', Arial, sans-serif; letter-spacing: 1.04px; }
+.proposal-sponsorship label span span { display: block; color: #4e4635; font: 400 13px/20px 'Admin Inter', Arial, sans-serif; }
+.proposal-clearance-badge { display: flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 2px; background: #ffdad6; color: #93000a; font: 700 13px/18px 'Admin Montserrat', Arial, sans-serif; letter-spacing: 1.04px; }
+.proposal-remarks-section { display: flex; flex-direction: column; gap: 12px; padding: 24px; margin-bottom: 16px; border-radius: 8px; background: white; box-shadow: 0 1px 1px rgb(0 0 0 / 5%); }
+.proposal-remarks-section > label { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; color: #1b1c1c; font: 700 16px/24px 'Admin Montserrat', Arial, sans-serif; letter-spacing: .8px; }
+.proposal-remarks-section > label > span:first-child { width: 6px; height: 14px; border-radius: 12px; background: #775a00; }
+.proposal-remarks-hint { color: #807663; font: 400 12px/18px 'Admin Inter', Arial, sans-serif; letter-spacing: 0; }
+.proposal-remarks-section textarea { width: 100%; min-height: 86px; resize: vertical; padding: 13px 14px; border: 1px solid rgb(209 197 175 / 30%); border-radius: 0; background: #f5f3f3; color: #1b1c1c; font: 400 13px/21.13px 'Admin Inter', Arial, sans-serif; }
+.proposal-remarks-section textarea:focus-visible { outline: 2px solid #c59b27; outline-offset: 2px; }
+.proposal-remarks-section textarea::placeholder { color: #4e4635; opacity: 1; }
+.proposal-decision-bar { display: flex; justify-content: flex-end; align-items: center; flex-wrap: wrap; gap: 8px; padding: 16px; border: 1px solid rgb(209 197 175 / 30%); background: rgb(245 243 243 / 60%); }
+.proposal-decision-button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 8px 16px; border: 0; border-radius: 4px; background: transparent; font: 700 11px/16px 'Admin Montserrat', Arial, sans-serif !important; letter-spacing: 1.32px; text-transform: uppercase; }
+.proposal-decision-button.decision-approve { padding-inline: 20px; background: #16ec5e; color: white; box-shadow: 0 1px 1px rgb(0 0 0 / 5%); }
+.proposal-decision-button.decision-approve:hover { background: #129f43; }
+.proposal-decision-button.decision-return { color: #c59b27; }
+.proposal-decision-button.decision-reject { color: #ba1a1a; }
+.proposal-decision-button.decision-return:hover { background: #fff0cd; }
+.proposal-decision-button.decision-reject:hover { background: #ffdad6; }
+.proposal-error { color: #93000a; padding: 12px 16px; margin-bottom: 16px !important; border: 1px solid #f0cfca; border-radius: 4px; background: #fff7f6; font-size: 14px; }
+.proposal-load-state { padding: 32px; border-radius: 8px; background: white; }
+.proposal-load-state h1 { font: 600 28px/36px 'Admin Playfair Display', Georgia, serif; margin-bottom: 12px; }
+.proposal-load-state button { padding: 8px 16px; border: 0; border-radius: 4px; background: #0b2046; color: white; margin-top: 16px; }
+.proposal-confirm-dialog h2 { font: 600 24px/32px 'Admin Playfair Display', Georgia, serif; margin-bottom: 12px; }
+.proposal-confirm-name { font: 600 15px/24px 'Admin Montserrat', Arial, sans-serif; margin-bottom: 12px !important; }
+.proposal-confirm-dialog blockquote { margin: 16px 0; padding: 12px 16px; border-left: 3px solid #c59b27; background: #f5f3f3; white-space: pre-wrap; overflow-wrap: anywhere; }
+.proposal-confirm-dialog blockquote strong { display: block; margin-bottom: 6px; font-size: 12px; }
+.proposal-confirm-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 24px; }
+.proposal-cancel { padding: 8px 16px; border: 1px solid #d1c5af; border-radius: 4px; color: #0b2046; background: white; }
+@media (max-width: 900px) { .proposal-review-main { padding: 32px 24px; } .proposal-venue-heading { flex-wrap: wrap; gap: 8px; } .proposal-section-heading h2 { font-size: 23px; } .proposal-remarks-hint { width: 100%; padding-left: 14px; } }
+@media (max-width: 600px) { .proposal-review-main { padding: 24px 16px; } .proposal-breadcrumb { font-size: 11px; letter-spacing: .5px; } .proposal-title-banner { padding: 24px 20px; } .proposal-title-banner h1 { font-size: 30px; line-height: 40px; letter-spacing: -.5px; } .proposal-title-banner p { font-size: 13px; line-height: 21px; } .proposal-title-banner p > span { white-space: normal; } .proposal-review-section { padding: 20px 16px; gap: 22px; margin-bottom: 24px; } .proposal-section-heading { align-items: flex-start; gap: 10px; } .proposal-section-heading h2 { font-size: 21px; line-height: 29px; } .proposal-field-label { font-size: 10px; letter-spacing: 1px; } .proposal-readonly { padding: 12px; font-size: 14px; line-height: 23px; } .proposal-eligibility-options, .proposal-modality, .proposal-venue-grid { grid-template-columns: minmax(0, 1fr); } .proposal-eligibility-options label > span > span, .proposal-modality label > span:last-child { max-width: none; } .proposal-venue-section { padding: 16px 12px; } .proposal-venue-heading h3 { font-size: 11px; } .proposal-venue-heading > span { white-space: normal; } .proposal-sponsorship { padding: 16px 12px; } .proposal-sponsorship strong, .proposal-clearance-badge { font-size: 11px; line-height: 18px; letter-spacing: .5px; } .proposal-clearance-badge { align-items: flex-start; padding: 8px; } .proposal-remarks-section { padding: 20px 16px; } .proposal-decision-bar { justify-content: stretch; padding: 12px; } .proposal-decision-bar > button { width: 100%; padding: 12px; } .proposal-confirm-actions { flex-wrap: wrap; } }

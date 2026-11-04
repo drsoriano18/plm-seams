@@ -1,0 +1,27 @@
+.admin-event-dialog { width: min(520px, calc(100vw - 32px)); max-height: calc(100svh - 40px); margin: auto; padding: 0; overflow: auto; border: 0; border-radius: 4px; color: #1b1c1c; background: white; box-shadow: 0 12px 48px #0b204633; font: 400 13px/20px 'Admin Inter', Arial, sans-serif; }
+.admin-event-dialog::backdrop { background: #0b204640; }
+.admin-event-dialog header { position: relative; padding: 20px 24px; background: #f5f3f3; }
+.admin-event-dialog small, .admin-event-dialog label { color: #775a00; font: 700 10px/16px 'Admin Montserrat', Arial, sans-serif; letter-spacing: .8px; text-transform: uppercase; }
+.admin-event-dialog h2, .admin-event-dialog h3 { font: 600 22px/28px 'Admin Playfair Display', Georgia, serif; }
+.admin-event-dialog h2 { padding-right: 20px; margin: 4px 0 10px; }
+.admin-event-dialog h3 { margin: 4px 0 12px; font-size: 18px; line-height: 24px; }
+.admin-event-dialog p { margin: 0; }
+.admin-event-dialog header button { position: absolute; top: 24px; right: 18px; width: 24px; height: 24px; border: 0; background: white; color: #807663; cursor: pointer; }
+.admin-event-dialog-body { display: grid; gap: 16px; padding: 20px 20px 12px; }
+.admin-event-dialog-summary, .admin-event-dialog-replacement { padding: 16px; border: 1px solid #e9e6e4; background: #fbf9f9; }
+.admin-event-dialog-dates, .admin-event-dialog-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.admin-event-dialog-dates > div { display: grid; gap: 5px; padding: 10px; border: 1px solid #e9e6e4; background: white; }
+.admin-event-dialog-dates small { color: #4c5e87; }
+.admin-event-dialog-dates strong { font-size: 11px; text-transform: uppercase; }
+.admin-event-dialog-dates span { color: #807663; font-size: 12px; }
+.admin-event-dialog-fields label { min-width: 0; color: #4c5e87; }
+.admin-event-dialog input, .admin-event-dialog select, .admin-event-dialog textarea { display: block; width: 100%; margin-top: 5px; padding: 9px 10px; border: 1px solid #e9e6e4; border-radius: 0; background: white; color: #1b1c1c; font: 400 13px/20px 'Admin Inter', Arial, sans-serif; text-transform: none; letter-spacing: 0; }
+.admin-event-dialog-venue { grid-column: 1 / -1; }
+.admin-event-dialog-reason > span { float: right; color: #ba1a1a; }
+.admin-event-dialog textarea { min-height: 90px; resize: vertical; }
+.admin-event-dialog-error { color: #ba1a1a; }
+.admin-event-dialog footer { display: flex; gap: 8px; padding: 0 20px 20px; }
+.admin-event-dialog footer button { flex: 1; padding: 10px; border: 1px solid #e9e6e4; background: white; color: #1b1c1c; font: 700 10px/16px 'Admin Montserrat', Arial, sans-serif; text-transform: uppercase; cursor: pointer; }
+.admin-event-dialog footer button:first-child { border-color: #c59b27; background: #c59b27; color: #041a40; }
+.admin-event-dialog footer button.is-danger { border-color: #b12a2d; background: #b12a2d; color: white; }
+.admin-event-dialog button:disabled { opacity: .5; cursor: default; }

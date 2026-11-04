@@ -1,0 +1,44 @@
+.all-proposals-main { flex: 1; width: 100%; background: #fbf9f9; padding: 32px 48px; }
+.all-proposals-main > * { width: 100%; max-width: 1320px; margin-inline: auto; }
+.all-proposals-header { background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; box-shadow: 0 1px 1px rgb(0 0 0 / 5%); }
+.all-proposals-heading-row { display: flex; align-items: center; gap: 18px; margin-bottom: 22px; }
+.all-proposals-heading-row h1 { color: #0f172a; font: 700 30px/36px 'Admin Playfair Display', Georgia, serif; letter-spacing: -.75px; }
+.all-proposals-back { display: inline-flex; align-items: center; min-height: 34px; padding: 7px 12px; border: 1px solid #e2e8f0; border-radius: 7px; background: #fff; color: #0b2046; text-decoration: none; font: 600 11px/16px 'Admin Montserrat', Arial, sans-serif; letter-spacing: .45px; box-shadow: 0 1px 2px rgb(11 32 70 / 5%); transition: background .15s ease, border-color .15s ease, transform .15s ease; }
+.all-proposals-back:hover { border-color: #c59b27; background: #fffdf6; transform: translateX(-2px); }
+.all-proposals-tabs { display: flex; align-items: center; gap: 4px; overflow-x: auto; background: #f5f3f3; border-radius: 4px; padding: 6px; }
+.all-proposals-tabs button { display: flex; align-items: center; gap: 7px; min-height: 38px; padding: 8px 13px; border: 0; border-bottom: 2px solid transparent; border-radius: 4px; background: transparent; color: #4e4635; white-space: nowrap; font: 600 11px/18px 'Admin Montserrat', Arial, sans-serif; letter-spacing: .65px; }
+.all-proposals-tabs button.is-active { border-bottom-color: #c59b27; background: #f5f3f3; color: #041a40; }
+.all-proposals-tab-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--status-color); }
+.all-proposals-count { padding: 2px 7px; border-radius: 12px; background: #f1f5f9; color: #334155; font: 700 11px/16px 'Admin Inter', Arial, sans-serif; letter-spacing: 0; }
+.all-proposals-filters { display: grid; grid-template-columns: 2fr 1.35fr 1.35fr 1fr 1fr; gap: 10px; margin-top: 14px; padding: 12px; border: 1px solid rgb(226 232 240 / 80%); border-radius: 8px; background: #f5f3f3; }
+.all-proposals-filters label { position: relative; min-width: 0; }
+.all-proposals-filters input, .all-proposals-filters select { width: 100%; height: 36px; border: 1px solid #e2e8f0; border-radius: 4px; padding: 8px 12px; background: white; color: #4e4635; font: 500 12px/18px 'Admin Inter', Arial, sans-serif; }
+.all-proposals-filters select { font-family: 'Admin Montserrat', Arial, sans-serif; font-weight: 600; letter-spacing: .35px; }
+.all-proposals-search-icon { position: absolute; z-index: 1; left: 12px; top: 7px; color: #807663; font-size: 18px; }
+.all-proposals-filters label:first-child input { padding-left: 32px; }
+.all-proposals-summary { display: flex; justify-content: space-between; gap: 16px; padding: 20px 4px 12px; color: #4e4635; font-size: 12px; }
+.all-proposals-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.all-proposal-card { display: flex; flex-direction: column; min-width: 0; min-height: 290px; padding: 18px; border: 1px solid #edf0f3; border-radius: 8px; background: white; box-shadow: 0 2px 4px rgb(11 32 70 / 5%); }
+.all-proposal-card-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.all-proposal-id { padding: 3px 6px; background: #f1f5f9; color: #0b2046; font: 700 10px/14px 'Admin Inter', Arial, sans-serif; letter-spacing: -.1px; }
+.all-proposal-status { padding: 3px 8px; border-radius: 12px; background: #fff1cc; color: #805b00; font: 700 10px/14px 'Admin Montserrat', Arial, sans-serif; white-space: nowrap; }
+.all-proposal-card.is-approved .all-proposal-status { background: #dbeafe; color: #1e3a8a; }
+.all-proposal-card.is-revisions-required .all-proposal-status { background: #ffe1e5; color: #be123c; }
+.all-proposal-card.is-rejected .all-proposal-status { background: #fee2e2; color: #b91c1c; }
+.all-proposal-card h2 { margin: 14px 0 4px; color: #1f2937; font: 600 17px/22px 'Admin Playfair Display', Georgia, serif; }
+.all-proposal-org { min-height: 34px; color: #6b7280; font-size: 11px; line-height: 17px; }
+.all-proposal-details { display: grid; gap: 7px; margin: 16px 0 0; padding: 12px; background: #f8f7f7; }
+.all-proposal-details div { display: flex; justify-content: space-between; gap: 10px; font-size: 11px; line-height: 16px; }
+.all-proposal-details dt { color: #807663; }
+.all-proposal-details dd { margin: 0; color: #4e4635; font-weight: 600; text-align: right; }
+.all-proposal-event-id { margin-top: 12px; color: #807663; font-size: 10px; font-weight: 600; }
+.all-proposal-view { align-self: flex-end; margin-top: auto; padding: 12px 0 0; border: 0; background: transparent; color: #0b2046; font: 700 11px/16px 'Admin Montserrat', Arial, sans-serif; letter-spacing: .45px; }
+.all-proposal-view:hover { color: #c59b27; }
+.all-proposals-empty, .all-proposals-error { grid-column: 1 / -1; padding: 48px 24px; border-radius: 12px; background: white; color: #807663; text-align: center; }
+.all-proposals-error button { display: block; margin: 12px auto 0; border: 0; border-radius: 4px; padding: 8px 12px; background: #f5f3f3; color: #0b2046; }
+.all-proposals-pagination { display: flex; align-items: center; gap: 10px; padding: 18px 0 0; }
+.all-proposals-pagination button { width: 28px; height: 28px; border: 0; border-radius: 4px; background: #f5f3f3; color: #0b2046; font-size: 20px; line-height: 20px; }
+.all-proposals-pagination button:disabled { opacity: .45; }
+.all-proposals-pagination span { color: #4e4635; font-size: 11px; }
+@media (max-width: 960px) { .all-proposals-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .all-proposals-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .all-proposals-main { padding: 20px 16px 32px; } .all-proposals-header { padding: 16px; } .all-proposals-heading-row { align-items: flex-start; flex-direction: column-reverse; gap: 8px; margin-bottom: 16px; } .all-proposals-heading-row h1 { font-size: 26px; } .all-proposals-filters { grid-template-columns: 1fr; } .all-proposals-summary { align-items: flex-start; flex-direction: column; gap: 4px; } .all-proposals-grid { grid-template-columns: 1fr; } }
