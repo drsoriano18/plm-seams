@@ -1,0 +1,51 @@
+/* Read-only Event Proposal Review. Builds on Proposals.css (cards, banners, advisory, venue blocks). */
+.organization-proposal-review-title{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
+.organization-proposal-badge{display:inline-flex;align-items:center;min-height:28px;padding:2px 12px;border-radius:999px;background:#eae7e7;color:#4e4635;font:700 11px/16px Montserrat,Arial,sans-serif;letter-spacing:.5px;text-transform:uppercase}
+.organization-proposal-badge.is-approved{background:#e2f4ea;color:#1b6f45}
+.organization-proposal-badge.is-rejected{background:#fde7e7;color:#8f1313}
+.organization-proposal-badge.is-pending,.organization-proposal-badge.is-revision{background:#fbf3d9;color:#473500}
+.organization-proposal-badge.is-completed{background:var(--pp-navy);color:#fff}
+
+/* Label and value pairs */
+.organization-proposal-review-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 24px;margin:0}
+.organization-proposal-review-grid+.organization-proposal-review-group,.organization-proposal-review-group+.organization-proposal-review-group,.organization-proposal-review-group+.organization-proposal-review-grid,.organization-proposal-review-grid+.organization-proposal-review-grid{margin-top:24px}
+.organization-proposal-value{min-width:0}
+.organization-proposal-value.is-full{grid-column:1/-1}
+.organization-proposal-value dt{margin:0 0 6px;color:#4e4635;font:600 11px/16px Montserrat,Arial,sans-serif;letter-spacing:.6px;text-transform:uppercase}
+.organization-proposal-value dd{box-sizing:border-box;min-height:44px;margin:0;padding:10px 12px;border:1px solid var(--pp-line);border-radius:4px;background:var(--pp-tint);color:var(--pp-ink);font:400 14px/22px Inter,Arial,sans-serif;overflow-wrap:anywhere}
+.organization-proposal-value dd.is-text{white-space:pre-wrap}
+.organization-proposal-review-unit{color:var(--pp-muted);font:700 11px/16px Montserrat,Arial,sans-serif;letter-spacing:.6px}
+.organization-proposal-review-empty{margin:0;padding:12px 14px;border:1px dashed #d9d4c8;border-radius:4px;color:var(--pp-muted);font:500 13px/20px Inter,Arial,sans-serif;overflow-wrap:anywhere}
+
+/* Selected eligibility and modality cards */
+.organization-proposal-review-group h3{margin:0 0 10px;color:#4e4635;font:600 11px/16px Montserrat,Arial,sans-serif;letter-spacing:.6px;text-transform:uppercase}
+.organization-proposal-review-group>.organization-proposal-help{margin-top:8px}
+.organization-proposal-review-choices{display:grid;gap:12px;margin:0;padding:0;list-style:none}
+.organization-proposal-review-choices.is-two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.organization-proposal-review-choices.is-three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.organization-proposal-review-choice{display:flex;flex-direction:column;gap:4px;min-width:0;padding:16px;border:1px solid var(--pp-line);border-radius:8px;background:var(--pp-tint)}
+.organization-proposal-review-choice .organization-proposal-choice-title,.organization-proposal-review-choice .organization-proposal-choice-text{color:#6f6657}
+.organization-proposal-review-choice.is-selected{border-color:var(--pp-gold);background:#fbf5e1;box-shadow:inset 0 0 0 1px var(--pp-gold)}
+.organization-proposal-review-choice.is-selected .organization-proposal-choice-title{color:var(--pp-navy)}
+.organization-proposal-review-choice.is-selected .organization-proposal-choice-text{color:#4e4635}
+.organization-proposal-review-selected{display:inline-flex;align-items:center;gap:6px;margin-top:6px;color:var(--pp-gold-ink);font:700 11px/16px Montserrat,Arial,sans-serif;letter-spacing:.5px;text-transform:uppercase}
+.organization-proposal-review-tags{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.organization-proposal-review-tags li{max-width:100%;padding:8px 12px;border:1px solid var(--pp-gold);border-radius:6px;background:#fbf5e1;color:var(--pp-ink);font:500 13px/20px Inter,Arial,sans-serif;overflow-wrap:anywhere}
+
+/* Sponsorship */
+.organization-proposal-review-sponsorship{display:flex;align-items:flex-start;gap:12px;margin-top:24px;padding:14px 16px;border:1px solid var(--pp-line);border-radius:8px;background:var(--pp-tint)}
+.organization-proposal-review-sponsorship strong{display:block;color:var(--pp-navy);font:700 14px/20px Inter,Arial,sans-serif;overflow-wrap:anywhere}
+.organization-proposal-review-sponsorship p{margin:2px 0 0}
+.organization-proposal-review-sponsorship .organization-proposal-review-answer{margin-top:6px;color:var(--pp-ink);font:500 13px/20px Inter,Arial,sans-serif}
+.organization-proposal-review-box{display:grid;flex:0 0 auto;place-items:center;width:18px;height:18px;margin-top:1px;border:1px solid var(--pp-field);border-radius:3px;background:#fff;color:#fff}
+.organization-proposal-review-box.is-checked{border-color:var(--pp-navy);background:var(--pp-navy)}
+
+@media (max-width:767px){
+  .organization-proposal-review-grid,.organization-proposal-review-choices.is-two,.organization-proposal-review-choices.is-three{grid-template-columns:minmax(0,1fr)}
+}
+
+/* Proposal Not Found */
+.organization-proposal-state h1{margin:0 0 8px;color:var(--pp-navy);font:700 clamp(24px,4vw,30px)/1.2 'Playfair Display',Georgia,serif}
+.organization-proposal-state h1:focus{outline:none}
+.organization-proposal-state h1+p{margin:0 0 20px}
+.organization-proposal-state .organization-proposal-secondary:focus-visible{outline:2px solid var(--pp-gold);outline-offset:3px}

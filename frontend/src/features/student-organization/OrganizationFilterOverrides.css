@@ -1,0 +1,10 @@
+.organization-proposal-counts{display:flex;align-items:stretch;gap:2px;padding:4px;border-radius:3px;background:#f5f3f3}
+.organization-proposal-counts button{display:flex;min-width:70px;flex-direction:column;align-items:center;padding:5px 9px;border:0;border-radius:2px;background:transparent;color:#4e4635;cursor:pointer;font-size:9px;line-height:14px;transition:background-color 180ms ease,box-shadow 180ms ease,color 180ms ease}
+.organization-proposal-counts button:hover,.organization-proposal-counts button:focus-visible,.organization-proposal-counts button.is-active{background:#fff;color:#041a40;box-shadow:0 1px 4px rgba(11,32,70,.08)}
+.organization-proposal-counts strong{color:inherit;font-size:10px}
+
+/* Responsive audit: filter buttons reach 44px and the strip scrolls instead of overflowing. */
+@media (max-width: 640px) {
+  .organization-proposal-counts { overflow-x: auto; }
+  .organization-proposal-counts button { min-height: 44px; flex: 1 0 auto; }
+}

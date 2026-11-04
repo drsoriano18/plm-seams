@@ -43,3 +43,18 @@
 @media(max-width:760px){.student-profile-main{width:min(calc(100% - 28px),1180px);padding-top:20px}.profile-card-body{gap:18px;padding-inline:20px}.profile-credentials{display:block!important}.profile-credentials strong,.profile-credentials span{display:block;white-space:normal}.profile-credentials span{margin-top:3px}.profile-details h1{font-size:24px}.profile-history-image{width:76px;height:64px;flex-basis:76px}}
 .profile-history-card{transition:transform 350ms ease,box-shadow 350ms ease}.profile-history-card:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(11,32,70,.08)}
 @media(prefers-reduced-motion:reduce){.profile-history-card{transition:none}.profile-history-card:hover{transform:none}}
+
+/* Responsive audit: stacked profile card and history cards, 44px tap targets. */
+@media (max-width: 520px) {
+  .profile-card-body { flex-direction: column; align-items: flex-start; }
+  .profile-badges { flex-wrap: wrap; }
+  .profile-history-card { flex-direction: column; }
+  .profile-history-image { width: 100%; flex-basis: auto; }
+  .profile-history-status { flex-wrap: wrap; gap: 6px; }
+  .profile-history-topline time { white-space: normal; }
+}
+@media (max-width: 760px) {
+  .profile-filter-tabs { flex-wrap: wrap; gap: 6px; }
+  .profile-filter-tabs button { min-height: 44px; }
+  .profile-settings-link { min-height: 44px; }
+}

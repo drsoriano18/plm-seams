@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { eligibilityLabel, isRestrictedEvent } from '../src/features/dashboard/discoverEligibility.js'
+import { eligibilityLabel, isRestrictedEvent } from '../src/features/student/discoverEligibility.js'
 test('college eligibility label does not depend on available capacity', () => {
   assert.equal(eligibilityLabel({eligibility_mode:'College-Specific',eligible_college:'CISTM',registration_capacity:120,confirmed_registrations:10}), 'CISTM Only')
 })

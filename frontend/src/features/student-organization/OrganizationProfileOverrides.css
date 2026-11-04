@@ -1,0 +1,9 @@
+.organization-profile-settings-link{font-size:0}
+.organization-profile-settings-link{flex-direction:row}
+.organization-profile-settings-link>svg{display:none}
+.organization-profile-settings-link::before{content:"";position:relative;width:17px;height:15px;display:inline-block;background:linear-gradient(currentColor,currentColor) 0 2px/11px 2px no-repeat,linear-gradient(currentColor,currentColor) 0 7px/8px 2px no-repeat,linear-gradient(135deg,transparent 44%,currentColor 45% 59%,transparent 60%) 7px 6px/11px 11px no-repeat}
+.organization-profile-settings-link::after{content:'Edit Settings';font-size:13px}
+.organization-profile-mark{background:#e5e3e1;color:transparent}
+.organization-profile-badges span:nth-child(4){background:#d9f2e6;color:#1a753f}
+.organization-profile-type{background:#d9e2ff!important;color:#34466e!important}
+.organization-profile-year{background:#ffdf98!important;color:#251a00!important}

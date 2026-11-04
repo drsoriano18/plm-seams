@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { eventDetails, registrationState, canCancel } from '../src/features/dashboard/eventApi.js'
+import { eventDetails, registrationState, canCancel } from '../src/features/student/eventApi.js'
 import { changePassword, passwordError, replacePhoto, validatePhoto } from '../src/features/account/accountApi.js'
 const starts='2030-01-01T12:00:00Z', before=Date.parse(starts)-1
 const event={starts_at:starts,event_status:'Upcoming',can_register:true,registration_capacity:1,confirmed_registrations:0}

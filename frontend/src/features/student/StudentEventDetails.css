@@ -38,3 +38,16 @@
 .student-event-eligibility p{margin:0;font:500 13px/16px Inter,Arial,sans-serif;letter-spacing:-.12px;overflow-wrap:anywhere}
 .student-event-detail-column>.student-event-action-row{margin-top:0}
 @media(max-width:520px){.student-event-records-card{padding:12px 16px}.student-event-records>div{flex-wrap:wrap;gap:4px 12px}.student-event-records dd{margin-left:auto}}
+
+/* Responsive audit: grid children can shrink, back link and actions reach 44px. */
+.student-event-sidebar, .student-event-detail-card { min-width: 0; }
+@media (max-width: 800px) {
+  .student-event-back { display: inline-flex; align-items: center; min-height: 44px; font-size: 13px; }
+  .student-event-description { text-align: left; }
+}
+@media (max-width: 520px) {
+  .student-event-action { min-height: 44px; }
+  .student-event-poster-bottom { flex-wrap: wrap; }
+  .student-event-side-card dl div { font-size: 11px; }
+  .student-event-stats small { font-size: 9px; }
+}

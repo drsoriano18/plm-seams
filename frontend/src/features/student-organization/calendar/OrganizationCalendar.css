@@ -1,0 +1,103 @@
+.organization-calendar-title{flex-direction:column;align-items:flex-start;gap:6px}
+.organization-calendar-title p{margin:0;color:#807665;font-size:12px;line-height:18px}
+.organization-calendar-content{display:flex;flex-direction:column;gap:16px;width:min(100% - 48px,1100px);margin:0 auto;padding:28px 0 48px}
+.organization-calendar-card{min-width:0;border:1px solid #e9e6e4;border-radius:4px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.organization-calendar-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;padding:20px 24px 14px}
+.organization-calendar-card-head.is-stacked{flex-direction:column;gap:4px;border-bottom:1px solid #e9e6e4}
+.organization-calendar-card-head h2{display:flex;align-items:center;gap:8px;margin:0;color:#1b1c1c;font:700 20px/28px 'Playfair Display',Georgia,serif}
+.organization-calendar-card-head h2 svg{color:#775a00}
+.organization-calendar-card-head p{margin:0;color:#807665;font-size:12px;line-height:18px}
+.organization-calendar-venue{display:flex;flex-direction:column;gap:4px;min-width:0;max-width:100%}
+.organization-calendar-venue label{margin-top:6px;color:#4e4635;font:600 11px/16px Montserrat,Arial,sans-serif}
+.organization-calendar-venue select{max-width:100%;min-width:240px;padding:8px 10px;border:1px solid #e9e6e4;border-radius:2px;background:#fbf9f9;color:#1b1c1c;font:600 13px/20px Inter,Arial,sans-serif}
+.organization-calendar-venue select:focus-visible,.organization-calendar-month button:focus-visible,.organization-calendar-cell:focus-visible,.organization-review-link:focus-visible,.organization-manage-approved:focus-visible{outline:2px solid #041a40;outline-offset:2px}
+.organization-calendar-venue-details{margin:0}
+.organization-calendar-month{display:flex;align-items:center;gap:10px;flex:0 0 auto}
+.organization-calendar-month h3{min-width:150px;margin:0;color:#1b1c1c;font:700 16px/24px Montserrat,Arial,sans-serif;text-align:right}
+.organization-calendar-month button{display:grid;place-items:center;width:34px;height:34px;padding:0;border:1px solid #e9e6e4;border-radius:2px;background:#fff;color:#775a00;cursor:pointer;touch-action:manipulation;transition:background-color 180ms ease}
+.organization-calendar-month button:hover{background:#f5f3f3}
+.organization-calendar-body{padding:8px 24px 12px}
+.organization-calendar-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px 6px}
+.organization-calendar-weekday{padding-bottom:6px;color:#807665;font:600 10px/16px Inter,Arial,sans-serif;letter-spacing:.5px;text-align:center}
+.organization-calendar-cell{display:grid;place-items:center;min-width:0;height:42px;padding:0;border:0;border-radius:2px;background:#fff;color:#1b1c1c;font:400 15px/20px Inter,Arial,sans-serif}
+button.organization-calendar-cell{cursor:pointer;touch-action:manipulation;transition:background-color 180ms ease,box-shadow 180ms ease}
+button.organization-calendar-cell.is-available:hover{background:#f5f3f3;box-shadow:inset 0 0 0 1px #c59b27}
+.organization-calendar-cell.is-outside{color:#bbb5ac}
+.organization-calendar-cell.is-unavailable{background:#ffd9d9;color:#775a00}
+.organization-calendar-cell.is-past{color:#807665;cursor:not-allowed}
+.organization-calendar-cell.is-today{font-weight:800}
+button.organization-calendar-cell.is-selected{background:#c59b27;color:#fff;font-weight:700}
+.organization-calendar-legend{display:flex;flex-wrap:wrap;gap:20px;margin:0;padding:12px 24px 20px;list-style:none;color:#807665;font-size:12px}
+.organization-calendar-legend li{display:flex;align-items:center;gap:7px}
+.organization-calendar-legend i{width:14px;height:14px;border:1px solid #e9e6e4;border-radius:2px;background:#fff}
+.organization-calendar-legend i.is-selected{border-color:#c59b27;background:#c59b27}
+.organization-calendar-legend i.is-unavailable{background:#ffd9d9}
+.organization-calendar-notice{margin:0 24px 8px;padding:10px 14px;border-radius:4px;background:#f4ecd6;color:#473500;font-size:12px;line-height:18px}
+.organization-calendar-card .organization-inline-error{margin:0 24px 8px}
+.organization-calendar-card-body{padding:4px 24px 20px}
+.organization-calendar-empty{margin:0;padding:28px 12px;border:1px dashed #d9d4c8;border-radius:4px;color:#807665;font-size:13px;text-align:center}
+.organization-slot-table{width:100%;border-collapse:collapse;font-size:12px}
+.organization-slot-table th{padding:12px 0 8px;border-bottom:1px solid #e9e6e4;color:#807665;font:500 11px/16px Inter,Arial,sans-serif;text-align:left}
+.organization-slot-table td{padding:14px 0;border-bottom:1px solid #e9e6e4;color:#4e4635;vertical-align:middle}
+.organization-slot-table td strong{color:#1b1c1c;font-weight:700}
+.organization-slot-table th.is-end,.organization-slot-table td.is-end{text-align:right}
+.organization-slot-table:not(.organization-events-table) th:last-child,.organization-slot-table:not(.organization-events-table) .organization-slot-row td:last-child{text-align:right}
+.organization-slot-row.is-occupied td{border-bottom:0;padding-bottom:6px}
+.organization-slot-tag{display:inline-block;padding:2px 8px;border-radius:2px;font:600 10px/16px Inter,Arial,sans-serif}
+.organization-slot-tag.is-free{background:#dcf5c9;color:#2f5a14}
+.organization-slot-tag.is-occupied{background:#ffd9d9;color:#8a1f22}
+.organization-slot-tag.is-past{background:#eae7e7;color:#5f594e}
+.organization-slot-detail dl+dl{margin-top:6px}
+.organization-slot-detail td{padding:0 0 14px}
+.organization-slot-detail dl{display:flex;flex-wrap:wrap;gap:6px 24px;margin:0;padding:8px 12px;border-radius:2px;background:#fbf9f9}
+.organization-slot-detail dl div{min-width:0}
+.organization-slot-detail dt{color:#807665;font-size:10px;line-height:16px}
+.organization-slot-detail dd{margin:0;color:#1b1c1c;font-size:12px;line-height:18px;overflow-wrap:anywhere}
+.organization-review-link{display:inline-block;padding:5px 12px;border:1px solid #e9e6e4;border-radius:2px;background:#fff;color:#1b1c1c;text-decoration:none;font:600 11px/16px Inter,Arial,sans-serif}
+.organization-review-link:hover{background:#f5f3f3}
+.organization-manage-approved{display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 16px;border-radius:2px;background:#c59b27;color:#1b1c1c;text-decoration:none;font:700 12px/16px Montserrat,Arial,sans-serif;letter-spacing:.5px;text-transform:uppercase;transition:background-color 180ms ease}
+.organization-manage-approved:hover{background:#b48a1f}
+@media(max-width:900px){.organization-calendar-content{width:min(100% - 32px,720px)}}
+@media(max-width:640px){
+.organization-calendar-content{width:min(100% - 24px,720px);padding-top:20px}
+.organization-calendar-card-head{flex-direction:column;padding:16px 16px 12px}
+.organization-calendar-venue select{width:100%;min-width:0}
+.organization-calendar-month{justify-content:space-between;width:100%}
+.organization-calendar-month h3{min-width:0;text-align:center;flex:1}
+.organization-calendar-body{padding:4px 12px 8px}
+.organization-calendar-grid{gap:4px 3px}
+.organization-calendar-cell{height:38px;font-size:14px}
+.organization-calendar-legend{padding:8px 16px 16px;gap:14px}
+.organization-calendar-notice,.organization-calendar-card .organization-inline-error{margin-inline:16px}
+.organization-calendar-card-body{padding:4px 16px 16px}
+.organization-slot-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.organization-slot-table,.organization-slot-table tbody,.organization-slot-table tr,.organization-slot-table td{display:block}
+.organization-slot-table tr.organization-slot-row{margin-top:10px;padding:8px 12px;border:1px solid #e9e6e4;border-radius:4px}
+.organization-slot-table tr.organization-slot-row.is-occupied{margin-bottom:0;border-bottom:0;border-bottom-left-radius:0;border-bottom-right-radius:0;padding-bottom:0}
+.organization-slot-table td{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border:0;text-align:right}
+.organization-slot-table td::before{content:attr(data-label);color:#807665;font-size:11px;text-align:left}
+.organization-slot-table td.is-end,.organization-slot-table:not(.organization-events-table) .organization-slot-row td:last-child{text-align:right}
+.organization-slot-row.is-occupied td{padding-bottom:6px}
+.organization-slot-detail{margin:0 0 10px;padding:0 12px 10px;border:1px solid #e9e6e4;border-top:0;border-radius:0 0 4px 4px}
+.organization-slot-detail td{display:block;padding:0;text-align:left}
+.organization-slot-detail td::before{content:none}
+.organization-slot-detail dl{flex-direction:column;gap:6px}
+}
+@media(prefers-reduced-motion:reduce){.organization-calendar-month button,button.organization-calendar-cell,.organization-manage-approved{transition:none}}
+
+/* Responsive audit: 44px month arrows, day cells and links; stacked footer button on small screens. */
+@media(max-width:640px){
+.organization-calendar-month button{width:44px;height:44px}
+.organization-calendar-cell{height:44px}
+.organization-review-link{display:inline-flex;align-items:center;min-height:44px;padding-inline:16px}
+.organization-manage-approved{min-height:44px}
+.organization-calendar-venue select{min-height:44px;font-size:16px}
+.organization-calendar-legend{gap:10px 14px}
+}
+@media(max-width:360px){
+.organization-calendar-body{padding-inline:8px}
+.organization-calendar-grid{gap:2px}
+.organization-calendar-cell{font-size:13px}
+.organization-calendar-weekday{font-size:9px;letter-spacing:0}
+.organization-calendar-month h3{font-size:14px}
+}

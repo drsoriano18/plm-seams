@@ -58,3 +58,15 @@
 }
 
 @media (prefers-reduced-motion: reduce) { .auth-submit { transition: none; } }
+
+/* Responsive audit: 44px password toggle target and 16px inputs (prevents iOS zoom on focus). */
+@media (max-width: 520px) {
+  .auth-field input { font-size: 1rem; }
+  .password-input-wrap input { padding-right: 52px; }
+  .password-toggle { top: 2px; right: 2px; width: 44px; height: 44px; }
+  .auth-submit { min-height: 48px; }
+}
+@media (max-width: 340px) {
+  .auth-page { padding-inline: 10px; }
+  .auth-card { padding: 24px 16px; }
+}

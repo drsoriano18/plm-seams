@@ -22,3 +22,10 @@
 .event-dialog-actions button:disabled{cursor:wait;opacity:.65}
 .event-dialog-actions button:focus-visible,.event-dialog-reason textarea:focus-visible{outline:2px solid #c59b27;outline-offset:3px}
 @media(max-width:420px){.event-dialog-content{padding:20px}.event-dialog-heading h2{font-size:20px}.event-dialog-actions{padding:20px}}
+
+/* Responsive audit: dialog actions wrap and keep 44px buttons on small screens. */
+@media (max-width: 520px) {
+  .event-dialog-actions { height: auto; min-height: 80px; flex-wrap: wrap; }
+  .event-dialog-actions button { min-height: 44px; flex: 1 1 120px; }
+  .is-cancel-confirm .event-dialog-content { min-height: 0; }
+}

@@ -1,0 +1,87 @@
+/* Shared by Manage Approved Events and the Event page. */
+.organization-events-sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* Breadcrumb */
+.organization-events-breadcrumb ol{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0;padding:0;list-style:none;color:#4e4635;font:600 12px/18px Inter,Arial,sans-serif;letter-spacing:.3px;text-transform:uppercase}
+.organization-events-breadcrumb li{display:flex;align-items:center;min-width:0;overflow-wrap:anywhere}
+.organization-events-breadcrumb a{display:inline-flex;align-items:center;gap:6px;min-height:44px;color:#775a00;text-decoration:none}
+.organization-events-breadcrumb a:hover{text-decoration:underline}
+.organization-events-breadcrumb a:focus-visible{outline:2px solid #041a40;outline-offset:2px;border-radius:2px;text-decoration:underline}
+
+/* States */
+.organization-events-state{margin:0;padding:40px 24px;border-radius:8px;background:#fff;color:#807665;font:500 14px/22px Inter,Arial,sans-serif;text-align:center;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.organization-events-state.is-error{color:#ba1a1a;background:#fff5f5;border:1px solid #f3c9c9;text-align:left}
+.organization-events-state:empty{display:none}
+.organization-events-empty{display:flex;flex-direction:column;align-items:center;padding:56px 24px;border-radius:8px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.05);text-align:center}
+.organization-events-empty>span{display:grid;place-items:center;width:44px;height:44px;margin-bottom:14px;border-radius:50%;background:#f5f3f3;color:#775a00}
+.organization-events-empty h1,.organization-events-empty h2{margin:0 0 6px;color:#041a40;font:600 20px/28px 'Playfair Display',Georgia,serif}
+.organization-events-empty p{max-width:440px;margin:0;color:#807665;font-size:13px;line-height:20px}
+
+/* Notice */
+.organization-events-notice-slot{width:100%}
+.organization-events-notice{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:16px 20px;border:1px solid #e9e6e4;border-radius:12px;background:#f5f3f3;box-shadow:0 8px 24px rgba(4,26,64,.1)}
+.organization-events-notice.is-success{border-color:#bfe3cf;background:#effaf3}
+.organization-events-notice strong{display:block;color:#041a40;font:600 14px/20px Inter,Arial,sans-serif;overflow-wrap:anywhere}
+.organization-events-notice p{margin:4px 0 0;color:#4e4635;font:400 13px/20px Inter,Arial,sans-serif}
+.organization-events-notice button{display:grid;flex:0 0 auto;place-items:center;width:44px;height:44px;margin:-12px -12px 0 0;padding:0;border:0;border-radius:50%;background:transparent;color:#807665;cursor:pointer;touch-action:manipulation}
+.organization-events-notice button:hover{background:#fff;color:#041a40}
+.organization-events-notice button:focus-visible{outline:2px solid #041a40;outline-offset:-2px}
+.organization-event-notice-link{display:inline-flex;align-items:center;min-height:44px;color:#775a00;font:700 13px/20px Inter,Arial,sans-serif;text-decoration:underline}
+.organization-event-notice-link:focus-visible{outline:2px solid #041a40;outline-offset:2px}
+@media (prefers-reduced-motion:no-preference){.organization-events-notice{animation:organization-events-notice-in 220ms ease-out both}}
+@keyframes organization-events-notice-in{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+
+/* State pills */
+.organization-state-pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font:700 10px/16px Montserrat,Arial,sans-serif;letter-spacing:.5px;white-space:nowrap}
+.organization-state-pill::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.organization-state-pill.is-ongoing{background:#fbf0cf;color:#775a00}
+.organization-state-pill.is-upcoming{background:#e4ecf8;color:#34548a}
+.organization-state-pill.is-completed{background:#e2f4ea;color:#1b6f45}
+.organization-state-pill.is-cancelled{background:#fde7e7;color:#ba1a1a}
+.organization-state-pill.is-rescheduled{background:#ffefd2;color:#9a5600}
+
+/* Pagination */
+.organization-events-pagination{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 20px;border-top:1px solid #efeded;border-radius:0 0 8px 8px;background:#f5f3f3}
+.organization-events-range{margin:0;color:#4e4635;font-size:12px;line-height:18px}
+.organization-events-pagination nav{display:flex;align-items:center;gap:6px;margin-left:auto}
+.organization-events-pagination button{display:grid;place-items:center;min-width:44px;height:44px;padding:0 8px;border:1px solid #e9e6e4;border-radius:6px;background:#fff;color:#041a40;font:600 13px/20px Inter,Arial,sans-serif;cursor:pointer;touch-action:manipulation}
+.organization-events-pagination button:hover:not(:disabled){background:#efeded}
+.organization-events-pagination button:disabled{color:#b8b2a6;cursor:not-allowed}
+.organization-events-pagination button.is-current{border-color:#041a40;background:#041a40;color:#fff}
+.organization-events-pagination button:focus-visible{outline:2px solid #c59b27;outline-offset:2px}
+.organization-events-gap{color:#807665}
+
+/* Archive Confirmation dialog */
+.organization-archive-dialog{width:min(100% - 32px,560px);max-height:calc(100dvh - 32px);padding:0;overflow:auto;border:0;border-radius:12px;background:#fff;color:#1b1c1c;box-shadow:0 24px 64px rgba(4,26,64,.28)}
+.organization-archive-dialog::backdrop{background:rgba(4,26,64,.5)}
+.organization-archive-dialog-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:24px 24px 20px;background:#f5f3f3}
+.organization-archive-dialog-eyebrow{margin:0 0 6px;color:#775a00;font:700 11px/16px Montserrat,Arial,sans-serif;letter-spacing:.8px;text-transform:uppercase}
+.organization-archive-dialog-head h2{margin:0;color:#041a40;font:700 24px/32px 'Playfair Display',Georgia,serif;overflow-wrap:anywhere}
+.organization-archive-dialog-head p:last-child{margin:6px 0 0;color:#807665;font-size:13px;line-height:20px}
+.organization-archive-dialog-close{display:grid;flex:0 0 auto;place-items:center;width:44px;height:44px;padding:0;border:1px solid #e9e6e4;border-radius:8px;background:#fff;color:#041a40;cursor:pointer;touch-action:manipulation}
+.organization-archive-dialog-close:hover:not(:disabled){background:#efeded}
+.organization-archive-dialog-body{display:flex;flex-direction:column;gap:16px;padding:24px}
+.organization-archive-dialog-event{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px;border:1px solid #e9e6e4;border-radius:8px}
+.organization-archive-dialog-label{margin:0;color:#807665;font:700 10px/16px Montserrat,Arial,sans-serif;letter-spacing:.6px;text-transform:uppercase}
+.organization-archive-dialog-name{margin:4px 0 0;color:#041a40;font:600 18px/26px 'Playfair Display',Georgia,serif;overflow-wrap:anywhere}
+.organization-archive-dialog-times{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0}
+.organization-archive-dialog-times>div{padding:12px 14px;border-radius:6px;background:#f5f3f3}
+.organization-archive-dialog-times dt{color:#807665;font:700 10px/16px Montserrat,Arial,sans-serif;letter-spacing:.6px;text-transform:uppercase}
+.organization-archive-dialog-times dd{margin:2px 0 0;color:#041a40;font:600 13px/20px Inter,Arial,sans-serif;text-transform:uppercase}
+.organization-archive-dialog-error{margin:0;color:#ba1a1a;font:500 13px/20px Inter,Arial,sans-serif}
+.organization-archive-dialog-error:empty{display:none}
+.organization-archive-dialog-actions{display:flex;flex-direction:column;gap:10px}
+.organization-archive-dialog-confirm,.organization-archive-dialog-cancel{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 20px;border-radius:6px;font:700 12px/16px Montserrat,Arial,sans-serif;letter-spacing:.6px;text-transform:uppercase;cursor:pointer;touch-action:manipulation}
+.organization-archive-dialog-confirm{border:1px solid #c59b27;background:#f6e7b4;color:#5b4300}
+.organization-archive-dialog-confirm:hover:not(:disabled){background:#efd98f}
+.organization-archive-dialog-cancel{border:1px solid #041a40;background:#fff;color:#041a40}
+.organization-archive-dialog-cancel:hover:not(:disabled){background:#f5f3f3}
+.organization-archive-dialog button:disabled{opacity:.6;cursor:not-allowed}
+.organization-archive-dialog button:focus-visible{outline:2px solid #041a40;outline-offset:2px}
+@media (max-width:640px){
+  .organization-archive-dialog-head{padding:20px 16px 16px}
+  .organization-archive-dialog-body{padding:16px}
+  .organization-events-pagination{flex-direction:column;align-items:stretch}
+  .organization-events-pagination nav{flex-wrap:wrap;justify-content:flex-end;margin-left:0}
+  .organization-archive-dialog-event{flex-direction:column;align-items:flex-start}
+}
