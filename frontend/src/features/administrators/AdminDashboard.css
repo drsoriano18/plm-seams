@@ -123,3 +123,81 @@
 @media (max-width: 960px) { .admin-content-grid { grid-template-columns: minmax(0, 1fr); } .admin-proposals, .admin-agenda { grid-column: 1; } .admin-agenda-heading { flex-wrap: nowrap; } .admin-proposal-actions { max-width: none; } .admin-proposal-actions time { white-space: nowrap; } .admin-footer { flex-wrap: wrap; justify-content: center; text-align: center; gap: 12px; } .admin-footer > span { text-align: center; } }
 @media (max-width: 600px) { .admin-header-inner { height: auto; min-height: 64px; padding: 10px 16px; gap: 12px; flex-wrap: wrap; } .admin-navigation { order: 3; width: 100%; justify-content: center; } .admin-navigation a, .admin-navigation button { padding-inline: 12px; } .admin-main { padding: 20px 16px 32px; } .admin-title-panel { padding: 14px 16px; } .admin-title-panel h1 { font-size: 27px; line-height: 35px; } .admin-section-heading h2 { font-size: 21px; line-height: 28px; } .admin-review-all { padding: 6px 8px; font-size: 11px !important; letter-spacing: .5px; } .admin-proposal-card { display: grid; grid-template-columns: 36px minmax(0, 1fr); align-items: start; gap: 10px; padding: 16px; } .admin-proposal-symbol { margin: 0; } .admin-proposal-copy h3 { font-size: 14px; line-height: 22px; letter-spacing: .35px; } .admin-proposal-details { gap: 6px 12px; } .admin-proposal-actions { grid-column: 2; flex-direction: row; align-items: center; justify-content: space-between; gap: 10px; } .admin-proposal-actions time { white-space: normal; text-align: right; font-size: 11px; } .admin-review-button { padding: 8px 12px; font-size: 12px !important; } .admin-agenda { padding: 20px 16px; } .admin-agenda-heading > span { font-size: 9px; letter-spacing: .8px; } .admin-agenda-topline { align-items: flex-start; flex-wrap: wrap; } .admin-agenda-topline time { font-size: 11px; } .admin-footer { flex-direction: column; padding: 16px 20px; } .admin-footer strong { font-size: 11px; letter-spacing: .7px; } .admin-footer > span { font-size: 11px; } .admin-notifications { position: fixed; top: 64px; left: 16px; right: 16px; width: auto; max-width: none; } }
 @media (max-width: 380px) { .admin-navigation a, .admin-navigation button { flex: 1; padding-inline: 6px; font-size: 11px; letter-spacing: .4px; } .admin-navigation .is-active { font-size: 14px; } }
+
+/* Notification popover: aligned with the Student dashboard popover. Kept last so it wins over the earlier base rules. */
+.admin-bell-button { display: grid; place-items: center; min-width: 44px; min-height: 44px; padding: 8px; color: #1b1c1c; transition: color 350ms ease, background-color 350ms ease; touch-action: manipulation; }
+.admin-bell-button:hover, .admin-bell-button:focus-visible { color: #775a00; background: #f5f3f3; }
+.admin-unread-dot { right: 5px; }
+.admin-popover.admin-notifications { top: calc(100% + 8px); width: min(390px, calc(100vw - 32px)); max-width: none; border-color: #e9e6e4; border-radius: 8px; box-shadow: 0 6px 20px rgb(11 32 70 / 9%); animation: admin-popover-in 350ms cubic-bezier(.16, 1, .3, 1) both; transform-origin: top right; }
+@keyframes admin-popover-in { from { opacity: 0; transform: translateY(-6px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+.admin-notifications .admin-popover-heading { padding: 16px; border-bottom: 0; }
+.admin-notifications .admin-popover-heading h2 { color: #041a40; font: 700 19px/25px 'Admin Montserrat', Arial, sans-serif; }
+.admin-notifications .admin-popover-heading > span { padding: 4px 8px; border-radius: 4px; background: #f4ecd6; color: #775a00; font: 700 11px/16px 'Admin Montserrat', Arial, sans-serif; white-space: nowrap; }
+.admin-notifications .admin-notification-list { max-height: min(60vh, 520px); }
+.admin-notifications .admin-notification { gap: 12px; border-top: 1px solid #e9e6e4; border-bottom: 0; background: #fcf9f0; }
+.admin-notifications .admin-notification.is-read { background: #fff; }
+.admin-notifications .admin-notification > div { flex: 1; min-width: 0; }
+.admin-notifications .admin-notification-dot { width: 6px; height: 13px; margin-top: 3px; border-radius: 12px; background: #c59b27; }
+.admin-notifications .admin-notification.is-read .admin-notification-dot { background: #d5d0c5; }
+.admin-notifications .admin-notification h3 { color: #041a40; font: 600 13px/20px 'Admin Inter', Arial, sans-serif; }
+.admin-notifications .admin-notification p { padding: 0; color: #1b1c1c; font-size: 13px; line-height: 20px; }
+.admin-notifications .admin-notification time { color: #807665; font-size: 11px; line-height: 16px; }
+.admin-notifications .admin-notification > div > button { padding: 6px 0 0; color: #775a00; font-size: 12px; line-height: 16px; }
+.admin-notifications .admin-notification-dismiss { display: grid; place-items: center; flex: 0 0 20px; width: 20px; height: 20px; margin-left: 0; padding: 0 !important; border: 1px solid #e9e6e4 !important; border-radius: 10px !important; background: #fbf9f9 !important; color: #807665 !important; font-size: 14px; line-height: 1; }
+.admin-notifications .admin-notification-dismiss:hover:not(:disabled), .admin-notifications .admin-notification-dismiss:focus-visible { background: #fff !important; color: #041a40 !important; }
+.admin-notifications .admin-popover-message { padding: 24px 16px; color: #807665; font-size: 13px; line-height: 20px; }
+.admin-notifications .admin-popover-close { min-height: 44px; border: 0; border-top: 1px solid #e9e6e4; background: #fff; color: #775a00; font: 600 11px/16px 'Admin Montserrat', Arial, sans-serif; }
+@media (max-width: 760px) { .admin-popover.admin-notifications { right: -16px; } .admin-notifications .admin-notification-dismiss { position: relative; } .admin-notifications .admin-notification-dismiss::after { content: ''; position: absolute; inset: -12px; } }
+@media (max-width: 600px) { .admin-popover.admin-notifications { position: fixed; top: 64px; left: 16px; right: 16px; width: auto; } }
+@media (max-width: 420px) { .admin-popover.admin-notifications { top: 72px; } }
+@media (prefers-reduced-motion: reduce) { .admin-bell-button { transition: none; } .admin-popover.admin-notifications { animation: none; } }
+/* Hover bridges: let the pointer cross the gap between a header button and its open popover.
+   Each strip exists only while its own popover is open and sits below the button, so it never covers other header controls. */
+.admin-popover-anchor:has(> .admin-notifications)::after,
+.admin-popover-anchor:has(> .admin-profile-menu)::after { content: ''; position: absolute; top: 100%; right: 0; left: 0; height: 8px; }
+.admin-popover-anchor:has(> .admin-profile-menu)::after { height: 12px; }
+
+/* Header sizing and profile dropdown: matches the Student Organization header (64px bar, 112x40 logo, centred nav, compact actions).
+   Appended last so it wins over the earlier base rules. Tap targets return to 44px at <=600px. */
+.admin-header-inner { position: relative; height: 63px; max-width: none; margin-inline: 0; padding: 0 clamp(20px, 4vw, 48px); gap: 24px; }
+.admin-brand { display: flex; align-items: center; }
+.admin-brand img { width: 112px; height: 40px; object-fit: contain; }
+.admin-navigation { position: absolute; left: 50%; transform: translateX(-50%); gap: 4px; padding: 0; border: 0; border-radius: 0; background: transparent; }
+.admin-navigation a { gap: 6px; padding: 7px 11px; border: 1px solid #e9e6e4; border-radius: 3px; color: #4e4635; font: 600 11px/16px 'Admin Montserrat', Arial, sans-serif; letter-spacing: 0; transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease; }
+.admin-navigation a:hover, .admin-navigation a:focus-visible, .admin-navigation a.is-active { border-color: #d9d4c8; background: #f5f3f3; color: #041a40; }
+.admin-navigation a.is-active { border: 1px solid #d9d4c8; box-shadow: inset 0 -2px var(--admin-gold); font: 600 11px/16px 'Admin Montserrat', Arial, sans-serif; letter-spacing: 0; }
+.admin-navigation a:focus-visible { outline: 2px solid #041a40; outline-offset: 2px; }
+.admin-navigation .admin-icon { width: 14px; height: 14px; }
+.admin-archives-icon { width: 14px; height: 14px; margin-right: 0; }
+.admin-header-actions { gap: 12px; }
+.admin-header-divider { display: none; }
+.admin-bell-button { min-width: 0; min-height: 0; padding: 7px; border-radius: 4px; }
+.admin-bell-button .admin-icon { width: 18px; height: 18px; }
+.admin-profile-button { gap: 5px; padding: 4px 5px; border-radius: 4px; }
+.admin-profile-button:hover, .admin-profile-button:focus-visible { background: #f5f3f3; }
+.admin-avatar { width: 24px; height: 24px; border-radius: 6px; background: #806100; }
+.admin-avatar .admin-icon { width: 16px; height: 16px; }
+.admin-profile-button > .admin-icon { width: 13px; height: auto; }
+
+/* Profile dropdown: same layout as the Student Organization menu (icon + label rows, red Sign Out). */
+.admin-popover.admin-profile-menu { top: calc(100% + 8px); width: 184px; min-width: 0; padding: 8px; border: 1px solid #e9e6e4; border-radius: 8px; background: #fff; box-shadow: 0 6px 20px rgb(11 32 70 / 9%); }
+.admin-profile-menu a, .admin-profile-menu button { display: flex; align-items: center; gap: 10px; width: 100%; height: 38px; padding: 0 10px; border: 0; border-radius: 4px; background: #fff; color: #041a40; font: 600 12px/18px 'Admin Inter', Arial, sans-serif; text-align: left; text-decoration: none; }
+.admin-profile-menu a:hover, .admin-profile-menu a:focus-visible { background: #f5f3f3; }
+.admin-profile-menu button[role="menuitem"] { color: #9c2323; }
+.admin-profile-menu button[role="menuitem"]:hover:not(:disabled), .admin-profile-menu button[role="menuitem"]:focus-visible { background: #fdf0f0; }
+.admin-profile-menu [role="menuitem"]:focus-visible { outline: 2px solid #041a40; outline-offset: -2px; }
+.admin-menu-icon { flex: 0 0 auto; }
+.admin-profile-menu .admin-menu-divider { height: 1px; margin: 4px 0; border: 0; background: #e9e6e4; }
+.admin-popover-anchor:has(> .admin-profile-menu)::after { height: 8px; }
+@media (max-width: 900px) { .admin-header-inner { gap: 16px; } .admin-navigation { position: static; transform: none; margin: 0 auto; } }
+@media (max-width: 600px) {
+  .admin-header-inner { height: auto; min-height: 63px; padding: 10px 16px; gap: 12px; flex-wrap: wrap; }
+  .admin-navigation { position: static; transform: none; order: 3; width: 100%; margin: 0; justify-content: center; }
+  .admin-navigation a { flex: 1; min-height: 44px; }
+  .admin-header-actions { gap: 4px; }
+  .admin-bell-button { min-width: 44px; min-height: 44px; }
+  .admin-profile-button { min-height: 44px; padding-inline: 8px; }
+  .admin-profile-menu a, .admin-profile-menu button { height: 44px; }
+}
+@media (max-width: 480px) { .admin-navigation a { padding-inline: 8px; font-size: 11px; letter-spacing: 0; } .admin-navigation a.is-active { font-size: 11px; letter-spacing: 0; } }
+@media (prefers-reduced-motion: reduce) { .admin-navigation a { transition: none; } }

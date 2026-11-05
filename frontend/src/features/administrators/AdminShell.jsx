@@ -13,6 +13,8 @@ import chevronIcon from './assets/chevron.svg'
 import './AdminDashboard.css'
 
 const Icon = ({ src }) => <img className="admin-icon" src={src} alt="" aria-hidden="true" />
+const menuIconPaths = { user: <><circle cx="12" cy="8" r="3" /><path d="M5 20a7 7 0 0 1 14 0" /></>, signout: <><path d="M10 5H5v14h5" /><path d="m13 8 4 4-4 4M7 12h10" /></> }
+const MenuIcon = ({ name }) => <svg className="admin-menu-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">{menuIconPaths[name]}</svg>
 
 function PlaceholderDialog({ target, onClose }) {
   const dialogRef = useRef(null)
@@ -44,6 +46,8 @@ export default function AdminShell({ children, mainClassName = 'admin-main' }) {
   const [revision, setRevision] = useState(0)
   const [now, setNow] = useState(Date.now)
   const [popover, setPopover] = useState(null)
+  const [notificationsPinned, setNotificationsPinned] = useState(false)
+  const [profilePinned, setProfilePinned] = useState(false)
   const [placeholder, setPlaceholder] = useState(null)
   const [signingOut, setSigningOut] = useState(false)
   const [reading, setReading] = useState(null)
@@ -52,6 +56,7 @@ export default function AdminShell({ children, mainClassName = 'admin-main' }) {
   const bellRef = useRef(null)
   const profileButtonRef = useRef(null)
   const menuRef = useRef(null)
+  const focusMenuOnOpen = useRef(false)
   const popoverId = useId()
   const unreadCount = notifications.filter(item => !item.read_at).length
   useEffect(() => {
@@ -74,14 +79,34 @@ export default function AdminShell({ children, mainClassName = 'admin-main' }) {
     return () => { clearInterval(timer); window.removeEventListener('focus', onFocus) }
   }, [])
   useEffect(() => {
-    if (popover === 'profile') menuRef.current?.querySelector('[role="menuitem"]')?.focus()
-    function outside(event) { if (!controlsRef.current?.contains(event.target)) setPopover(null) }
-    function escape(event) { if (event.key === 'Escape' && popover) { setPopover(null); (popover === 'profile' ? profileButtonRef : bellRef).current?.focus() } }
+    if (popover === 'profile' && focusMenuOnOpen.current) menuRef.current?.querySelector('[role="menuitem"]')?.focus()
+    focusMenuOnOpen.current = false
+    function outside(event) { if (!controlsRef.current?.contains(event.target)) { setPopover(null); setNotificationsPinned(false); setProfilePinned(false) } }
+    function escape(event) { if (event.key === 'Escape' && popover) { setPopover(null); setNotificationsPinned(false); setProfilePinned(false); (popover === 'profile' ? profileButtonRef : bellRef).current?.focus() } }
     document.addEventListener('pointerdown', outside)
     document.addEventListener('keydown', escape)
     return () => { document.removeEventListener('pointerdown', outside); document.removeEventListener('keydown', escape) }
   }, [popover])
-  function closePopover() { setPopover(null); bellRef.current?.focus() }
+  function closeAll() { setPopover(null); setNotificationsPinned(false); setProfilePinned(false) }
+  function closePopover() { closeAll(); bellRef.current?.focus() }
+  function focusFirstMenuItem() { menuRef.current?.querySelector('[role="menuitem"]')?.focus() }
+  function toggleNotifications() {
+    const nextPinned = !notificationsPinned
+    setNotificationsPinned(nextPinned); setProfilePinned(false)
+    setPopover(nextPinned ? 'notifications' : null)
+  }
+  function openProfile() {
+    setNotificationsPinned(false); setProfilePinned(true)
+    if (popover === 'profile') focusFirstMenuItem()
+    else { focusMenuOnOpen.current = true; setPopover('profile') }
+  }
+  function toggleProfile() {
+    const nextPinned = !profilePinned
+    setProfilePinned(nextPinned); setNotificationsPinned(false)
+    if (!nextPinned) { setPopover(null); return }
+    if (popover === 'profile') focusFirstMenuItem()
+    else { focusMenuOnOpen.current = true; setPopover('profile') }
+  }
   async function markRead(notification) {
     if (notification.read_at || reading !== null) return
     setReading(notification.notification_id)
@@ -126,8 +151,8 @@ export default function AdminShell({ children, mainClassName = 'admin-main' }) {
         <Link className={location.pathname.startsWith('/admin/archives') ? 'is-active' : ''} to="/admin/archives" aria-current={location.pathname.startsWith('/admin/archives') ? 'page' : undefined}><span className="admin-archives-icon"><Icon src={archivesIcon} /></span>Archives</Link>
       </nav>
       <div className="admin-header-actions" ref={controlsRef}>
-        <div className="admin-popover-anchor">
-          <button ref={bellRef} className="admin-bell-button" type="button" aria-label={`Notifications${unreadCount ? `, ${unreadCount} unread` : ''}`} aria-expanded={popover === 'notifications'} aria-controls={popover === 'notifications' ? `${popoverId}-notifications` : undefined} onClick={() => setPopover(current => current === 'notifications' ? null : 'notifications')}><Icon src={bellIcon} />{unreadCount > 0 && <span className="admin-unread-dot" />}</button>
+        <div className="admin-popover-anchor" onMouseEnter={() => { setProfilePinned(false); setPopover('notifications') }} onMouseLeave={() => { if (!notificationsPinned) setPopover(current => current === 'notifications' ? null : current) }}>
+          <button ref={bellRef} className="admin-bell-button" type="button" aria-label={`Notifications${unreadCount ? `, ${unreadCount} unread` : ''}`} aria-expanded={popover === 'notifications'} aria-controls={popover === 'notifications' ? `${popoverId}-notifications` : undefined} onClick={toggleNotifications}><Icon src={bellIcon} />{unreadCount > 0 && <span className="admin-unread-dot" />}</button>
           {popover === 'notifications' && <div id={`${popoverId}-notifications`} className="admin-popover admin-notifications" role="dialog" aria-label="Notifications">
             <div className="admin-popover-heading"><h2>Notifications</h2><span>{unreadCount} unread</span></div>
             {errors.notificationAction && <p className="admin-inline-error" role="alert">{errors.notificationAction}</p>}
@@ -136,9 +161,9 @@ export default function AdminShell({ children, mainClassName = 'admin-main' }) {
           </div>}
         </div>
         <span className="admin-header-divider" aria-hidden="true" />
-        <div className="admin-popover-anchor">
-          <button ref={profileButtonRef} className="admin-profile-button" type="button" aria-label="Open profile menu" aria-haspopup="menu" aria-expanded={popover === 'profile'} aria-controls={popover === 'profile' ? `${popoverId}-profile` : undefined} onKeyDown={event => { if (event.key === 'ArrowDown') { event.preventDefault(); setPopover('profile') } }} onClick={() => setPopover(current => current === 'profile' ? null : 'profile')}><span className="admin-avatar"><Icon src={userIcon} /></span><Icon src={chevronIcon} /></button>
-          {popover === 'profile' && <div ref={menuRef} id={`${popoverId}-profile`} className="admin-popover admin-profile-menu" role="menu" aria-label="Profile menu" onKeyDown={menuKeyDown}><Link to="/admin/profile" role="menuitem" onClick={() => setPopover(null)}>View Profile</Link><Link to="/admin/account" role="menuitem" onClick={() => setPopover(null)}>Account Settings</Link><div className="admin-menu-divider" /><button type="button" role="menuitem" disabled={signingOut} onClick={signOut}>{signingOut ? 'Signing out…' : 'Sign Out'}</button></div>}
+        <div className="admin-popover-anchor" onMouseEnter={() => { setNotificationsPinned(false); setPopover('profile') }} onMouseLeave={() => { if (!profilePinned) setPopover(current => current === 'profile' ? null : current) }}>
+          <button ref={profileButtonRef} className="admin-profile-button" type="button" aria-label="Open profile menu" aria-haspopup="menu" aria-expanded={popover === 'profile'} aria-controls={popover === 'profile' ? `${popoverId}-profile` : undefined} onKeyDown={event => { if (event.key === 'ArrowDown') { event.preventDefault(); openProfile() } }} onClick={toggleProfile}><span className="admin-avatar"><Icon src={userIcon} /></span><Icon src={chevronIcon} /></button>
+          {popover === 'profile' && <div ref={menuRef} id={`${popoverId}-profile`} className="admin-popover admin-profile-menu" role="menu" aria-label="Profile menu" onKeyDown={menuKeyDown}><Link to="/admin/profile" role="menuitem" onClick={closeAll}><MenuIcon name="user" />View Profile</Link><div className="admin-menu-divider" /><button type="button" role="menuitem" disabled={signingOut} onClick={signOut}><MenuIcon name="signout" />{signingOut ? 'Signing out…' : 'Sign Out'}</button></div>}
         </div>
       </div>
     </div></header>

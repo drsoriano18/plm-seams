@@ -142,7 +142,7 @@ try {
     await context.close()
     console.log('PASS ineligible student: discovery, eligibility filter, event details, and registration dialog without write')
   }
-  { // Bell clicks must keep the panel open while crossing the gap and reading notifications.
+  { // Hovering the bell opens the panel and a click pins it open while crossing the gap and reading notifications.
     const notice={notification_id:'TEST-NOTICE',notification_type:'Registration Confirmed',message:'Your registration is confirmed.',created_at:'2026-11-04T06:54:00Z',read_at:null,event_id:'TEST-EVENT'}
     const {context,page,requests}=await contextFor('Student',true,true,[notice])
     await page.goto(base+'/student/login')
@@ -155,7 +155,7 @@ try {
       const bell=page.getByRole('button',{name:/^Notifications/})
       await bell.waitFor()
       await bell.hover()
-      assert.equal(await page.getByRole('dialog',{name:'Notifications',exact:true}).count(),0)
+      await page.getByRole('dialog',{name:'Notifications',exact:true}).waitFor()
       await bell.click()
       const panel=page.getByRole('dialog',{name:'Notifications',exact:true})
       await panel.waitFor()

@@ -29,3 +29,6 @@
   .organization-primary-nav { flex-wrap: wrap; }
   .organization-primary-nav a { padding-inline: 8px; }
 }
+
+/* Notification bell hover bridge: keeps the panel open while the pointer crosses the 8px gap to an open popover (the popover itself clips overflow). */
+.organization-header-popover-wrap:has(> .organization-popover)::after { content: ""; position: absolute; top: 100%; right: 0; left: 0; height: 8px; }

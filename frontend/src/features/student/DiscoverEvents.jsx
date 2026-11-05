@@ -81,6 +81,7 @@ export default function DiscoverEvents() {
   const [college, setCollege] = useState('all')
   const [openPopover, setOpenPopover] = useState(null)
   const [profileMenuPinned, setProfileMenuPinned] = useState(false)
+  const [notificationsPinned, setNotificationsPinned] = useState(false)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const notificationRef = useRef(null)
@@ -108,7 +109,7 @@ export default function DiscoverEvents() {
   useEffect(() => {
     function closeOnOutside(event) {
       if (!notificationRef.current?.contains(event.target) && !profileRef.current?.contains(event.target)) {
-        setOpenPopover(null); setProfileMenuPinned(false)
+        setOpenPopover(null); setProfileMenuPinned(false); setNotificationsPinned(false)
       }
     }
     document.addEventListener('mousedown', closeOnOutside)
@@ -141,8 +142,8 @@ export default function DiscoverEvents() {
       <a href="/student/dashboard" className="student-brand" aria-label="PLM SEAMS student dashboard"><img src={logoImage} alt="PLM SEAMS" width="112" height="40" /></a>
       <nav className="student-primary-nav" aria-label="Student portal sections"><Link to="/student/dashboard"><Icon name="calendar" size={14} />Upcoming</Link><Link className="is-active" to="/student/discover"><Icon name="compass" size={14} />Discover</Link></nav>
       <div className="student-header-actions">
-        <div className="student-header-popover-wrap" ref={notificationRef}><button className="student-icon-button" type="button" onClick={() => setOpenPopover(current => current === 'notifications' ? null : 'notifications')} aria-label={`Notifications${unreadCount ? `, ${unreadCount} unread` : ''}`} aria-expanded={openPopover === 'notifications'}><Icon name="bell" size={18} />{unreadCount > 0 && <span className="student-unread-dot" />}</button>{openPopover === 'notifications' && <NotificationsPopover notifications={notifications} onRead={markAsRead} onClose={() => setOpenPopover(null)} />}</div>
-        <div className="student-header-popover-wrap" ref={profileRef} onMouseEnter={() => setOpenPopover('profile')} onMouseLeave={() => { if (!profileMenuPinned) setOpenPopover(null) }}><button className="student-profile-button" type="button" onClick={() => { const nextPinned = !profileMenuPinned; setProfileMenuPinned(nextPinned); setOpenPopover(nextPinned ? 'profile' : null) }} aria-label="Open profile menu" aria-expanded={openPopover === 'profile'}><span><ProfileImage fallback={<Icon name="user" size={16} />} /></span><Icon name="chevron" size={13} /></button>{openPopover === 'profile' && <ProfilePopover onSignOut={signOut} />}</div>
+        <div className="student-header-popover-wrap" ref={notificationRef} onMouseEnter={() => { setProfileMenuPinned(false); setOpenPopover('notifications') }} onMouseLeave={() => { if (!notificationsPinned) setOpenPopover(null) }}><button className="student-icon-button" type="button" onClick={() => { const nextPinned = !notificationsPinned; setNotificationsPinned(nextPinned); setProfileMenuPinned(false); setOpenPopover(nextPinned ? 'notifications' : null) }} aria-label={`Notifications${unreadCount ? `, ${unreadCount} unread` : ''}`} aria-expanded={openPopover === 'notifications'}><Icon name="bell" size={18} />{unreadCount > 0 && <span className="student-unread-dot" />}</button>{openPopover === 'notifications' && <NotificationsPopover notifications={notifications} onRead={markAsRead} onClose={() => { setOpenPopover(null); setNotificationsPinned(false); setProfileMenuPinned(false) }} />}</div>
+        <div className="student-header-popover-wrap" ref={profileRef} onMouseEnter={() => { setNotificationsPinned(false); setOpenPopover('profile') }} onMouseLeave={() => { if (!profileMenuPinned) setOpenPopover(null) }}><button className="student-profile-button" type="button" onClick={() => { const nextPinned = !profileMenuPinned; setProfileMenuPinned(nextPinned); setNotificationsPinned(false); setOpenPopover(nextPinned ? 'profile' : null) }} aria-label="Open profile menu" aria-expanded={openPopover === 'profile'}><span><ProfileImage fallback={<Icon name="user" size={16} />} /></span><Icon name="chevron" size={13} /></button>{openPopover === 'profile' && <ProfilePopover onSignOut={signOut} />}</div>
       </div>
     </header>
     <section className="discover-main" aria-labelledby="discover-events-heading">

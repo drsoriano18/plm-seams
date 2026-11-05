@@ -49,6 +49,7 @@ export default function OrganizationHeader({ active, skipTarget }) {
   const [error, setError] = useState('')
   const [openPopover, setOpenPopover] = useState(null)
   const [profileMenuPinned, setProfileMenuPinned] = useState(false)
+  const [notificationsPinned, setNotificationsPinned] = useState(false)
   const notificationRef = useRef(null)
   const profileRef = useRef(null)
 
@@ -70,7 +71,7 @@ export default function OrganizationHeader({ active, skipTarget }) {
   useEffect(() => {
     function closeOnOutside(event) {
       if (notificationRef.current && !notificationRef.current.contains(event.target) && profileRef.current && !profileRef.current.contains(event.target)) {
-        setOpenPopover(null); setProfileMenuPinned(false)
+        setOpenPopover(null); setProfileMenuPinned(false); setNotificationsPinned(false)
       }
     }
     document.addEventListener('mousedown', closeOnOutside)
@@ -103,8 +104,8 @@ export default function OrganizationHeader({ active, skipTarget }) {
         <Link to="/student-organization/archives" {...navProps('archives')}><Icon name="archive" size={14} />Archives</Link>
       </nav>
       <div className="organization-header-actions">
-        <div className="organization-header-popover-wrap" ref={notificationRef} onMouseEnter={() => setOpenPopover('notifications')} onMouseLeave={() => setOpenPopover(null)}><button className="organization-icon-button" type="button" onClick={() => setOpenPopover(current => current === 'notifications' ? null : 'notifications')} aria-label={`Notifications${unreadCount ? `, ${unreadCount} unread` : ''}`} aria-expanded={openPopover === 'notifications'}><Icon name="bell" size={18} />{unreadCount > 0 && <span className="organization-unread-dot" />}</button>{openPopover === 'notifications' && <NotificationPopover notifications={notifications} onRead={markAsRead} onClose={() => setOpenPopover(null)} />}</div>
-        <div className="organization-header-popover-wrap" ref={profileRef} onMouseEnter={() => setOpenPopover('profile')} onMouseLeave={() => { if (!profileMenuPinned) setOpenPopover(null) }}><button className="organization-profile-button" type="button" onClick={() => { const nextPinned = !profileMenuPinned; setProfileMenuPinned(nextPinned); setOpenPopover(nextPinned ? 'profile' : null) }} aria-label={`Open profile menu for ${displayName}`} aria-expanded={openPopover === 'profile'}><span><Icon name="user" size={16} /></span><Icon name="chevron" size={13} /></button>{openPopover === 'profile' && <ProfilePopover onSignOut={signOut} />}</div>
+        <div className="organization-header-popover-wrap" ref={notificationRef} onMouseEnter={() => { setProfileMenuPinned(false); setOpenPopover('notifications') }} onMouseLeave={() => { if (!notificationsPinned) setOpenPopover(null) }}><button className="organization-icon-button" type="button" onClick={() => { const nextPinned = !notificationsPinned; setNotificationsPinned(nextPinned); setProfileMenuPinned(false); setOpenPopover(nextPinned ? 'notifications' : null) }} aria-label={`Notifications${unreadCount ? `, ${unreadCount} unread` : ''}`} aria-expanded={openPopover === 'notifications'}><Icon name="bell" size={18} />{unreadCount > 0 && <span className="organization-unread-dot" />}</button>{openPopover === 'notifications' && <NotificationPopover notifications={notifications} onRead={markAsRead} onClose={() => { setOpenPopover(null); setNotificationsPinned(false); setProfileMenuPinned(false) }} />}</div>
+        <div className="organization-header-popover-wrap" ref={profileRef} onMouseEnter={() => { setNotificationsPinned(false); setOpenPopover('profile') }} onMouseLeave={() => { if (!profileMenuPinned) setOpenPopover(null) }}><button className="organization-profile-button" type="button" onClick={() => { const nextPinned = !profileMenuPinned; setProfileMenuPinned(nextPinned); setNotificationsPinned(false); setOpenPopover(nextPinned ? 'profile' : null) }} aria-label={`Open profile menu for ${displayName}`} aria-expanded={openPopover === 'profile'}><span><Icon name="user" size={16} /></span><Icon name="chevron" size={13} /></button>{openPopover === 'profile' && <ProfilePopover onSignOut={signOut} />}</div>
       </div>
     </header>
     {error && <p className="organization-header-error" role="alert">{error}</p>}

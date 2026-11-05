@@ -30,6 +30,7 @@ const StudentProfileSettings = lazy(() => import('./features/student/StudentProf
 const StudentEventDetails = lazy(() => import('./features/student/StudentEventDetails'))
 const DiscoverEvents = lazy(() => import('./features/student/DiscoverEvents'))
 import LoginPage from './features/auth/LoginPage'
+import DocumentTitle from './lib/DocumentTitle'
 import backgroundImage from './assets/landing/background.png'
 import logoImage from './assets/landing/plm-seams-logo.png'
 import studentIcon from './assets/landing/student.svg'
@@ -81,6 +82,7 @@ function LandingPage() {
 function App() {
   return (
     <BrowserRouter>
+      <DocumentTitle />
       <AuthProvider><Suspense fallback={<p role="status">Loading workspaceâ€¦</p>}><Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/student/login" element={<LoginPage portal="student" />} />
