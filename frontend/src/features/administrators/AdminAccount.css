@@ -35,3 +35,4 @@
 .admin-account-signout button { padding: 10px 16px; border: 1px solid #f2a0a0; border-radius: 4px; background: white; color: #b91c1c; }
 .admin-notification-dismiss { margin-left: auto; width: 24px; height: 24px; padding: 0!important; border: 1px solid #e5e7eb!important; border-radius: 50%!important; background: white!important; color: #807663!important; font-size: 16px; line-height: 20px; }
 @media (max-width: 720px) { .admin-profile-main { padding: 28px 16px 32px; } .admin-account-main { padding: 20px 16px 32px; } .admin-profile-body { grid-template-columns: 112px minmax(0, 1fr); min-height: 220px; padding: 18px; } .admin-profile-avatar { width: 112px; height: 132px; } .admin-profile-copy h1 { font-size: 26px; line-height: 32px; } .admin-account-layout { grid-template-columns: 1fr; gap: 20px; } }
+.admin-account-info dd.admin-account-email { color: #806100; overflow-wrap: anywhere; }

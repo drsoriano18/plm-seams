@@ -6,7 +6,7 @@ import OrganizationHeader from '../components/OrganizationHeader'
 import OrganizationFooter from '../components/OrganizationFooter'
 import Icon from '../components/OrganizationIcon'
 import { WEEKDAY_LABELS, addDaysToKey, addMonths, buildMonthGrid, currentMonth, formatLongDate, formatManilaTime, formatMonthTitle, makeDayKey, monthRange, todayKey } from './calendarDates'
-import { dayStatus, daySlots, isPastDay } from './availability'
+import { daySlots, isBookedDay, isPastDay } from './availability'
 import { fetchVenueBookings, fetchVenues, venueDetails, venueLabel } from './venueApi'
 import { fetchUnpublishedApprovedEvents } from './unpublishedEventsApi'
 import '../OrganizationDashboard.css'
@@ -19,7 +19,7 @@ function CalendarGrid({ year, month, bookings, selectedKey, onSelect, now }) {
   const cells = useMemo(() => buildMonthGrid(year, month), [year, month])
   const statuses = useMemo(() => {
     const map = new Map()
-    for (const cell of cells) if (cell.inMonth) map.set(cell.key, dayStatus(cell.key, bookings, now))
+    for (const cell of cells) if (cell.inMonth) map.set(cell.key, isBookedDay(cell.key, bookings) ? 'booked' : isPastDay(cell.key, now) ? 'past' : 'available')
     return map
   }, [cells, bookings, now])
   const today = todayKey(now)
@@ -42,14 +42,14 @@ function CalendarGrid({ year, month, bookings, selectedKey, onSelect, now }) {
       const status = statuses.get(cell.key)
       const selected = cell.key === selectedKey
       const isToday = cell.key === today
-      const classes = ['organization-calendar-cell', `is-${status}`, selected && 'is-selected', past && 'is-past', isToday && 'is-today'].filter(Boolean).join(' ')
+      const classes = ['organization-calendar-cell', status === 'available' ? 'is-available' : 'is-unavailable', selected && 'is-selected', past && 'is-past', isToday && 'is-today'].filter(Boolean).join(' ')
       return <button
         key={cell.key}
         type="button"
         className={classes}
         data-day={cell.key}
         tabIndex={cell.key === tabStop ? 0 : -1}
-        aria-label={`${formatLongDate(cell.key)}, ${selected ? 'selected, ' : ''}${status}${isToday ? ', today' : ''}`}
+        aria-label={`${formatLongDate(cell.key)}, ${selected ? 'selected, ' : ''}${status === 'booked' ? 'booked' : status === 'past' ? 'past' : 'available'}${isToday ? ', today' : ''}`}
         aria-pressed={selected}
         aria-current={isToday ? 'date' : undefined}
         aria-disabled={past || undefined}
@@ -181,7 +181,7 @@ export default function OrganizationCalendar() {
           <CalendarGrid year={month.year} month={month.month} bookings={bookings} selectedKey={selectedKey} onSelect={setSelectedKey} now={now} />
         </div>
         <ul className="organization-calendar-legend" aria-label="Legend">
-          <li><i className="is-available" />Available</li><li><i className="is-selected" />Selected</li><li><i className="is-unavailable" />Unavailable</li>
+          <li><i className="is-available" />Available</li><li><i className="is-selected" />Selected</li><li><i className="is-unavailable" />Booked</li>
         </ul>
       </section>
 

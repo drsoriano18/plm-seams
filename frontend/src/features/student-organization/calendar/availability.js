@@ -1,4 +1,4 @@
-import { MINUTE_MS, manilaDayStartMs, todayKey } from './calendarDates.js'
+import { DAY_MS, MINUTE_MS, manilaDayStartMs, todayKey } from './calendarDates.js'
 
 // Fixed daily time blocks, minutes after 00:00 Asia/Manila. One hour apart.
 export const TIME_BLOCK_1 = { id: 'block-1', startMinutes: 7 * 60 + 30, endMinutes: 9 * 60 + 30 }
@@ -51,6 +51,19 @@ export function daySlots(key, bookings, now = Date.now()) {
     const kind = events.length ? 'occupied' : isPastDay(key, now) || start <= now ? 'past' : 'free'
     const status = kind === 'occupied' ? 'Occupied' : kind === 'past' ? 'Unavailable' : 'Available'
     return { id: `${key}-${block.id}`, kind, status, startsAt: iso(start), endsAt: iso(end), events }
+  })
+}
+
+// True when any Confirmed or Pending booking overlaps the Manila calendar day.
+// Uses the booking's own starts_at/ends_at only (no buffer).
+export function isBookedDay(key, bookings) {
+  const dayStart = manilaDayStartMs(key)
+  const dayEnd = dayStart + DAY_MS
+  return (bookings || []).some((booking) => {
+    if (!OCCUPYING_STATUSES.includes(booking.booking_status)) return false
+    const start = Date.parse(booking.starts_at)
+    const end = Date.parse(booking.ends_at)
+    return Number.isFinite(start) && Number.isFinite(end) && end > start && start < dayEnd && end > dayStart
   })
 }
 

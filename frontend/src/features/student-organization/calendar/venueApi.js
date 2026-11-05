@@ -55,7 +55,8 @@ export function normalizeBooking(row) {
 // only the signed-in organization's bookings (RLS) are visible.
 export async function fetchVenueBookings(client, venueId, fromIso, toIso) {
   const from = new Date(Date.parse(fromIso) - DAY_MS).toISOString()
-  const rpc = await client.rpc('get_venue_availability', { venue_id: venueId, from_ts: from, to_ts: toIso })
+  let rpc = await client.rpc('get_venue_availability', { p_venue_id: venueId, p_from_ts: from, p_to_ts: toIso })
+  if (isFunctionMissing(rpc.error)) rpc = await client.rpc('get_venue_availability', { venue_id: venueId, from_ts: from, to_ts: toIso })
   if (!rpc.error) return { bookings: (rpc.data ?? []).map(normalizeBooking), source: 'shared' }
   if (!isFunctionMissing(rpc.error)) throw new Error('Venue availability could not be loaded. Please try again.')
 

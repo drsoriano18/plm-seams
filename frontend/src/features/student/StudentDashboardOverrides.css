@@ -67,3 +67,14 @@
   .student-primary-nav a { padding-inline: 8px; }
   .student-filter-strip { flex-wrap: nowrap; }
 }
+
+/* Hover bridge: lets the pointer cross the 8px gap between the bell and its notifications panel.
+   Scoped to the notifications wrapper only, so it never overlaps the profile menu or other header buttons. */
+.student-header-popover-wrap:has(> .student-notifications-popover)::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  height: 8px;
+}
