@@ -127,7 +127,7 @@ export default function ApprovedEvents() {
             <td><div className="approved-row-actions">
               <button type="button" onClick={() => navigate(`/admin/proposals/${encodeURIComponent(event.proposal_id)}`, { state: { from: '/admin/calendar/events', eventName: event.proposal?.event_name } })}>View Details</button>
               {['Upcoming', 'Rescheduled'].includes(displayState) && <button type="button" className="is-cancel" onClick={() => openDialog('cancel', event)}><EventIcon name="cancel" />Cancel</button>}
-              {displayState === 'Cancelled' && <button type="button" className="is-reschedule" onClick={() => openDialog('reschedule', event)}><EventIcon name="reschedule" />Reschedule</button>}
+              {['Upcoming', 'Rescheduled'].includes(displayState) && <button type="button" className="is-reschedule" onClick={() => openDialog('reschedule', event)}><EventIcon name="reschedule" />Reschedule</button>}
               {['Completed', 'Cancelled'].includes(displayState) && <button type="button" className="is-archive" onClick={() => openDialog('archive', event)}>Archive Event</button>}
             </div></td>
           </tr>

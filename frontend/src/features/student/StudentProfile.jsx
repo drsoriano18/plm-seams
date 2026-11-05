@@ -42,8 +42,9 @@ function ProfilePopover({ onSignOut }) { return <div className="student-popover 
 function HistoryCard({ registration }) {
   const event = registration.event
   const attended = registration.attendance_status === 'Present'
-  const isFinished = event?.event_status === 'Completed' || event?.event_status === 'Cancelled'
-  return <article className="profile-history-card"><div className="profile-history-image"><span>{event?.event_type?.description || event?.event_type || 'PLM EVENT'}</span></div><div className="profile-history-content"><div className="profile-history-topline"><div><p className="profile-event-type">{event?.event_type?.description || event?.event_type || 'PLM Event'}</p><h3>{eventTitle(event)}</h3></div><time dateTime={event?.starts_at}><Icon name="calendar" size={12} />{formatDateTime(event?.starts_at)}</time></div><p className="profile-history-location"><Icon name="pin" size={13} />{event?.venue_name || 'Online / venue to be announced'}</p><div className="profile-history-status"><span className={`profile-status ${attended ? 'is-attended' : ''}`}><i />{attended ? 'Attended' : registration.reg_status}</span><strong>{isFinished ? 'FINISHED' : 'UPCOMING'}</strong></div></div></article>
+  const isCancelled = registration.reg_status === 'Cancelled'
+  const isFinished = event?.event_status === 'Completed'
+  return <article className="profile-history-card"><div className="profile-history-image"><span>{event?.event_type?.description || event?.event_type || 'PLM EVENT'}</span></div><div className="profile-history-content"><div className="profile-history-topline"><div><p className="profile-event-type">{event?.event_type?.description || event?.event_type || 'PLM Event'}</p><h3>{eventTitle(event)}</h3></div><time dateTime={event?.starts_at}><Icon name="calendar" size={12} />{formatDateTime(event?.starts_at)}</time></div><p className="profile-history-location"><Icon name="pin" size={13} />{event?.venue_name || 'Online / venue to be announced'}</p><div className="profile-history-status"><span className={`profile-status ${attended ? 'is-attended' : ''}`}><i />{attended ? 'Attended' : registration.reg_status}</span><strong className={isCancelled ? 'is-cancelled' : ''}>{isCancelled ? 'CANCELLED' : isFinished ? 'FINISHED' : 'UPCOMING'}</strong></div></div></article>
 }
 
 export default function StudentProfile() {

@@ -87,29 +87,21 @@ export async function loadApprovedEvents(client) {
 }
 
 export async function cancelAdminEvent(client, event, reason, adminId) {
-  const now = new Date().toISOString()
-  const { error } = await client.from('event').update({ event_status: 'Cancelled', registration_status: 'Closed', cancelled_at: now, cancelled_by: adminId, cancellation_reason: reason.trim() }).eq('event_id', event.event_id)
+  const { error } = await client.rpc('admin_cancel_event', { eid: event.event_id, reason: reason.trim() })
   if (error) throw error
-  const bookingIds = (event.bookings || []).filter(item => item.booking_status === 'Confirmed').map(item => item.booking_id)
-  if (bookingIds.length) { const result = await client.from('venue_booking').update({ booking_status: 'Cancelled', status_changed_at: now, change_reason: reason.trim() }).in('booking_id', bookingIds); if (result.error) throw result.error }
-  await client.from('notifications').insert({ recipient_user_id: event.org_id, notification_type: 'Event cancelled', message: `Your event “${event.proposal?.event_name || event.event_name}” was cancelled by the administrator.` })
 }
 
 export async function rescheduleAdminEvent(client, event, values, adminId) {
   const startsAt = localDateTimeIso(values.date, values.start)
   const endsAt = localDateTimeIso(values.endDate || values.date, values.end)
   if (Date.parse(endsAt) <= Date.parse(startsAt)) throw new Error('The end time must be after the start time.')
-  const now = new Date().toISOString()
   const booking = eventBooking(event)
-  const { error } = await client.from('event').update({ starts_at: startsAt, ends_at: endsAt, event_status: 'Upcoming', rescheduled_at: now, rescheduled_by: adminId, rescheduled_reason: values.reason.trim() }).eq('event_id', event.event_id)
+  const { error } = await client.rpc('admin_reschedule_event', { eid: event.event_id, new_starts_at: startsAt, new_ends_at: endsAt, new_venue_id: values.venueId || booking?.venue_id || null, reason: values.reason.trim() })
   if (error) throw error
-  if (booking) { const result = await client.from('venue_booking').update({ starts_at: startsAt, ends_at: endsAt, venue_id: values.venueId || booking.venue_id, booking_status: 'Confirmed', status_changed_at: now, change_reason: values.reason.trim() }).eq('booking_id', booking.booking_id); if (result.error) throw result.error }
-  await client.from('notifications').insert({ recipient_user_id: event.org_id, notification_type: 'Event rescheduled', message: `Your event “${event.proposal?.event_name || event.event_name}” was rescheduled by the administrator.` })
 }
 
 export async function archiveAdminEvent(client, event, adminId) {
-  const { error } = await client.from('event').update({ archived_at: new Date().toISOString(), registration_status: 'Closed' }).eq('event_id', event.event_id)
+  const { error } = await client.rpc('archive_event', { eid: event.event_id })
   if (error) throw error
-  await client.from('notifications').insert({ recipient_user_id: event.org_id, notification_type: 'Event archived', message: `Your event “${event.proposal?.event_name || event.event_name}” was archived by the administrator.` })
   return adminId
 }
