@@ -345,7 +345,8 @@ INSERT INTO "public"."users" ("user_id", "plm_email", "password", "role", "creat
 	('202590176', 'adeocampo2025@plm.edu.ph', '0NVvUcFEKXX', 'Student', '2026-10-29 00:00:00+00'),
 	('202690177', 'bdesilva2026@plm.edu.ph', 'k3MrVI8c5ZS', 'Student', '2026-10-29 00:00:00+00'),
 	('202390178', 'cdelmundo2023@plm.edu.ph', '7peLM7LYSBL', 'Student', '2026-10-29 00:00:00+00'),
-	('202490179', 'ddelosreyes2024@plm.edu.ph', 'GWbohdFguTf', 'Student', '2026-10-29 00:00:00+00');
+	('202490179', 'ddelosreyes2024@plm.edu.ph', 'GWbohdFguTf', 'Student', '2026-10-29 00:00:00+00')
+ON CONFLICT ("user_id") DO NOTHING;
 
 
 -- administrators --
@@ -473,7 +474,8 @@ INSERT INTO "public"."student_organization" ("org_id", "org_name", "org_type", "
 	('PLMDOSTSA-ORG-48', 'PLM DOST Scholars Association', 'University-Wide', 'DOST-SA', NULL, NULL),
 	('PLMMUPESA-ORG-49', 'PLM Music Performance Student Association', 'University-Wide', 'MUPESA', NULL, NULL),
 	('PLMPLSOC-ORG-50', 'PLM Pre-Law Society', 'University-Wide', 'PLSOC', NULL, NULL),
-	('PLMRC-ORG-53', 'Rotaract Club PLM', 'University-Wide', 'RC', NULL, NULL);
+	('PLMRC-ORG-53', 'Rotaract Club PLM', 'University-Wide', 'RC', NULL, NULL)
+ON CONFLICT ("org_id") DO NOTHING;
 
 
 -- event proposal --

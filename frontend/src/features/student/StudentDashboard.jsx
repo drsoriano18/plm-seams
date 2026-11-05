@@ -194,12 +194,12 @@ export default function StudentDashboard() {
     <section className="student-main" aria-labelledby="student-events-heading">
       <div className="student-summary-panel">
         <div><h1 id="student-events-heading">Events</h1><p>Manage your registrations</p></div>
-        <span className="student-confirmed-count"><i />{confirmedCount} Confirmed Event{confirmedCount === 1 ? '' : 's'}</span>
+        <span className="student-confirmed-count"><i />{confirmedCount} Confirmed</span>
         <div className="student-filter-strip" role="group" aria-label="Event filters"><button className={activeFilter === 'all' ? 'is-active' : ''} type="button" onClick={() => setActiveFilter('all')}>All ({filterCounts.all})</button><button className={activeFilter === 'week' ? 'is-active' : ''} type="button" onClick={() => setActiveFilter('week')}>This Week ({filterCounts.week})</button><button className={activeFilter === 'next-month' ? 'is-active' : ''} type="button" onClick={() => setActiveFilter('next-month')}>Next Month ({filterCounts['next-month']})</button></div>
       </div>
       {error && <p className="student-inline-error" role="alert">{error} <button type="button" onClick={() => setRevision(v => v+1)}>Retry</button></p>}
       <div className="student-event-list" aria-live="polite">
-        {loading ? <p className="student-loading" role="status">Loading events…</p> : visibleEvents.length ? visibleEvents.map(event => <EventCard key={event.event_id} event={event} registration={registrationMap.get(event.event_id)} />) : <div className="student-empty-state"><h2>{events.length ? 'No events in this filter' : 'No upcoming events yet'}</h2><p>{events.length ? 'Try another date range to see more published events.' : 'Published student events will appear here when they become available.'}</p></div>}
+        {loading ? <p className="student-loading" role="status">Loading events…</p> : visibleEvents.length ? visibleEvents.map(event => <EventCard key={event.event_id} event={event} registration={registrationMap.get(event.event_id)} />) : <div className="student-empty-state"><h2>{events.length ? 'No events in this filter' : 'You have no confirmed registration yet'}</h2><p>{events.length ? 'Try another date range to see more published events.' : 'Browse and register to an event through the Discover tab'}</p></div>}
       </div>
     </section>
     <footer className="student-portal-footer"><strong>Pamantasan ng Lungsod ng Maynila • SEAMS</strong><span>© 2026 PLM Student Event Administration &amp; Management System.</span></footer>

@@ -58,3 +58,4 @@
   .profile-filter-tabs button { min-height: 44px; }
   .profile-settings-link { min-height: 44px; }
 }
+.profile-history-status strong.is-cancelled { color: #c52222; }
