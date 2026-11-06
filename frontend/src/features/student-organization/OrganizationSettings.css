@@ -15,3 +15,18 @@
   .organization-settings-profile-menu a, .organization-settings-profile-menu button { height: 44px; }
 }
 @media (max-width: 420px) { .organization-picture-content { flex-direction: column; } }
+
+/* Shared PasswordForm inside the Organization panel. */
+.organization-password-panel .account-password-form{gap:0;max-width:none;padding-bottom:0}
+.organization-password-panel .account-password-form h2{padding:24px 24px 16px}
+.organization-password-panel .account-password-form label{display:block;margin:0 24px 6px}
+.organization-password-panel .password-input-wrap{margin-top:6px}
+.organization-password-panel .password-input-wrap input{margin-top:0}
+.organization-password-panel .password-visibility-toggle{right:6px;top:4px;bottom:4px;width:36px;border:0;cursor:pointer}
+.organization-password-panel .settings-save-button{width:calc(100% - 48px);height:36px;margin:6px 24px 0;padding:0;border:0;border-radius:2px;background:#041a40;color:#fff;font:700 11px/16px Montserrat,Arial,sans-serif;letter-spacing:1.3px;text-transform:uppercase;cursor:pointer}
+.organization-password-panel .settings-save-button:hover:not(:disabled),.organization-password-panel .settings-save-button:focus-visible{background:#0a2a5e}
+.organization-password-panel .settings-save-button:disabled{opacity:.6;cursor:wait}
+.organization-password-panel .account-password-form [role="alert"],.organization-password-panel .account-password-form [role="status"]{margin:8px 24px 0;font-size:12px;line-height:18px}
+.organization-password-panel .account-password-form [role="alert"]{color:#a33232}
+.organization-password-panel .account-password-form [role="status"]{color:#1a753f}
+@media (max-width:760px){.organization-password-panel .account-password-form label,.organization-password-panel .account-password-form [role="alert"],.organization-password-panel .account-password-form [role="status"]{margin-inline:16px}.organization-password-panel .settings-save-button{width:calc(100% - 32px);height:44px;margin-inline:16px}.organization-password-panel .password-visibility-toggle{width:44px}}

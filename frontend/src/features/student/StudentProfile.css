@@ -6,8 +6,6 @@
 .student-profile-main{width:min(100% - 36px,880px);min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:20px 0 28px;scrollbar-color:#c9c5bd transparent;scrollbar-width:thin}
 .student-profile-main::-webkit-scrollbar{width:8px}.student-profile-main::-webkit-scrollbar-thumb{border:2px solid transparent;border-radius:8px;background:#c9c5bd;background-clip:padding-box}
 .student-profile-page .student-portal-footer{flex:0 0 auto;margin-top:0}
-.student-profile-page .student-primary-nav a:not(:hover):not(:focus-visible){background:transparent;border-color:transparent;box-shadow:none;color:#4e4635}
-.student-profile-page .student-primary-nav a:hover,.student-profile-page .student-primary-nav a:focus-visible{background:#f5f3f3;border-color:#d9d4c8;color:#041a40}
 .student-profile-page .student-profile-popover{top:calc(100% + 2px)}
 .student-profile-page .student-profile-popover button span{display:inline;width:auto;height:auto;background:transparent;color:inherit}
 .profile-photo:focus-visible,.profile-filter-tabs button:focus-visible,.profile-settings-link:focus-visible{outline:3px solid #c59b27;outline-offset:3px}

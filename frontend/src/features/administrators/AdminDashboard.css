@@ -201,3 +201,6 @@
 }
 @media (max-width: 480px) { .admin-navigation a { padding-inline: 8px; font-size: 11px; letter-spacing: 0; } .admin-navigation a.is-active { font-size: 11px; letter-spacing: 0; } }
 @media (prefers-reduced-motion: reduce) { .admin-navigation a { transition: none; } }
+/* Profile button icons: same outline style and colors as the Student and Student Organization headers. */
+.admin-profile-button { color: #1b1c1c; }
+.admin-avatar { color: #fff; }

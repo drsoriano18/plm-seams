@@ -8,12 +8,11 @@ import manageIcon from './assets/manage.svg'
 import calendarIcon from './assets/calendar-nav.svg'
 import archivesIcon from './assets/archives.svg'
 import bellIcon from './assets/bell.svg'
-import userIcon from './assets/user.svg'
-import chevronIcon from './assets/chevron.svg'
 import './AdminDashboard.css'
 
 const Icon = ({ src }) => <img className="admin-icon" src={src} alt="" aria-hidden="true" />
 const menuIconPaths = { user: <><circle cx="12" cy="8" r="3" /><path d="M5 20a7 7 0 0 1 14 0" /></>, signout: <><path d="M10 5H5v14h5" /><path d="m13 8 4 4-4 4M7 12h10" /></> }
+const ProfileGlyph = ({ size, children }) => <svg className="admin-icon" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">{children}</svg>
 const MenuIcon = ({ name }) => <svg className="admin-menu-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">{menuIconPaths[name]}</svg>
 
 function PlaceholderDialog({ target, onClose }) {
@@ -162,7 +161,7 @@ export default function AdminShell({ children, mainClassName = 'admin-main' }) {
         </div>
         <span className="admin-header-divider" aria-hidden="true" />
         <div className="admin-popover-anchor" onMouseEnter={() => { setNotificationsPinned(false); setPopover('profile') }} onMouseLeave={() => { if (!profilePinned) setPopover(current => current === 'profile' ? null : current) }}>
-          <button ref={profileButtonRef} className="admin-profile-button" type="button" aria-label="Open profile menu" aria-haspopup="menu" aria-expanded={popover === 'profile'} aria-controls={popover === 'profile' ? `${popoverId}-profile` : undefined} onKeyDown={event => { if (event.key === 'ArrowDown') { event.preventDefault(); openProfile() } }} onClick={toggleProfile}><span className="admin-avatar"><Icon src={userIcon} /></span><Icon src={chevronIcon} /></button>
+          <button ref={profileButtonRef} className="admin-profile-button" type="button" aria-label="Open profile menu" aria-haspopup="menu" aria-expanded={popover === 'profile'} aria-controls={popover === 'profile' ? `${popoverId}-profile` : undefined} onKeyDown={event => { if (event.key === 'ArrowDown') { event.preventDefault(); openProfile() } }} onClick={toggleProfile}><span className="admin-avatar"><ProfileGlyph size={16}><circle cx="12" cy="8" r="3" /><path d="M5 20a7 7 0 0 1 14 0" /></ProfileGlyph></span><ProfileGlyph size={13}><path d="m7 10 5 5 5-5" /></ProfileGlyph></button>
           {popover === 'profile' && <div ref={menuRef} id={`${popoverId}-profile`} className="admin-popover admin-profile-menu" role="menu" aria-label="Profile menu" onKeyDown={menuKeyDown}><Link to="/admin/profile" role="menuitem" onClick={closeAll}><MenuIcon name="user" />View Profile</Link><div className="admin-menu-divider" /><button type="button" role="menuitem" disabled={signingOut} onClick={signOut}><MenuIcon name="signout" />{signingOut ? 'Signing out…' : 'Sign Out'}</button></div>}
         </div>
       </div>

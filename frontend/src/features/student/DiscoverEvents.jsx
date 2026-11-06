@@ -1,6 +1,6 @@
 import useBellNotifications from './useBellNotifications'
 import NotificationDates from './NotificationDates'
-import { eligibilityLabel } from './discoverEligibility'
+import { eligibilityLabel, isRestrictedEvent } from './discoverEligibility'
 import { ProfileImage } from '../account/AccountControls'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router'
@@ -60,7 +60,7 @@ function ProfilePopover({ onSignOut }) {
 function DiscoverCard({ event }) {
   const isLimited = Number(event.confirmed_registrations) >= Number(event.registration_capacity)
   const category = (event.event_type || 'Event').toUpperCase()
-  return <Link className="discover-event-card" to={`/student/events/${event.event_id}`}>
+  return <Link className="discover-event-card" to={`/student/events/${event.event_id}`} state={{ from: 'discover' }}>
     <div className="discover-event-image" aria-label="Event image placeholder"><span>{category.slice(0, 8)}</span></div>
     <div className="discover-event-content">
       <div className="discover-event-topline"><p>{formatDateTime(event.starts_at)}</p><span className={isLimited ? 'is-limited' : ''}>{eligibilityLabel(event)}{isLimited ? ' · Waitlist' : ''}</span></div>
@@ -79,6 +79,7 @@ export default function DiscoverEvents() {
   const [search, setSearch] = useState('')
   const [revision, setRevision] = useState(0)
   const [college, setCollege] = useState('all')
+  const [sortLatestFirst, setSortLatestFirst] = useState(false)
   const [openPopover, setOpenPopover] = useState(null)
   const [profileMenuPinned, setProfileMenuPinned] = useState(false)
   const [notificationsPinned, setNotificationsPinned] = useState(false)
@@ -118,11 +119,12 @@ export default function DiscoverEvents() {
 
   const filteredEvents = useMemo(() => {
     const term = search.trim().toLowerCase()
-    return events.filter(event => {
+    const matches = events.filter(event => {
       const searchable = [event.event_name, event.organization_name, event.eligible_college, event.event_type, event.venue_name].filter(Boolean).join(' ').toLowerCase()
-      return (!term || searchable.includes(term)) && (college === 'all' || event.is_eligible === true)
+      return (!term || searchable.includes(term)) && (college === 'all' || isRestrictedEvent(event))
     })
-  }, [college, events, search])
+    return sortLatestFirst ? [...matches].sort((a, b) => Date.parse(b.starts_at) - Date.parse(a.starts_at) || String(a.event_id).localeCompare(String(b.event_id))) : matches
+  }, [college, events, search, sortLatestFirst])
   const unreadCount = notifications.filter(item => !item.read_at).length
 
   async function markAsRead(notification) {
@@ -149,7 +151,7 @@ export default function DiscoverEvents() {
     <section className="discover-main" aria-labelledby="discover-events-heading">
       <div className="discover-heading-row"><h1 id="discover-events-heading">Discover Campus Events</h1><label className="discover-search"><span className="sr-only">Search events</span><Icon name="search" size={14} /><input type="search" value={search} onChange={event => setSearch(event.target.value)} placeholder="Search events, keywords…" spellCheck="false" /></label></div>
       <div className="discover-filter-bar"><span className="discover-filter-label"><Icon name="filter" size={14} />Filter:</span><label><span className="sr-only">Filter by college eligibility</span><select value={college} onChange={event => setCollege(event.target.value)}><option value="all">All Colleges</option><option value="eligible">Eligible Colleges Only</option></select></label></div>
-      <div className="discover-section-heading"><h2><i />Approved Upcoming Events</h2><span>Sort: <strong>Earliest Date ↓</strong></span></div>
+      <div className="discover-section-heading"><h2><i />Approved Upcoming Events</h2><button type="button" className="discover-sort-button" aria-pressed={sortLatestFirst} aria-label={`Sort by date, currently ${sortLatestFirst ? 'latest' : 'earliest'} first. Activate to reverse.`} onClick={() => setSortLatestFirst(current => !current)}>Sort: <strong>{sortLatestFirst ? 'Latest Date ↑' : 'Earliest Date ↓'}</strong></button></div>
       {error && <p className="discover-error" role="alert">{error} <button type="button" onClick={() => setRevision(v => v+1)}>Retry</button></p>}
       <div className="discover-event-list" aria-live="polite">{loading ? <p className="discover-status" role="status">Loading events…</p> : filteredEvents.length ? filteredEvents.map(event => <DiscoverCard key={event.event_id} event={event} />) : <div className="discover-empty"><h3>{events.length ? 'No events match your search' : 'No upcoming events'}</h3><p>{events.length ? 'Try another keyword or college filter.' : 'New published upcoming events will appear here.'}</p></div>}</div>
     </section>
