@@ -11,8 +11,8 @@ import { ChoiceCard, Field, ReservationSection, Section } from './ProposalFields
 import { deleteProposal, resubmitRevision, saveProposalDraft, submitNewProposal, updateProposal } from './proposalApi.js'
 import { capacityWarning, checkSchedule, formatProposalDateTime, formatSubmitted, isoToManilaInput, manilaInputToIso, minStartMs, outsideDayWarning, overlapWarning, sameVenueWarning } from './proposalDates.js'
 import {
-  COLLEGES, ELIGIBILITY_COLLEGE, ELIGIBILITY_UNIVERSITY, EVENT_NAME_MAX, MODALITIES, MULTI_COLLEGE_MESSAGE,
-  buildProposalPayload, buildScheduleRows, formFromProposal, groupEventTypes, isBackupStarted, modalityAvailable, multiCollegeBlocked, validateForm,
+  ELIGIBILITY_COLLEGE, ELIGIBILITY_UNIVERSITY, EVENT_NAME_MAX, MODALITIES,
+  buildProposalPayload, buildScheduleRows, formFromProposal, groupEventTypes, isBackupStarted, modalityAvailable, validateForm,
 } from './proposalModel.js'
 import { proposalPath } from './proposalStatus.js'
 import './Proposals.css'
@@ -109,7 +109,7 @@ export default function ProposalFormPage({ mode = 'create', proposal = null, eve
   const errors = useMemo(() => (attempt ? validateForm(form, { eventTypes, now: attempt.at }).errors : {}), [attempt, form, eventTypes])
   const livePrimary = liveSchedule(form.primary, 'The event', now)
   const liveBackup = online || !backupStarted ? { start: '', end: '' } : liveSchedule(form.backup, 'The backup reservation', now)
-  const collegeError = errors.colleges || (multiCollegeBlocked(form) ? MULTI_COLLEGE_MESSAGE : '')
+  const collegeError = errors.colleges || ''
 
   const primaryBookings = useSlotBookings(form.primary, !online)
   const backupBookings = useSlotBookings(form.backup, !online && backupStarted)
@@ -319,7 +319,21 @@ export default function ProposalFormPage({ mode = 'create', proposal = null, eve
         {form.eligibilityMode === ELIGIBILITY_COLLEGE ? <fieldset id="proposal-colleges" tabIndex={-1} className="organization-proposal-fieldset" aria-invalid={collegeError ? 'true' : undefined} aria-describedby={collegeError ? 'proposal-colleges-error proposal-colleges-help' : 'proposal-colleges-help'}>
           <legend>Allowed Colleges & Faculties <span aria-hidden="true">*</span></legend>
           <div className="organization-proposal-colleges">
-            {COLLEGES.map((college) => <label key={college.code} className="organization-proposal-check">
+            {[
+              { code: 'CA', label: 'College of Accountancy (CA)' },
+              { code: 'CASBE', label: 'College of Architecture and Sustainable Built Environments (CASBE)' },
+              { code: 'CBA', label: 'College of Business Administration (CBA)' },
+              { code: 'CED', label: 'College of Education (CED)' },
+              { code: 'CE', label: 'College of Engineering (CE)' },
+              { code: 'CHASS', label: 'College of Humanities and Social Sciences (CHASS)' },
+              { code: 'CISTM', label: 'College of Information Systems and Technology Management (CISTM)' },
+              { code: 'CM', label: 'College of Medicine (CM)' },
+              { code: 'CN', label: 'College of Nursing (CN)' },
+              { code: 'CPT', label: 'College of Physical Therapy (CPT)' },
+              { code: 'CPA', label: 'College of Public Administration (CPA)' },
+              { code: 'CS', label: 'College of Science (CS)' },
+              { code: 'CTHM', label: 'College of Tourism and Hospitality Management (CTHM)' },
+            ].map((college) => <label key={college.code} className="organization-proposal-check">
               <input type="checkbox" checked={form.colleges.includes(college.code)} onChange={() => toggleCollege(college.code)} />
               <span>{college.label}</span>
             </label>)}

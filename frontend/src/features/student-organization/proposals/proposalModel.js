@@ -9,7 +9,6 @@ const INTEGER_MAX = 2147483647
 export const ELIGIBILITY_UNIVERSITY = 'University-Wide'
 export const ELIGIBILITY_COLLEGE = 'College-Specific'
 
-export const MULTI_COLLEGE_MESSAGE = 'Selecting multiple colleges will be available once the backend supports it. Please select one college to submit.'
 
 export const MODALITIES = [
   { value: 'On-Site', title: 'In-Person Campus', text: 'Full physical gathering within designated PLM campus grounds.' },
@@ -20,6 +19,7 @@ export const MODALITIES = [
 // Names come from supabase/seed.sql (student_organization). No official name was found
 // for CBA, CS and CPT, so their code is the label. There is no college lookup table.
 export const COLLEGES = [
+  { code: 'CA', label: 'College of Accountancy (CA)' },
   { code: 'CASBE', label: 'College of Architecture and Sustainable Built Environments (CASBE)' },
   { code: 'CBA', label: 'CBA' },
   { code: 'CE', label: 'College of Engineering (CE)' },
@@ -141,7 +141,6 @@ export function formFromProposal(row) {
 }
 
 // True when College-Specific has two or more colleges selected (not supported by the backend yet).
-export const multiCollegeBlocked = (form) => form?.eligibilityMode === ELIGIBILITY_COLLEGE && (form.colleges?.length ?? 0) > 1
 
 export const isBackupStarted = (backup) => !!(backup?.venueId || backup?.startsAt || backup?.endsAt)
 
@@ -172,8 +171,7 @@ export function validateForm(form, ctx = {}) {
   if (form.eligibilityMode === ELIGIBILITY_COLLEGE) {
     const colleges = form.colleges || []
     if (!colleges.length) errors.colleges = 'Select the allowed college.'
-    else if (colleges.length > 1) errors.colleges = MULTI_COLLEGE_MESSAGE
-    else if (!COLLEGES.some((item) => item.code === colleges[0])) errors.colleges = 'Select a valid college.'
+    else if (!colleges.every((code) => COLLEGES.some((item) => item.code === code))) errors.colleges = 'Select a valid college.'
   }
 
   if (!text(form.eventTypeDescription)) errors.eventType = 'Choose an event type.'
@@ -219,7 +217,7 @@ export function buildProposalPayload(form, eventTypes) {
     event_type_id: resolveEventTypeId(eventTypes, form.eventTypeDescription, form.modality) || null,
     expected_count_attendees: Number.parseInt(text(form.expectedAttendees), 10),
     eligibility_mode: college ? ELIGIBILITY_COLLEGE : ELIGIBILITY_UNIVERSITY,
-    allowed_college: college ? (form.colleges?.[0] ?? null) : null,
+    allowed_college: college ? ([...new Set(form.colleges || [])].join(', ') || null) : null,
     allowed_programs: [],
     resource_requirements: orNull(form.resourceRequirements),
     budget_information: orNull(form.budgetInformation),
