@@ -1,5 +1,7 @@
 # PLM-SEAMS
 
+Pamantasan ng Lungsod ng Maynila Student Event Administration and Management Systems (PLM SEAMS) is a web-based Events Management System built to digitize the lifecycle of student-led events in PLM. It centralizes the submission of event proposals, venue booking, schedule management, and student registration to replace the chaos of manual paperworks in concern with event handling within the campus.
+
 React/Vite frontend with Supabase Auth and database-enforced access for **Student**, **Student Organization**, and **Admin**. The existing landing page and all three portal designs are preserved.
 
 ## Run the app
