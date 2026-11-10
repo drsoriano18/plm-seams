@@ -84,7 +84,7 @@ select.organization-proposal-control{cursor:pointer}
 .organization-proposal-choice-hint{color:var(--pp-muted);font:500 11px/16px Inter,Arial,sans-serif}
 
 /* Colleges and checkboxes */
-.organization-proposal-colleges{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 16px;padding:8px 12px;border:1px solid var(--pp-line);border-radius:8px}
+.organization-proposal-colleges{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(7,auto);grid-auto-flow:column;gap:4px 16px;padding:8px 12px;border:1px solid var(--pp-line);border-radius:8px}
 .organization-proposal-check{display:flex;align-items:flex-start;gap:10px;min-width:0;min-height:44px;padding:10px 0;color:var(--pp-ink);font:400 13px/20px Inter,Arial,sans-serif;cursor:pointer}
 .organization-proposal-check input{flex:0 0 auto;width:18px;height:18px;margin:1px 0 0;accent-color:var(--pp-navy)}
 .organization-proposal-check input:focus-visible{outline:2px solid var(--pp-navy);outline-offset:2px}
@@ -228,6 +228,7 @@ button.organization-proposal-cal-cell.is-selected{background:var(--pp-gold);colo
   .organization-proposal-content{width:min(100% - 32px,1000px)}
   .organization-proposal-card{padding:20px 16px}
   .organization-proposal-grid,.organization-proposal-choices.is-two,.organization-proposal-choices.is-three,.organization-proposal-colleges{grid-template-columns:minmax(0,1fr)}
+  .organization-proposal-colleges{grid-template-rows:none;grid-auto-flow:row}
   .organization-proposal-card-head{flex-direction:column-reverse;align-items:flex-start}
   .organization-proposal-control,.organization-proposal-avail-venue select{font-size:16px}
   .organization-proposal-actions{flex-direction:column-reverse;align-items:stretch;padding:16px}

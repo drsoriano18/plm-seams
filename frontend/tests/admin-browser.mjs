@@ -55,6 +55,8 @@ await page.route('https://*.supabase.co/**', async route => {
     if (mode === 'error') return route.fulfill({ status: 503, headers, body: JSON.stringify({ message: 'Temporary failure' }) })
     return reply(mode === 'empty' ? [] : [...proposals, { ...proposals[0], proposal_id: 'RETURNED', event_name: 'Awaiting organization revisions', approval_status: 'Revisions Required' }])
   }
+  if (url.pathname === '/rest/v1/venue' || url.pathname === '/rest/v1/venue_booking') return reply([])
+  if (url.pathname === '/rest/v1/event' && url.searchParams.has('archived_at')) return reply([])
   if (url.pathname === '/rest/v1/event') return reply(mode === 'empty' ? [] : [...events, { ...events[0], event_id: 'DRAFT', publication_status: 'Draft', proposal: { event_name: 'Unpublished test event', approval_status: 'Approved' } }])
   if (url.pathname === '/rest/v1/notifications') {
     if (request.method() === 'PATCH') {
@@ -97,19 +99,22 @@ try {
 
   await page.getByRole('button', { name: 'Review All (7)', exact: true }).click()
   await page.getByRole('heading', { name: 'Event Proposals Review', exact: true }).waitFor()
+  await page.locator('.all-proposal-card').nth(6).waitFor()
   assert.equal(await page.locator('.all-proposal-card').count(), 7)
   await page.locator('.all-proposal-view').first().click()
   await page.getByRole('heading', { name: 'Event Proposal Review', exact: true }).waitFor()
   await page.getByRole('textbox', { name: 'Full official event title' }).getByText(titles[0], { exact: true }).waitFor()
   await page.getByRole('link', { name: 'Proposals', exact: true }).click()
   await page.getByRole('heading', { name: 'Event Proposals Review', exact: true }).waitFor()
+  await page.locator('.all-proposal-card').nth(6).waitFor()
   assert.equal(await page.locator('.all-proposal-card').count(), 7)
-  for (const title of ['Calendar', 'Archives']) {
-    await page.getByRole('button', { name: title, exact: true }).click()
-    await page.getByRole('dialog', { name: title, exact: true }).waitFor()
-    await page.getByRole('button', { name: 'Back to dashboard' }).click()
+  for (const [title, heading] of [['Calendar', 'Venue Availability'], ['Archives', 'Archived Events']]) {
+    await page.getByRole('link', { name: title, exact: true }).click()
+    await page.getByRole('heading', { name: heading, exact: true }).waitFor()
   }
-  console.log('PASS Review All page, proposal cards, and review/calendar/archive placeholders')
+  await page.goto(`${base}/admin/dashboard`)
+  await page.getByRole('button', { name: 'Review All (7)', exact: true }).waitFor()
+  console.log('PASS Review All, proposal details, Calendar and Archives navigation')
 
   await page.getByRole('button', { name: 'Notifications, 1 unread', exact: true }).click()
   await page.getByRole('button', { name: 'Mark as read', exact: true }).click()
@@ -137,7 +142,8 @@ try {
   await page.getByRole('heading', { name: 'Manage Account', exact: true }).waitFor()
   await page.getByText('Official PLM Email', { exact: true }).waitFor()
   assert.equal(await page.locator('dd.admin-account-email').textContent(), user.email)
-  assert.ok(await page.getByLabel('Current password', { exact: true }).isVisible())
+  await page.locator('input[name="current"]').waitFor()
+  assert.ok(await page.locator('input[name="current"]').isVisible())
   assert.ok(await page.getByRole('button', { name: 'Save password', exact: true }).isVisible())
   await page.getByRole('link', { name: 'Manage', exact: true }).click()
   await page.getByRole('button', { name: 'Review All (7)', exact: true }).waitFor()

@@ -76,6 +76,18 @@ set constraints all deferred;
 select pg_temp.assert_true(exists(select 1 from public.event_proposal where event_name='Submitted via RPC' and allowed_programs=array['BSCS']),'atomic proposal retains program restrictions');
 update public.event set published_at=now()+interval '1 day' where event_id='TEST-E';
 select pg_temp.assert_true((select published_at<=statement_timestamp() from public.event where event_id='TEST-E'),'original publication cannot be forged');
+do $$
+declare original_published_at timestamptz;
+begin
+ select published_at into original_published_at from public.event where event_id='TEST-E';
+ update public.event set publication_status='Unpublished',registration_status='Closed'
+ where event_id='TEST-E';
+ update public.event set publication_status='Published',registration_status='Open',
+   published_at=statement_timestamp()+interval '1 day' where event_id='TEST-E';
+ perform pg_temp.assert_true(
+   (select published_at=original_published_at from public.event where event_id='TEST-E'),
+   'republishing retains the original server publication timestamp');
+end $$;
 reset role;
 select set_config('request.jwt.claim.sub','44444444-4444-4444-8444-444444444444',true);
 set local role authenticated;

@@ -16,7 +16,7 @@ begin
  values('_RBAC_E1',typ,'Published','Open',1,now()+interval '10 days',now()+interval '11 days',oid,'Upcoming','_RBAC_P1'),('_RBAC_E2',typ,'Draft','Closed',1,now()+interval '10 days',now()+interval '11 days',other_org,'Upcoming','_RBAC_P2');
  insert into public.registration(reg_id,event_id,student_number,reg_status) values('_RBAC_OTHER_REG','_RBAC_E2',other_student,'Confirmed');
  insert into public.event_proposal(proposal_id,org_id,objectives,description,submission_date,approval_status,expected_count_attendees,event_name,event_type_id,eligibility_mode,allowed_college)
- values('_RBAC_P4',oid,'Test','Test',now(),'Approved',1,'Restricted',typ,'College-Specific','_RBAC_OTHER_COLLEGE');
+ values('_RBAC_P4',oid,'Test','Test',now(),'Approved',1,'Restricted',typ,'College-Specific',case when (select college from public.students where student_number=sid)='CHASS' then 'CN' else 'CHASS' end);
  insert into public.event(event_id,event_type_id,publication_status,registration_status,registration_capacity,starts_at,ends_at,org_id,event_status,proposal_id)
  values('_RBAC_E3',typ,'Published','Open',1,now()+interval '10 days',now()+interval '11 days',oid,'Upcoming','_RBAC_P4');
  insert into public.notifications(notification_id,recipient_user_id,event_id,notification_type,message) values(-990000001,sid,'_RBAC_E1','Test','Test');

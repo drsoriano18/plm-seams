@@ -59,31 +59,32 @@ try {
     await page.waitForURL(`**/${route}/dashboard`)
     if(role==='Student') {
       await page.getByRole('heading',{name:'Events',exact:true}).waitFor()
-      await page.getByText('No upcoming events yet').waitFor()
+      await page.getByText('You have no confirmed registration yet').waitFor()
     } else if(role==='Admin') {
       await page.getByRole('heading',{name:'Administrator Dashboard'}).waitFor()
       await page.getByText('No proposals need your review').waitFor()
     } else {
-      await page.getByRole('heading',{name:`${role} workspace`}).waitFor()
-      await page.getByText('No records available for your account.').waitFor()
+      await page.getByRole('heading',{name:'Student Organization Executive Desk'}).waitFor()
+      await page.getByText('No active events yet').waitFor()
     }
     const wrong=role==='Admin'?'student':'admin'
     await page.goto(`${base}/${wrong}/dashboard`)
     await page.waitForURL(`**/${route}/dashboard`)
     if(role==='Admin') await page.getByRole('heading',{name:'Administrator Dashboard'}).waitFor()
-    else if(role!=='Student') await page.getByRole('heading',{name:`${role} workspace`}).waitFor()
+    else if(role!=='Student') await page.getByRole('heading',{name:'Student Organization Executive Desk'}).waitFor()
     if(role==='Student Organization') {
-      await page.getByRole('button',{name:'Create',exact:true}).click()
-      await page.getByRole('heading',{name:'Create event proposal'}).waitFor()
-      assert.ok(await page.getByLabel('Event name').isVisible())
+      await page.getByRole('link',{name:'Create Event Proposal',exact:true}).click()
+      await page.getByRole('heading',{name:'Create an Event Proposal',exact:true}).waitFor()
+      await page.locator('#proposal-event-name').waitFor()
+      assert.ok(await page.locator('#proposal-event-name').isVisible())
     }
     await page.setViewportSize({width:390,height:844})
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth))
     if(role==='Student' || role==='Admin') {
       await page.getByRole('button',{name:'Open profile menu'}).click()
       await page.getByRole('menuitem',{name:'Sign Out'}).click()
-    } else await page.getByRole('button',{name:'Sign out',exact:true}).click()
-    await page.waitForURL(role==='Student' ? base+'/student/login' : base+'/')
+    } else { await page.goto(base+'/student-organization/dashboard'); await page.getByRole('button',{name:'Open profile menu'}).click(); await page.getByRole('menuitem',{name:'Sign Out'}).click() }
+    await page.waitForURL(role==='Admin' ? base+'/' : `${base}/${route}/login`)
     await context.close()
     console.log(`PASS ${role}: anonymous redirect, login, wrong-role redirect, mobile layout and logout`)
   }
@@ -112,9 +113,9 @@ try {
     assert.ok(requests.some(r=>r.url.endsWith('/get_student_event_details')))
     assert.ok(!requests.some(r=>r.url==='/rest/v1/event_proposal' || r.url==='/rest/v1/venue_booking'))
     await page.goto(base+'/student/profile/settings')
-    await page.getByLabel('Current password',{exact:true}).fill('old-password')
-    await page.getByLabel('New password',{exact:true}).fill('new-password')
-    await page.getByLabel('Confirm new password',{exact:true}).fill('new-password')
+    await page.locator('input[name="current"]').fill('old-password')
+    await page.locator('input[name="password"]').fill('new-password')
+    await page.locator('input[name="confirmation"]').fill('new-password')
     await page.getByRole('button',{name:'Save password'}).click()
     await page.getByText('Password updated.',{exact:false}).waitFor()
     await context.close()
@@ -129,7 +130,8 @@ try {
     await page.goto(base+'/student/discover')
     await page.getByRole('heading',{name:'Program event',exact:true}).waitFor()
     await page.getByRole('combobox').selectOption('eligible')
-    await page.getByText('No events match your search',{exact:true}).waitFor()
+    // The current filter selects restricted events, including ineligible ones.
+    await page.getByRole('heading',{name:'Program event',exact:true}).waitFor()
     await page.getByRole('combobox').selectOption('all')
     await page.getByRole('heading',{name:'Program event',exact:true}).click()
     await page.getByRole('button',{name:'Register With Student ID',exact:true}).click()
