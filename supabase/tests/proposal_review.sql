@@ -17,8 +17,8 @@ begin
     values(proposal_key,org_id_value,'Transactional review fixture',case when proposal_key='_REVIEW_ONLINE' then '_REVIEW_ONLINE' else '_REVIEW_TYPE' end,'Test','Test',now(),'Pending',250,'University-Wide');
     insert into public.proposal_schedule(schedule_id,proposal_id,venue_id,starts_at,ends_at,schedule_type)
     values(proposal_key||'_S',proposal_key,case when proposal_key='_REVIEW_ONLINE' then null else '_REVIEW_PRIMARY' end,
-      now()+interval '40 days'+case when proposal_key='_REVIEW_CONFLICT' then interval '1 hour' when proposal_key='_REVIEW_ADJACENT' then interval '2 hours' else interval '0 hours' end,
-      now()+interval '40 days'+case when proposal_key='_REVIEW_CONFLICT' then interval '3 hours' when proposal_key='_REVIEW_ADJACENT' then interval '4 hours' else interval '2 hours' end,
+      now()+interval '40 days'+case when proposal_key='_REVIEW_CONFLICT' then interval '1 hour' when proposal_key='_REVIEW_ADJACENT' then interval '4 hours' else interval '0 hours' end,
+      now()+interval '40 days'+case when proposal_key='_REVIEW_CONFLICT' then interval '3 hours' when proposal_key='_REVIEW_ADJACENT' then interval '6 hours' else interval '2 hours' end,
       case when proposal_key='_REVIEW_MISSING' then 'Backup' else 'Primary' end);
   end loop;
   insert into public.proposal_schedule(schedule_id,proposal_id,venue_id,starts_at,ends_at,schedule_type)
@@ -57,7 +57,7 @@ begin
   if not exists(select 1 from public.event where event_id=created_event and publication_status='Unpublished' and registration_status='Closed' and registration_capacity=250 and starts_at=(select starts_at from public.proposal_schedule where schedule_id='_REVIEW_APPROVE_S')) then
     raise exception 'Approved event defaults or primary schedule are incorrect';
   end if;
-  if (select count(*) from public.venue_booking where event_id=created_event)<>1 or not exists(select 1 from public.venue_booking where event_id=created_event and venue_id='_REVIEW_PRIMARY' and booking_status='Confirmed' and authorized_by=admin_id_value) then
+  if (select count(*) from public.venue_booking where event_id=created_event)<>1 or not exists(select 1 from public.venue_booking where event_id=created_event and venue_id='_REVIEW_PRIMARY' and booking_status='Confirmed' and buffer_minutes=60 and authorized_by=admin_id_value) then
     raise exception 'Approval did not reserve only the primary venue';
   end if;
   if (select count(*) from public.proposal_review where proposal_id='_REVIEW_APPROVE' and admin_id=admin_id_value)<>1 then raise exception 'Review author/history is incorrect'; end if;
@@ -75,7 +75,7 @@ begin
     or exists(select 1 from public.proposal_review where proposal_id='_REVIEW_CONFLICT') then
     raise exception 'A failed reservation partially saved its review';
   end if;
-  perform public.review_proposal('_REVIEW_ADJACENT','Approved','Back-to-back reservation');
+  perform public.review_proposal('_REVIEW_ADJACENT','Approved','Reservation after both buffers');
   begin
     perform public.review_proposal('_REVIEW_MISSING','Approved',null);
     raise exception 'Approval without a primary schedule was accepted';
@@ -89,7 +89,7 @@ begin
   if (select count(*) from public.notifications where proposal_id='_REVIEW_APPROVE' and recipient_user_id=org_id_value)<>1
     or not exists(select 1 from public.notifications where proposal_id='_REVIEW_RETURN' and message like '%Please revise the objectives.%')
     or not exists(select 1 from public.notifications where proposal_id='_REVIEW_REJECT' and message like '%Final rejection reason.%')
-    or exists(select 1 from public.notifications where proposal_id='_REVIEW_CONFLICT') then
+    or exists(select 1 from public.notifications where proposal_id='_REVIEW_CONFLICT' and notification_type <> 'New Proposal Submitted') then
     raise exception 'Organization notifications are missing, duplicated, or persisted after failure';
   end if;
 

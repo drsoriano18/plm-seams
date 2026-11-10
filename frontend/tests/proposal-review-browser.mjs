@@ -67,7 +67,7 @@ try {
   await page.getByLabel('Password', { exact: true }).fill('mock-password')
   await page.getByRole('button', { name: 'Sign In', exact: true }).click()
   await page.waitForURL('**/admin/dashboard')
-  await page.getByRole('button', { name: `Review ${proposal.event_name}`, exact: true }).first().click()
+  await page.getByRole('button', { name: `View ${proposal.event_name}`, exact: true }).first().click()
   await page.getByRole('heading', { name: 'Event Proposal Review', exact: true }).waitFor()
   assert.equal(await page.locator('input:not([disabled]), textarea:not([readonly])').count(), 1)
   const title = page.getByRole('textbox', { name: 'Full official event title', exact: true })
