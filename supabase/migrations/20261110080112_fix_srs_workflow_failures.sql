@@ -97,6 +97,14 @@ BEGIN
                 confirmed_count
                 USING ERRCODE = '22023';
         END IF;
+
+        IF ev.registration_capacity > destination_capacity THEN
+            RAISE EXCEPTION
+                'Destination venue capacity (%) is below the configured registration capacity (%)',
+                destination_capacity,
+                ev.registration_capacity
+                USING ERRCODE = '22023';
+        END IF;
     END IF;
 
     UPDATE public.event
