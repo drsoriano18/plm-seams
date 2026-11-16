@@ -70,3 +70,19 @@
   .auth-page { padding-inline: 10px; }
   .auth-card { padding: 24px 16px; }
 }
+/* Forgot Password link (sits inside the existing 32px/48px spacer row, so nothing shifts) */
+.auth-forgot-row { display: flex; justify-content: flex-end; align-items: center; }
+.auth-forgot-link { padding: 4px 0; border-radius: 2px; color: #4c5e87; font: 600 0.8125rem/1.4 Inter, Arial, sans-serif; text-decoration: none; transition: color 160ms ease; }
+.auth-forgot-link:hover { color: #775a00; text-decoration: underline; }
+.auth-forgot-link:focus-visible { outline: 3px solid #d8af38; outline-offset: 3px; }
+
+/* Forgot Password popup: a native <dialog> that reuses the .auth-card look */
+.auth-forgot-dialog { width: min(100% - 32px, 448px); max-height: calc(100dvh - 32px); margin: auto; border: 0; overflow: auto; color: #1b1c1c; }
+.auth-organization .auth-forgot-dialog { width: min(100% - 32px, 460px); }
+.auth-forgot-dialog::backdrop { background: rgba(0, 0, 0, 0.5); }
+.auth-forgot-dialog .auth-submit { margin-top: 24px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .auth-forgot-link { transition: none; }
+  .auth-forgot-dialog { animation: none; }
+}

@@ -7,6 +7,9 @@ export const documentTitles = [
   { pattern: '/student/login', title: 'Student Login' },
   { pattern: '/student-organization/login', title: 'Organization Login' },
   { pattern: '/admin/login', title: 'Admin Login' },
+  { pattern: '/student/forgot-password', title: 'Forgot Password' },
+  { pattern: '/student-organization/forgot-password', title: 'Forgot Password' },
+  { pattern: '/admin/forgot-password', title: 'Forgot Password' },
 
   { pattern: '/student/dashboard', title: 'Student Dashboard' },
   { pattern: '/student/discover', title: 'Discover Events' },

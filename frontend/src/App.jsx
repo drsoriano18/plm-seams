@@ -88,6 +88,9 @@ function App() {
         <Route path="/student/login" element={<LoginPage portal="student" />} />
         <Route path="/student-organization/login" element={<LoginPage portal="organization" />} />
         <Route path="/admin/login" element={<LoginPage portal="administrator" />} />
+        <Route path="/student/forgot-password" element={<LoginPage portal="student" forgotPassword />} />
+        <Route path="/student-organization/forgot-password" element={<LoginPage portal="organization" forgotPassword />} />
+        <Route path="/admin/forgot-password" element={<LoginPage portal="administrator" forgotPassword />} />
         <Route path="/student/dashboard" element={<ProtectedRoute role="Student"><StudentDashboard /></ProtectedRoute>} />
         <Route path="/student/discover" element={<ProtectedRoute role="Student"><DiscoverEvents /></ProtectedRoute>} />
         <Route path="/student/profile" element={<ProtectedRoute role="Student"><StudentProfile /></ProtectedRoute>} />

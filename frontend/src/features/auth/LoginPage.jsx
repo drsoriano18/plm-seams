@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router'
+import { Link, useNavigate } from 'react-router'
+import ForgotPasswordDialog from './ForgotPasswordDialog'
 import { supabase, configurationError } from '../../lib/supabase'
 import { readProfile, matchesPortal, routeForRole } from './access'
 import { useAuth } from './authContext'
@@ -15,22 +16,28 @@ const loginConfigs = {
     placeholder: 'name2026@plm.edu.ph',
     background: studentBackground,
     className: 'auth-student',
+    loginPath: '/student/login',
+    forgotPath: '/student/forgot-password',
   },
   organization: {
     title: 'Sign In — Student Organization',
     placeholder: 'org2026@plm.edu.ph',
     background: organizationBackground,
     className: 'auth-organization',
+    loginPath: '/student-organization/login',
+    forgotPath: '/student-organization/forgot-password',
   },
   administrator: {
     title: 'Sign In — Administrators',
     placeholder: 'admin2026@plm.edu.ph',
     background: administratorBackground,
     className: 'auth-administrator',
+    loginPath: '/admin/login',
+    forgotPath: '/admin/forgot-password',
   },
 }
 
-function LoginPage({ portal }) {
+function LoginPage({ portal, forgotPassword = false }) {
   const navigate = useNavigate()
   const { refresh } = useAuth()
   const [busy, setBusy] = useState(false)
@@ -114,11 +121,14 @@ function LoginPage({ portal }) {
             {submitted && !passwordIsValid && <p className="auth-error" id={`${portal}-password-error`}>Enter your password.</p>}
           </div>
 
-          <div className="auth-form-spacer" aria-hidden="true" />
+          <div className="auth-form-spacer auth-forgot-row">
+            <Link className="auth-forgot-link" to={config.forgotPath}>Forgot Password?</Link>
+          </div>
           <button className="auth-submit" type="submit" disabled={busy}>{busy ? 'Signing in…' : 'Sign In'}</button>
           {error && <p className="auth-error" role="alert">{error}</p>}
         </form>
       </section>
+      {forgotPassword && <ForgotPasswordDialog onClose={() => navigate(config.loginPath, { replace: true })} />}
     </main>
   )
 }
