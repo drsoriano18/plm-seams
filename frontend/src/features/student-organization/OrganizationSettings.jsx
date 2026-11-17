@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { useAuth } from '../auth/authContext'
+import { useOrganizationPhoto, saveOrganizationPhoto } from './organizationPhoto'
 import { PasswordForm } from '../account/AccountControls'
 import { supabase } from '../../lib/supabase'
 import logoImage from '../../assets/landing/seams-wordmark.png'
@@ -28,7 +29,9 @@ export default function OrganizationSettings() {
   const navigate = useNavigate()
   const fileRef = useRef(null)
   const [organization, setOrganization] = useState(null)
-  const [photoPreview, setPhotoPreview] = useState('')
+  const photo = useOrganizationPhoto(profile.user_id)
+  const uploading = useRef(false)
+  const photoPreview = photo.url
   const [error, setError] = useState('')
   const [profileMenuOpen, setProfileMenuOpen] = useState(false)
 
@@ -42,11 +45,15 @@ export default function OrganizationSettings() {
     return () => { active = false }
   }, [profile.user_id])
 
-  function selectPicture(event) {
+  async function selectPicture(event) {
     const file = event.target.files?.[0]
-    if (!file) return
-    if (!['image/jpeg', 'image/png'].includes(file.type) || file.size > 2 * 1024 * 1024) { setError('Please choose a JPEG or PNG image smaller than 2 MB.'); return }
-    setPhotoPreview(URL.createObjectURL(file))
+    if (!file || uploading.current) return
+    uploading.current = true
+    setError('')
+    try {
+      await saveOrganizationPhoto(file, photo.path)
+    } catch (error) { setError(error.message) }
+    finally { uploading.current = false; if (fileRef.current) fileRef.current.value = '' }
   }
 
   async function signOut() {

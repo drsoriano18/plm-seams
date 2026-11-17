@@ -1,0 +1,5 @@
+/* White 32px circle with the platform's primary navy camera glyph. */
+.event-banner-camera{position:absolute;left:20px;bottom:20px;display:grid;place-items:center;width:32px;height:32px;padding:0;border:0;border-radius:50%;background:#fff;color:#041a40;cursor:pointer;z-index:2}
+.event-banner-camera:disabled{cursor:wait;opacity:.65}
+.event-banner-camera:focus-visible{outline:2px solid #e9c46a;outline-offset:-2px}
+.event-banner-message{position:absolute;bottom:23px;left:60px;width:max-content;max-width:calc(100% - 80px);box-sizing:border-box;padding:5px 8px;border-radius:4px;background:#e2f4ea;color:#1b6f45;font-size:11px;font-weight:700;line-height:16px;overflow-wrap:anywhere;z-index:2}
