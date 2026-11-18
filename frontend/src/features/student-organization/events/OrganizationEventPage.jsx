@@ -1,3 +1,5 @@
+import { EventBannerUpload } from '../../events/EventBanner'
+import { useEventBanner } from '../../events/useEventBanner'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useLocation, useParams } from 'react-router'
 import { useAuth } from '../../auth/authContext'
@@ -37,10 +39,11 @@ function Tile({ label, value }) {
   return <div className="organization-cap-tile"><dt>{label}</dt><dd>{value}</dd></div>
 }
 
-function Poster({ detail }) {
+function Poster({ detail, orgId }) {
+  const bannerStyle = useEventBanner(detail.event_id)
   const unpublished = detail.view === 'unpublished'
   const cancelled = detail.view === 'cancelled'
-  return <section className="organization-event-poster" aria-label="Event poster">
+  return <section className="organization-event-poster" aria-label="Event poster" style={bannerStyle}>
     <p className="organization-event-poster-label">{detail.poster_label}</p>
     <div className="organization-event-badges">
       <span className={`organization-badge ${detail.publication_status === 'Published' ? 'is-green' : 'is-red'}`}>{detail.publication_status === 'Published' ? 'Published' : 'Unpublished'}</span>
@@ -52,6 +55,7 @@ function Poster({ detail }) {
       <h2>{detail.title}</h2>
     </div>
     <span className="organization-event-reg-tag">{cancelled ? 'Event Cancelled' : detail.registration_open && detail.view !== 'completed' ? 'Reg Open' : 'Reg Closed'}</span>
+    <EventBannerUpload eventId={detail.event_id} orgId={orgId} archived={detail.archived_at} />
   </section>
 }
 
@@ -204,7 +208,7 @@ export default function OrganizationEventPage() {
     </EventNotice>
     <div className="organization-event-grid">
       <aside className="organization-event-side">
-        <Poster detail={detail} />
+        <Poster detail={detail} orgId={state.row.org_id} />
         <CapacityCard detail={detail} />
         <VenueCard detail={detail} />
       </aside>

@@ -1,3 +1,4 @@
+import { useEventBanner } from '../events/useEventBanner'
 import useBellNotifications from './useBellNotifications'
 import NotificationDates from './NotificationDates'
 import { ProfileImage } from '../account/AccountControls'
@@ -43,10 +44,11 @@ function eventType(event) {
 }
 
 function EventCard({ event, registration }) {
+  const bannerStyle = useEventBanner(event.event_id)
   const isConfirmed = registration?.reg_status === 'Confirmed'
   const status = registration?.reg_status || (event.registration_status === 'Open' ? 'Registration Open' : 'Registration Closed')
   return <Link className="student-event-card" to={`/student/events/${event.event_id}`}>
-    <div className="student-event-image" aria-label="Event image placeholder"><span>{eventType(event)}</span></div>
+    <div className="student-event-image" style={bannerStyle} aria-label="Event banner"><span>{eventType(event)}</span></div>
     <div className="student-event-content">
       <div className="student-event-topline">
         <div className="student-event-heading">

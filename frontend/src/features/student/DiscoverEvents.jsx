@@ -1,3 +1,4 @@
+import { useEventBanner } from '../events/useEventBanner'
 import useBellNotifications from './useBellNotifications'
 import NotificationDates from './NotificationDates'
 import { eligibilityLabel, isRestrictedEvent } from './discoverEligibility'
@@ -58,10 +59,11 @@ function ProfilePopover({ onSignOut }) {
 }
 
 function DiscoverCard({ event }) {
+  const bannerStyle = useEventBanner(event.event_id)
   const isLimited = Number(event.confirmed_registrations) >= Number(event.registration_capacity)
   const category = (event.event_type || 'Event').toUpperCase()
   return <Link className="discover-event-card" to={`/student/events/${event.event_id}`} state={{ from: 'discover' }}>
-    <div className="discover-event-image" aria-label="Event image placeholder"><span>{category.slice(0, 8)}</span></div>
+    <div className="discover-event-image" style={bannerStyle} aria-label="Event banner"><span>{category.slice(0, 8)}</span></div>
     <div className="discover-event-content">
       <div className="discover-event-topline"><p>{formatDateTime(event.starts_at)}</p><span className={isLimited ? 'is-limited' : ''}>{eligibilityLabel(event)}{isLimited ? ' · Waitlist' : ''}</span></div>
       <h3>{event.event_name}</h3>
